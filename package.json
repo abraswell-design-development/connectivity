@@ -2,10 +2,10 @@
   "name": "connectivity-temp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "serve": "node index",
-    "start": "nodemon --ignore client/ index.js"
+    "serve": "node server",
+    "start": "nodemon --ignore client/ server.js"
   },
   "keywords": [],
   "author": "",
