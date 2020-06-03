@@ -1,0 +1,83 @@
+.register-main{
+    width: 80%;
+    position: absolute;
+    left: 11%;
+    margin: 0 auto 4vh;
+  }
+
+.register__title > h2{
+    margin: 1vh 0 4vh;
+  }
+  
+.register__flex-container {
+    width: 90%;
+    margin: 5vh auto 10vh;
+    display: flex;
+  }
+    
+.register__img-container {
+    display: none;
+  }
+    
+.register__info-container {
+    flex-basis: 100%;
+    padding: 2vh 0 0;
+    margin-bottom: -1vh;
+  }
+
+.register__form-title {
+  margin-bottom: 2vh;
+} 
+
+.register__form-group{
+    border: none;
+    display: block;
+    font-family: var(--custom-font);
+    font-size: 20px;
+    margin: 0 0 3vh;
+    width: 100%;
+    padding: 10px 16px; 
+    font-size: 1.1em;
+    letter-spacing: .07em;  
+  }
+
+.register--loading:after {
+  top: 45%;
+}
+
+.register__button {
+  width: 30%;
+  margin: 0 auto;
+}
+
+/***************************For Tablets and Up****************************/
+@media (min-width: 1000px){
+  
+  .register__flex-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .register__title > h2{
+    margin: 0 0 3vh;
+  }
+
+  .register__img-container {
+    display: flex;
+    flex-basis: 40%;
+    overflow: hidden;
+    margin-top: -2vh;
+  }
+  
+.register__img-container > img {
+    height: auto;
+    width: 100%;
+    border-radius: 15px;
+  } 
+  
+.register__info-container {
+    flex-basis: 50%;
+    margin-top: -2vh;
+  }
+}

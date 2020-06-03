@@ -1,0 +1,108 @@
+.post-card__flex-container {
+  width: 100%;
+  height: auto;
+  background-color:#eee;
+  border: 1px solid #999;
+  box-shadow: 0 8px 21px 0 rgba(0,0,0,.2);
+  border-radius: 8px;
+  margin:0 auto 3vh;
+  padding: 1vh 5% 1vh 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.post-card__thumbnail {
+  flex-basis: 10%;
+  text-align: center;
+  align-items: center;
+  padding: 5px 30px 50px;
+  margin-right: -3%;
+}
+
+.post-card__thumbnail--round{
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid #333;
+}
+
+.post-card__info {
+  flex-basis: 90%;
+  padding-bottom: 1vh;
+} 
+
+.post-card__thumbnail--round >img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  margin-left: -17%;
+}
+
+/* info components*/
+.post-card__title {
+  text-transform: capitalize;
+  font-size: 1.7em;
+  margin: 0 0 1vh;
+}
+
+.post-card__title a {
+  color: #111;
+  display: block;
+  text-decoration: none;
+}
+
+p.post-card__body {
+  margin-top: 1vh;
+}
+
+.post-card__dates {
+  color:#555;
+  font-size: 1.1em;
+}
+
+.post-card__button-container__flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2vh;
+  height: 25%;
+}
+
+.other-buttons__container {
+  flex-basis: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.delete-button__container {
+  flex-basis: 10%;
+  align-self: flex-end;
+}
+
+
+@media (min-width: 1000px){
+  .post-card__thumbnail {
+    flex-basis: 10%;
+    text-align: center;
+    align-items: center;
+    padding: 5px 60px 100px;
+    margin-right: -3%;
+  }
+
+  .post-card__info {
+    flex-basis: 90%;
+    padding-bottom: 1vh;
+  } 
+
+  
+
+
+  
+
+}

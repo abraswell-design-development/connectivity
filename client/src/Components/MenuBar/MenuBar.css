@@ -1,0 +1,22 @@
+
+.menubar__flex-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.menubar__flex-item {
+  width: 25%;
+  margin: 0 5%;
+}
+
+.menubar__flex-item > a {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: .02em;
+  color: #fff;
+  font-size: 1.3em;
+  font-weight: 500;
+  text-transform: capitalize; 
+}
+
