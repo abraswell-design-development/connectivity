@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 
 import { useForm } from '../../util/hooks'
-import { FETCH_POSTS_QUERY } from '../../graphql/queries'
+import { FETCH_POSTS_QUERY } from '../../util/graphql'
 import Form from '../../util/Form'
 
 import './PostForm.css'
