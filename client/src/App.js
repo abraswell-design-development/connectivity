@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useReducer } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {faAddressCard, faBars, faEdit, faChevronLeft, faComment, faCommentAlt, faPaperPlane, faPlus, faThumbsUp, faTimes, faTrashAlt, faUsers, faCheckDouble, faPencilAlt,} 
@@ -7,8 +7,8 @@ import {faAddressCard, faBars, faEdit, faChevronLeft, faComment, faCommentAlt, f
 import 'semantic-ui-css/semantic.css';
 import './App.css'
 
-
-import { AuthProvider } from './context/auth'
+import reducer from './reducer'
+import { AuthProvider, AuthContext } from './context/auth'
 import AuthRoute from './util/AuthRoute'
 
 import Header from './Components/Header/Header'
@@ -24,9 +24,11 @@ library.add(faAddressCard, faBars, faPlus, faEdit, faChevronLeft, faComment, faC
 
 
 function App() {
+  const initialState = useContext(AuthContext)
+  const [state, dispatch] = useReducer(reducer, initialState)
  
   return (
-    <AuthProvider>
+    <AuthProvider value={{ state, dispatch }}>
       <Router>
         <div className='App'>
           <div className='App__sidebar'>

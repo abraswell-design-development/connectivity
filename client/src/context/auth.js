@@ -7,7 +7,6 @@ const initialState = {
 
 if (localStorage.getItem('jwtToken')) {
   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('jwtToken');
   } else {
@@ -17,16 +16,13 @@ if (localStorage.getItem('jwtToken')) {
 
 export const AuthContext = createContext({
   user: null,
+  currentUser: null,
+  isAuth: false,
   login: (userData) => {},
   logout: () => {}
 });
 
-function GoogleContext(){
-  createContext({
-    currentUser: null,
-    isAuth: false,
-  })
-}
+
 
 function authReducer(state, { type, payload}) {
   switch (type) {
@@ -73,10 +69,10 @@ export function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-      value={{ user: state.user, login, logout }}
+      value={{ user: state.user, currentUser: state.currentUser,
+        isAuth: state.isAuth,  login, logout }}
       {...props}
     />
   );
 }
 
-export default GoogleContext
