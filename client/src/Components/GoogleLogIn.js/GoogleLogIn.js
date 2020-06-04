@@ -30,7 +30,7 @@ const MyGoogleLogIn = ({ classes }) => {
   return <GoogleLogin 
   clientId='689809248438-g6ah561eahind4bjqm66u0d8sfl7jhon.apps.googleusercontent.com' 
   onSuccess={onSuccess}
-  isSignedIn={true}
+  //isSignedIn={true}
   />
 };
 

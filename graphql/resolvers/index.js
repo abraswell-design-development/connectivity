@@ -9,6 +9,7 @@ module.exports = {
     commentCount: (parent) => parent.comments.length
   },
   Query: {
+    ...googleUsersResolvers.Query,
     ...postsResolvers.Query,
     ...googleUsersResolvers.Query
   },

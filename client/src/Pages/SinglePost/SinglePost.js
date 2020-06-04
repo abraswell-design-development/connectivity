@@ -1,6 +1,5 @@
 import React, { useContext, useState, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import gql from 'graphql-tag'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
@@ -8,6 +7,8 @@ import moment from 'moment'
 import { AuthContext } from '../../context/auth'
 import DeleteButton from '../../Components/DeleteButton/DeleteButton'
 import LikeButton from '../../Components/LikeButton/LikeButton'
+import { FETCH_POST_QUERY } from '../../graphql.js/queries'
+import { SUBMIT_COMMENT_MUTATION } from '../../graphql.js/mutations'
 
 
 
@@ -175,41 +176,8 @@ function SinglePost(props) {
   return postMarkup;
 }
 
-const SUBMIT_COMMENT_MUTATION = gql`
-  mutation($postId: ID!, $body: String!) {
-    createComment(postId: $postId, body: $body) {
-      id
-      comments {
-        id
-        body
-        createdAt
-        username
-      }
-      commentCount
-    }
-  }
-`;
 
-const FETCH_POST_QUERY = gql`
-  query($postId: ID!) {
-    getPost(postId: $postId) {
-      id
-      body
-      createdAt
-      username
-      likeCount
-      likes {
-        username
-      }
-      commentCount
-      comments {
-        id
-        username
-        createdAt
-        body
-      }
-    }
-  }
-`;
+
+
 
 export default SinglePost;
