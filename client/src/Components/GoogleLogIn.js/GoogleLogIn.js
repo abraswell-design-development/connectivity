@@ -8,6 +8,7 @@ import GoogleContext from '../../context/auth'
 
 
 const MyGoogleLogIn = () => {   
+  console.log(useContext(GoogleContext));
   //const { dispatch } = useContext(GoogleContext)
   // console.log({dispatch})
   
