@@ -20,25 +20,28 @@ const pubsub = new PubSub();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => ({ req, pubsub })
-})
-  // context: async ({ req }) => {
-  //   let authToken = null
-  //   let currentUser = null
-  //   try {
-  //     authToken = req.headers.authorization
-  //     if (authToken) {
-  //       // find user in db or create a new one
-  //       currentUser = await findOrCreateUser(authToken)
-  //     }
-  //   } catch (err) {
-  //     console.error(`Unable to authenticate user with token ${authToken}`)
-  //   }
-  //   // attach found (or created) user to the context object
-  //   return { currentUser }
-  // }
-  // })
-
+  context: async ({ req }) => { 
+      if (!req.headers.authorization.split(`Bearer `)[1])  {
+         //Use Google
+        let authToken = null
+        let currentUser = null
+        try {
+          authToken = req.headers.authorization
+          if (authToken) {
+            // find Google User in db or create a new user
+            currentUser = await findOrCreateUser(authToken)
+          }
+        } catch (err) {
+          console.error(`Unable to authenticate user with token ${authToken}`)
+        }
+        // attach found (or created) Google User to the context object
+        return { currentUser }
+      } else {
+        //Use jwt
+        return {req, pubsub} 
+      }
+    }
+  })
 
 mongoose
   .connect(MONGO_URI, { 

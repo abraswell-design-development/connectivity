@@ -21,10 +21,12 @@ export const AuthContext = createContext({
   logout: () => {}
 });
 
-const GoogleContext = createContext({
-  currentUser: null,
-  isAuth: false,
-})
+function GoogleContext(){
+  createContext({
+    currentUser: null,
+    isAuth: false,
+  })
+}
 
 function authReducer(state, { type, payload}) {
   switch (type) {
@@ -43,7 +45,7 @@ function authReducer(state, { type, payload}) {
         ...state,
         currentUser: payload,
       }
-    case 'GOOGLE_USER_IS_LOGGED_IN':
+    case 'IS_GOOGLE_USER_LOGGED_IN':
       return {
         ...state,
         isAuth: payload,
