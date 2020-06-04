@@ -39,7 +39,7 @@ export default function Login(props) {
     loginUser()
   }
 
-  return (
+  return  (
     <section className='login-main'>
       <div className='login__title'>          
         <h2>Welcome Back!</h2>
@@ -108,7 +108,7 @@ export default function Login(props) {
                 name="username"
                 type="text"
                 value={values.username}
-                error={errors.username ? true : false}
+                error={errors.username ? 'true' : 'false'}
                 onChange={onChange}
               />
             </label>
@@ -119,7 +119,7 @@ export default function Login(props) {
                 name="password"
                 type="password"
                 value={values.password}
-                error={errors.password ? true : false}
+                error={errors.password ? 'true' : 'false'}
                 onChange={onChange}
               />
             </label>

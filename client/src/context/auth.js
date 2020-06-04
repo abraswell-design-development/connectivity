@@ -15,30 +15,45 @@ if (localStorage.getItem('jwtToken')) {
   }
 }
 
-const AuthContext = createContext({
+export const AuthContext = createContext({
   user: null,
   login: (userData) => {},
   logout: () => {}
 });
 
-function authReducer(state, action) {
-  switch (action.type) {
+const GoogleContext = createContext({
+  currentUser: null,
+  isAuth: false,
+})
+
+function authReducer(state, { type, payload}) {
+  switch (type) {
     case 'LOGIN':
       return {
         ...state,
-        user: action.payload
+        user: payload
       };
     case 'LOGOUT':
       return {
         ...state,
         user: null
       };
+    case 'LOGIN_GOOGLE_USER':
+      return {
+        ...state,
+        currentUser: payload,
+      }
+    case 'GOOGLE_USER_IS_LOGGED_IN':
+      return {
+        ...state,
+        isAuth: payload,
+      }
     default:
       return state;
   }
 }
 
-function AuthProvider(props) {
+export function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   function login(userData) {
@@ -62,4 +77,4 @@ function AuthProvider(props) {
   );
 }
 
-export { AuthContext, AuthProvider };
+export default GoogleContext

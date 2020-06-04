@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {faAddressCard, faBars, faEdit, faChevronLeft, faComment, faCommentAlt, faPaperPlane, faPlus, faThumbsUp, faTimes, faTrashAlt, faUsers, faCheckDouble, faPencilAlt,} 
@@ -7,7 +7,7 @@ import {faAddressCard, faBars, faEdit, faChevronLeft, faComment, faCommentAlt, f
 import 'semantic-ui-css/semantic.css';
 import './App.css'
 
-import { AuthContext } from './context/auth';
+
 import { AuthProvider } from './context/auth'
 import AuthRoute from './util/AuthRoute'
 
@@ -24,8 +24,6 @@ library.add(faAddressCard, faBars, faPlus, faEdit, faChevronLeft, faComment, faC
 
 
 function App() {
-  const context = useContext(AuthContext);
-  console.log(context)
  
   return (
     <AuthProvider>
