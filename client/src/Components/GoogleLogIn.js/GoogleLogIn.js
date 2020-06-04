@@ -3,14 +3,12 @@ import { GraphQLClient } from 'graphql-request'
 import { ME_QUERY } from '../../graphql.js/queries'
 
 import { GoogleLogin } from 'react-google-login'
-import { AuthContext } from '../../context/auth'
+import { GoogleContext } from '../../context/google-auth'
 
 
 
 const MyGoogleLogIn = () => {   
-  console.log(useContext(AuthContext));
-  const { dispatch } = useContext(AuthContext)
-  // console.log({dispatch})
+  const { dispatch } = useContext(GoogleContext)
   
   const handleSuccess = async googleUser => {
     try {
@@ -25,8 +23,9 @@ const MyGoogleLogIn = () => {
       // query the server (server verifies token, finds or creates a User, returns user's info)
       const { me } = await client.request(ME_QUERY)
       // add the user's info to 'currentUser' field in state
-      dispatch({ type: 'LOGIN_GOOGLE_USER', payload: me })
-      dispatch({ type: 'IS_GOOGLE_USER_LOGGED_IN', payload: googleUser.isSignedIn() })
+     dispatch({ type: 'LOGIN', payload: me })
+     // console.log(dispatch)
+     dispatch({ type: 'IS_GOOGLE_USER_LOGGED_IN', payload: googleUser.isSignedIn() })
       console.log(`Google sign in worked`)
     } catch (err) {
       handleFailure(err)
@@ -35,6 +34,9 @@ const MyGoogleLogIn = () => {
 
   const handleFailure = err => console.error('Error logging in', err)
   // console.log('login failed')
+
+
+
   return ( 
       <GoogleLogin
         clientId="689809248438-g6ah561eahind4bjqm66u0d8sfl7jhon.apps.googleusercontent.com"

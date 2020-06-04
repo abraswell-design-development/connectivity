@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
-import { AuthContext } from '../../context/auth'
+import { JWTContext } from '../../context/jwt-auth'
 import { LOGIN_USER } from '../../graphql.js/mutations'
 import { useForm } from '../../util/hooks'
 import Form from '../../util/Form'
@@ -11,11 +11,11 @@ import MyGoogleLogIn from '../../Components/GoogleLogIn.js/GoogleLogIn';
 
 
 export default function Login(props) {
-  const context = useContext(AuthContext)
+  const context = useContext(JWTContext)
   const [errors, setErrors] = useState({})
 
   const { onChange, onSubmit, values } = useForm(loginUserCallback, {
-    username: '',
+    email: '',
     password: ''
   })
 
@@ -102,14 +102,14 @@ export default function Login(props) {
           )}
           <h3 className='login__form-title'>Login</h3>
           <Form onSubmit={onSubmit} className={loading ? 'Loading login--loading' : ''}>
-            <label htmlFor="Username"> 
+            <label htmlFor="Email"> 
               <input
                 className='login__form-group' 
-                placeholder="Username.."
-                name="username"
+                placeholder="Email..."
+                name="email"
                 type="text"
-                value={values.username}
-                error={errors.username ? 'true' : 'false'}
+                value={values.email}
+                error={errors.email ? 'true' : 'false'}
                 onChange={onChange}
               />
             </label>

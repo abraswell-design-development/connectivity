@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { AuthContext } from '../context/auth';
+import { JWTContext } from '../context/jwt-auth';
 
 function AuthRoute({ component: Component, ...rest }) {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(JWTContext);
 
 
   return (

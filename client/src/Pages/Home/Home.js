@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 
-import { AuthContext } from '../../context/auth'
+import { JWTContext } from '../../context/jwt-auth'
 import PostCard from '../../Components/PostCard/PostCard'
 import PostForm from '../../Components/PostForm/PostForm'
 import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
@@ -9,7 +9,7 @@ import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
 import './Home.css'
 
 export default function Home() {
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(JWTContext)
   const { 
     loading, 
     data: { getPosts: posts }

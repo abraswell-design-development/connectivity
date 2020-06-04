@@ -1,23 +1,16 @@
   
 export default function reducer(state, { type, payload }) {
     switch (type) {
-      case 'LOGIN_USER':
+      case 'LOGIN':
         return {
           ...state,
-          currentUser: payload,
-        }
-      case 'IS_LOGGED_IN':
+          user: payload
+        };
+      case 'LOGOUT':
         return {
           ...state,
-          isAuth: payload,
-        }
-      case 'SIGNOUT_USER':
-        return {
-          ...state,
-          currentUser: null,
-          isAuth: false
-        }
-  
+          user: null
+        };
       default:
         return state
     }
