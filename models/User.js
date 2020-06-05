@@ -5,8 +5,14 @@ const userSchema = new Schema({
   username: String,
   password: String,
   email: String,
-  photo: String,
+  about: String,
+  city: String,
+  state: String,
+  picture: String,
+  token: String,
   createdAt: String
 });
 
 module.exports = model('User', userSchema);
+
+

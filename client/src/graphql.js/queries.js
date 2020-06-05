@@ -54,3 +54,20 @@ export const ME_QUERY = `
   }
 }
 `
+
+export const FETCH_USERS_QUERY = gql`
+  {
+    getUsers {
+    id
+    name
+    username
+    about
+    city
+    state
+    email
+    picture
+    token
+    createdAt
+    }
+  }
+`;

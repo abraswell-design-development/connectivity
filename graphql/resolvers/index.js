@@ -10,6 +10,7 @@ module.exports = {
   },
   Query: {
     ...googleUsersResolvers.Query,
+    ...usersResolvers.Query,
     ...postsResolvers.Query,
     ...googleUsersResolvers.Query
   },
