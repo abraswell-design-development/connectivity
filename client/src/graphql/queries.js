@@ -60,3 +60,14 @@ export const FETCH_USERS_QUERY = gql`
     }
   }
 `;
+
+export const ME_QUERY = `
+{
+  me {
+    id
+    name
+    email
+    picture
+  }
+}
+`

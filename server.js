@@ -29,14 +29,16 @@ const server = new ApolloServer({
           googleToken = req.headers.authorization
           if (googleToken) {
             // find Google User in db or create a new user
-            user = await findOrCreateUser(googleToken)
+            currentUser = await findOrCreateUser(googleToken)
           }
+          console.log('Server.js No Bearer Token')
         } catch (err) {
           console.error(`Unable to authenticate user with token ${googleToken}`)
         }
         // attach found (or created) Google User to the context object
-        return { user }
+        return { currentUser }
       } else {
+        console.log('Server.js No Bearer Token')
         //Use jwt
         return {req, pubsub} 
       }

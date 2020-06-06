@@ -19,7 +19,7 @@ if (localStorage.getItem('jwtToken')) {
   } else {
     initialState.user = decodedToken;
   }
-}
+ }
 
 export const Context = createContext({
   user: null,
@@ -47,14 +47,13 @@ export function ContextReducer(state, { type, payload}) {
 
 export function ContextProvider(props) {
   const [state, dispatch] = useReducer(ContextReducer, initialState);
-
+  console.log(state)
   function login(userData) {
     localStorage.setItem('jwtToken', userData.token);
     dispatch({
       type: 'LOGIN',
       payload: userData
     });
-    // console.log(localStorage)
   }
 
   function logout() {
