@@ -29,6 +29,7 @@ module.exports = gql`
     password: String,
     email: String,
     about: String,
+    relation: String,
     city: String,
     state: String,
     picture: String,
@@ -52,11 +53,12 @@ module.exports = gql`
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(email: String!, password: String!): User!
+    googleLogin(email: String!, id: String!): User!
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
+    likePost(postId: ID!): Post!
     createComment(postId: ID!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
-    likePost(postId: ID!): Post!
   }
   type Subscription {
     newPost: Post!

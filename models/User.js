@@ -6,10 +6,10 @@ const userSchema = new Schema({
   password: String,
   email: String,
   about: String,
+  relation: String,
   city: String,
   state: String,
   picture: String,
-  token: String,
   createdAt: String
 });
 

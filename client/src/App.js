@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {faAddressCard, faBars, faEdit, faChevronLeft, faComment, faCommentAlt, faPaperPlane, faPlus, faThumbsUp, faTimes, faTrashAlt, faUsers, faCheckDouble, faPencilAlt,} 
@@ -7,8 +7,7 @@ import {faAddressCard, faBars, faEdit, faChevronLeft, faComment, faCommentAlt, f
 import 'semantic-ui-css/semantic.css';
 import './App.css'
 
-import { JWTProvider, JWTContext, JWTReducer } from './context/jwt-auth'
-import { GoogleProvider, GoogleContext, GoogleReducer } from './context/google-auth'
+import { ContextProvider } from './context/auth'
 import AuthRoute from './util/AuthRoute'
 
 import Header from './Components/Header/Header'
@@ -26,12 +25,8 @@ library.add(faAddressCard, faBars, faPlus, faEdit, faChevronLeft, faComment, faC
 
 
 function App() {
-  const initialState = useContext(GoogleContext || JWTContext)
-  const [state, dispatch] = useReducer(GoogleReducer || JWTReducer, initialState)
- 
   return (
-    <GoogleProvider value={{ state, dispatch }}>
-      <JWTProvider>
+      <ContextProvider>
         <Router>
           <div className='App'>
             <div className='App__sidebar'>
@@ -52,8 +47,7 @@ function App() {
             </main>
           </div>
         </Router>
-      </JWTProvider>
-    </GoogleProvider>
+      </ContextProvider>
   )
 }
 

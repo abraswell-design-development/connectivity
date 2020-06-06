@@ -1,20 +1,20 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-import { JWTContext } from '../../context/jwt-auth'
+import { Context } from '../../context/auth'
 import './MenuBar.css'
 
 
 
 export default function MenuBar() {
-  const { user, logout } = useContext(JWTContext)
+  const { user, logout } = useContext(Context)
 
   const menuBar = user ? (
     <nav>
       <div className='menubar__flex-container'>
         <div className='menubar__flex-item'>
           <Link to={'/'}>
-            {user.username}
+            {user.name}
           </Link>
         </div>
         <div className='menubar__flex-item'>

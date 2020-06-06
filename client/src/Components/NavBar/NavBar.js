@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { JWTContext } from '../../context/jwt-auth'
+import { Context } from '../../context/auth'
 import Tooltip from '../Tooltip/Tooltip'
 import './NavBar.css'
 
 
 export default function NavBar() {
-  const { user } = useContext(JWTContext)
+  const { user } = useContext(Context)
 
   const navBar = !user ? (
     <div>{''}</div>

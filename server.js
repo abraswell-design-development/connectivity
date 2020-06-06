@@ -11,7 +11,7 @@ const resolvers = require('./graphql/resolvers');
 const MONGO_URI = process.env.MONGO_URI;
 const pubsub = new PubSub();
 
-//  UNCOMMENT TO USE PLAYGROUND!!!
+// UNCOMMENT TO USE GraphQL PLAYGROUND!!!
 // const server = new ApolloServer({
 //   typeDefs,
 //   resolvers,
@@ -23,19 +23,19 @@ const server = new ApolloServer({
   context: async ({ req }) => { 
       if (!req.headers.authorization.split(`Bearer `)[1])  {
          //Use Google
-        let authToken = null
-        let currentUser = null
+        let googleToken = null
+        let user = null
         try {
-          authToken = req.headers.authorization
-          if (authToken) {
+          googleToken = req.headers.authorization
+          if (googleToken) {
             // find Google User in db or create a new user
-            currentUser = await findOrCreateUser(authToken)
+            user = await findOrCreateUser(googleToken)
           }
         } catch (err) {
-          console.error(`Unable to authenticate user with token ${authToken}`)
+          console.error(`Unable to authenticate user with token ${googleToken}`)
         }
         // attach found (or created) Google User to the context object
-        return { currentUser }
+        return { user }
       } else {
         //Use jwt
         return {req, pubsub} 

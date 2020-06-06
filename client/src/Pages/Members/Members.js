@@ -2,9 +2,8 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 
 import MemberCard from '../../Components/MemberCard/MemberCard'
-import { FETCH_USERS_QUERY } from '../../graphql.js/queries'
+import { FETCH_USERS_QUERY } from '../../graphql/queries'
 
-// import './Home.css'
 
 export default function Members() {
   const { 

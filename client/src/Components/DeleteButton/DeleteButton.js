@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMutation } from '@apollo/react-hooks'
 import { Confirm } from 'semantic-ui-react'
 
-import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
-import { DELETE_COMMENT_MUTATION, DELETE_POST_MUTATION } from '../../graphql.js/mutations'
+import { FETCH_POSTS_QUERY } from '../../graphql/queries'
+import { DELETE_COMMENT_MUTATION, DELETE_POST_MUTATION } from '../../graphql/mutations'
 import Tooltip from '../Tooltip/Tooltip'
 
 function DeleteButton({ postId, commentId, callback }) {
