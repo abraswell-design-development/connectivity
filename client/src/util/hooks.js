@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useMutation } from '@apollo/react-hooks'
+// import { useMutation } from '@apollo/react-hooks'
 import { GraphQLClient } from 'graphql-request'
-import { ME_QUERY } from '../graphql/queries'
-import { LOGIN_GOOGLE_USER } from '../graphql/mutations'
+import { ME_QUERY } from '../graphql.js/queries'
+// import { LOGIN_GOOGLE_USER } from '../graphql/mutations'
 
 
 export const useForm = (callback, initialState = {}) => {
