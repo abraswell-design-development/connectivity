@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Context } from '../../context/auth'
+import { JWTContext } from '../../context/jwt-auth'
 import Dropdown from '../Dropdown/Dropdown'
 import MenuBar from '../MenuBar/MenuBar'
 
@@ -9,7 +9,7 @@ import './Header.css'
 
 
 export default function Header() {
-    const { user, logout } = useContext(Context)
+    const { user, logout } = useContext(JWTContext)
 
     const loggedInItems = [
         {

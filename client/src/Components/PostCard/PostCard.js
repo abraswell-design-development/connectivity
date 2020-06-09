@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import { Context } from '../../context/auth'
+import { JWTContext } from '../../context/jwt-auth'
 import CommentButton from '../CommentButton/CommentButton'
 import DeleteButton from '../DeleteButton/DeleteButton'
 import LikeButton from '../LikeButton/LikeButton'
@@ -14,7 +14,7 @@ import './PostCard.css'
 export default function PostCard({
   post: { body, createdAt, id, username, likeCount, commentCount, likes }
 }) {
-  const { user } = useContext(Context)
+  const { user } = useContext(JWTContext)
 
   const formattedTime = moment(createdAt).calendar()
 
@@ -22,8 +22,8 @@ export default function PostCard({
     <section className='post-card__flex-container'>
 
       <div className='post-card__thumbnail'>
-        
-        <Link to={`/members/${user.id}`}>
+        {/* TODO Fix Link to Member page */}
+        {/* <Link to={`/members/${post.member_id}`}> */}
           <div className='post-card__thumbnail--round'>
             <img 
                 src={require(`../../Images/User_Seedy_All.jpg`)} 
@@ -31,7 +31,7 @@ export default function PostCard({
             >
             </img>
           </div>  
-        </Link>
+        {/* </Link> */}
       </div>
       
 

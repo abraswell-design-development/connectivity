@@ -44,6 +44,17 @@ export const FETCH_POST_QUERY = gql`
   }
 `;
 
+export const ME_QUERY = `
+{
+  me {
+    id
+    name
+    email
+    picture
+  }
+}
+`
+
 export const FETCH_USERS_QUERY = gql`
   {
     getUsers {
@@ -60,3 +71,14 @@ export const FETCH_USERS_QUERY = gql`
     }
   }
 `;
+
+export const ME_QUERY = `
+{
+  me {
+    id
+    name
+    email
+    picture
+  }
+}
+`

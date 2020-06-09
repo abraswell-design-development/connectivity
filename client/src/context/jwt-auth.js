@@ -12,23 +12,17 @@ if (localStorage.getItem('jwtToken')) {
   } else {
     initialState.user = decodedToken;
   }
-} else if (localStorage.getItem('googleToken')) {
-  const decodedToken = jwtDecode(localStorage.getItem('googleToken'));
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem('googleToken');
-  } else {
-    initialState.user = decodedToken;
-  }
 }
 
-export const Context = createContext({
+export const JWTContext = createContext({
   user: null,
+  currentUser: null,
   isAuth: false,
   login: (userData) => {},
   logout: () => {}
 });
 
-export function ContextReducer(state, { type, payload}) {
+export function JWTReducer(state, { type, payload}) {
   switch (type) {
     case 'LOGIN':
       return {
@@ -40,13 +34,23 @@ export function ContextReducer(state, { type, payload}) {
         ...state,
         user: null
       };
+    case 'LOGIN_GOOGLE_USER':
+      return {
+        ...state,
+        currentUser: payload,
+      }
+    case 'IS_GOOGLE_USER_LOGGED_IN':
+      return {
+        ...state,
+        isAuth: payload,
+      }
     default:
       return state;
   }
 }
 
-export function ContextProvider(props) {
-  const [state, dispatch] = useReducer(ContextReducer, initialState);
+export function JWTProvider(props) {
+  const [state, dispatch] = useReducer(JWTReducer, initialState);
 
   function login(userData) {
     localStorage.setItem('jwtToken', userData.token);
@@ -54,7 +58,6 @@ export function ContextProvider(props) {
       type: 'LOGIN',
       payload: userData
     });
-    // console.log(localStorage)
   }
 
   function logout() {
@@ -63,8 +66,8 @@ export function ContextProvider(props) {
   }
 
   return (
-      <Context.Provider
-        value={{ user: state.user, isAuth: state.isAuth, login, logout }}
+      <JWTContext.Provider
+        value={{ user: state.user, currentUser: state.currentUser, isAuth: state.isAuth, login, logout }}
         {...props}
       />
   )

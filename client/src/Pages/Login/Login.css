@@ -49,12 +49,6 @@
   margin: 0 auto;
 }
 
-.google-button {
-  width: 50%;
-  margin: 0 auto;
-  text-align: center
-}
-
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
   
@@ -62,7 +56,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 2vh;
     margin-bottom: 6vh;
   }
 
@@ -72,9 +65,8 @@
 
   .login__img-container {
     display: flex;
-    flex-basis: 45%;
+    flex-basis: 40%;
     overflow: hidden;
-    margin-top: -2vh;
   }
   
 .login__img-container > img {
@@ -84,7 +76,8 @@
   } 
   
 .login__info-container {
-    flex-basis: 45%;
+    flex-basis: 50%;
+    margin-top: -2vh;
   }
 }
  

@@ -1,20 +1,18 @@
-const User = require('../models/User')
-
 const { OAuth2Client} = require('google-auth-library')
-
+const User = require('../models/User')
 const client = new OAuth2Client(process.env.OAUTH_CLIENT_ID)
 
 
 exports.findOrCreateUser = async token => {
     //verify auth token
-    const googleUser = await verifyGoogleToken(token)
+    const googleUser = await verifyAuthToken(token)
     // check if the user exists
     const user = await checkIfUserExists(googleUser.email)
     // if user exists, return them, otherwise, create new user in db
     return user ? user : createNewUser(googleUser)
 }
 
-const verifyGoogleToken = async token => {
+const verifyAuthToken = async token => {
     try {
         const ticket = await client.verifyIdToken({
             idToken: token, 
@@ -28,7 +26,9 @@ const verifyGoogleToken = async token => {
 }
 
 
-const checkIfUserExists = async email => await User.findOne({ email }).exec()
+const checkIfUserExists = async email => {
+    await User.findOne({ email }).exec()
+}
 
 
 const createNewUser = googleUser => {

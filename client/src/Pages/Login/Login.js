@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
-import { Context } from '../../context/auth'
-import { LOGIN_USER } from '../../graphql/mutations'
+import { JWTContext } from '../../context/jwt-auth'
+import { LOGIN_USER } from '../../graphql.js/mutations'
 import { useForm } from '../../util/hooks'
 import Form from '../../util/Form'
 
@@ -11,8 +11,9 @@ import MyGoogleLogIn from '../../Components/GoogleLogIn.js/GoogleLogIn';
 
 
 export default function Login(props) {
-  const context = useContext(Context)
+  const context = useContext(JWTContext)
   const [errors, setErrors] = useState({})
+
 
   const { onChange, onSubmit, values } = useForm(loginUserCallback, {
     email: '',
@@ -27,10 +28,16 @@ export default function Login(props) {
       }
     ) {
       context.login(userData)
+      console.log(userData)
       props.history.push('/')
     },
     onError(err) {
-     setErrors(err.graphQLErrors[0].extensions.exception.errors);
+
+     //setErrors(err.graphQLErrors[0].extensions.exception.errors);
+
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     variables: values
   })
@@ -38,6 +45,7 @@ export default function Login(props) {
   function loginUserCallback() {
     loginUser()
   }
+
 
   return  (
     <section className='login-main'>
@@ -76,6 +84,8 @@ export default function Login(props) {
           <br></br>
           Susie
         </p>
+
+        <MyGoogleLogIn/>
       </div>
 
       <div className='login__flex-container'>
@@ -97,7 +107,7 @@ export default function Login(props) {
               </ul>
             </div>
           )}
-          <h3 className='login__form-title'>Login:</h3>
+          <h3 className='login__form-title'>Login</h3>
           <Form onSubmit={onSubmit} className={loading ? 'Loading login--loading' : ''}>
             <label htmlFor="Email"> 
               <input
@@ -127,10 +137,6 @@ export default function Login(props) {
               </button>
             </div>
           </Form>
-          <h3 className='login__form-title'>Or through Google:</h3>
-          <div className='google-button'>
-            <MyGoogleLogIn />
-          </div>
         </div>
       </div>
     </section>

@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { Context } from '../context/auth';
+import { JWTContext } from '../context/jwt-auth';
 
-function AuthRoute({ component: Component, ...rest }) {
-  const { user } = useContext(Context);
-  console.log(user)
+
+function ProtectedRoute({ component: Component, ...rest }) {
+  const { user } = useContext(JWTContext);
+
 
   return (
     <Route
@@ -17,4 +18,4 @@ function AuthRoute({ component: Component, ...rest }) {
   );
 }
 
-export default AuthRoute;
+export default ProtectedRoute;

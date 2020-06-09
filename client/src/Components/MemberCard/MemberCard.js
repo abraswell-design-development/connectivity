@@ -1,19 +1,25 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import moment from 'moment'
+
 import '../PostCard/PostCard.css'
 
 
 
 export default function MemberCard({
-    user: { id, name, city, state, picture }
+    user: { id, username, name, email, about, picture, token, createdAt }
 }) 
+
     
-{return (
+{
+
+  const formattedTime = moment(createdAt).calendar()
+  
+  return (
     <section className='post-card__flex-container'>
 
       <div className='post-card__thumbnail'>
         {/* TODO Fix Link to Member page */}
-        <Link to={`/members/${id}`}>
+        {/* <Link to={`/members/${post.member_id}`}> */}
           <div className='post-card__thumbnail--round'>
             <img 
                 src={require(`../../Images/User_Seedy_All.jpg`)} 
@@ -21,21 +27,29 @@ export default function MemberCard({
             >
             </img>
           </div>  
-        </Link>
+        {/* </Link> */}
       </div>
       
 
-        <div className='post-card__info'>
-        <Link to={`/members/${id}`}>
-          <h3 className='post-card__title'>
-              {name}
-          </h3>
-        </Link>
-          <p className='post-card__body'>
-          {city}, {state}
-          </p>
+      <div className='post-card__info'>
+        <h3 className='post-card__title'>
+            {name}
+        </h3>
+
+        <p className='post-card__body'>
+        {email}
+        </p>
+
+        <p className='post-card__body'>
+        {about}
+        </p>
+
+        <p className='post-card__dates'>
+        {/* {moment(formattedTime).format('ll')} */}
+        Member since: {formattedTime}
+        </p>
+
         </div>
-      
     </section>
   )
 }
