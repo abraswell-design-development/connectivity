@@ -15,6 +15,7 @@ function generateToken(user) {
       id: user.id,
       email: user.email,
       username: user.username,
+      name: user.name
     },
     process.env.SECRET_KEY,
     { expiresIn: '24h' }
@@ -64,6 +65,28 @@ module.exports = {
       if (!match) {
         errors.general = 'Wrong credentials';
         throw new UserInputError('Wrong credentials', { errors });
+      }
+
+      const token = generateToken(user);
+
+      return {
+        ...user._doc,
+        id: user._id,
+        token
+      };
+    },
+    async googleLogin(_, {email }) {
+      const { errors, valid } = validateLoginInput(email);
+
+      if (!valid) {
+        throw new UserInputError('Errors', { errors });
+      }
+
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        errors.general = 'User not found';
+        throw new UserInputError('User not found', { errors });
       }
 
       const token = generateToken(user);

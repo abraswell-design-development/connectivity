@@ -76,6 +76,19 @@ mutation login($email: String!, $password: String!) {
 }
 `
 
+export const LOGIN_GOOGLE_USER = gql`
+mutation googleLogin($email: String!) {
+  googleLogin(email: $email) {
+    id
+    email
+    username
+    name
+    createdAt
+    token
+  }
+}
+`
+
 
 export const REGISTER_USER = gql`
 mutation register(

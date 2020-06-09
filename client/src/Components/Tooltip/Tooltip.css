@@ -29,13 +29,10 @@
     border-right: 10px solid transparent;
     border-top: 10px solid hsla(0, 0%, 20%, 0.9);
     content: '';
-    font-size: 0;
-    left: 40px;
-    line-height: 0;
     margin-left: 5px;
+    left: 35%;
     position: absolute;
-    top: calc(29px + 14px);
-    width: 0
+    top: 4vh;
 }
 
 /* start hidden */
@@ -55,6 +52,6 @@
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
     .Tooltip-message {
-    top: calc(-6.5vh - 14px);
+    top: -7vh
     }
 }
