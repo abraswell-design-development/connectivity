@@ -1,5 +1,4 @@
 import { useState } from 'react'
-//import { GraphQLClient } from 'graphql-request'
 
 
 export const useForm = (callback, initialState = {}) => {
@@ -21,25 +20,19 @@ export const useForm = (callback, initialState = {}) => {
 }
 
 export const handleGoogleSuccess = async userData => {
-
     try {
-        const idToken = userData.getAuthResponse().id_token
+        // const idToken = userData.getAuthResponse().id_token
  
-        console.log(userData)
-        // create a GraphQL Client object, pass it the token as an auth header
-        // new GraphQLClient('http://localhost:5000/graphql', {
-        //     headers: {
-        //     authorization: idToken,
-        //     },
-        // })
-        // put the token in local storage for dispatch in auth.js
-        localStorage.setItem('googleToken', idToken)
+        const validatedEmail = userData.profileObj.email
 
+        //console.log(localStorage.validatedEmail)
+
+        
+        
         //
         // context.login(userData)
         // props.history.push('/')
 
-        console.log(idToken)
     } catch (err) {
         handleGoogleFailure(err)
         }

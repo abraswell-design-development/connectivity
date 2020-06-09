@@ -24,6 +24,7 @@ if (localStorage.getItem('jwtToken')) {
 export const Context = createContext({
   user: null,
   isAuth: false,
+  userEmail: null,
   login: (userData) => {},
   logout: () => {}
 });
@@ -68,7 +69,6 @@ export function ContextProvider(props) {
       type: 'LOGIN',
       payload: userData
     });
-    // console.log(localStorage)
   }
 
   function logout() {

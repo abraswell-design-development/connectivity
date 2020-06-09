@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import { JWTContext } from '../../context/jwt-auth'
+import { Context } from '../../context/auth'
 import CommentButton from '../CommentButton/CommentButton'
 import DeleteButton from '../DeleteButton/DeleteButton'
 import LikeButton from '../LikeButton/LikeButton'
@@ -14,7 +14,7 @@ import './PostCard.css'
 export default function PostCard({
   post: { body, createdAt, id, username, likeCount, commentCount, likes }
 }) {
-  const { user } = useContext(JWTContext)
+  const { user } = useContext(Context)
 
   const formattedTime = moment(createdAt).calendar()
 
