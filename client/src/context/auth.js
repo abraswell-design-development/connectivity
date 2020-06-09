@@ -5,17 +5,20 @@ const initialState = {
   user: null
 };
 
-if (localStorage.getItem('jwtToken')) {
-  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem('jwtToken');
-  } else {
-    initialState.user = decodedToken;
-  }
-}
+//////  COMMENTED OUT UNTIL GOOGLE ROUTE IS COMPLETE SO SITE DOESN'T BREAK ACCIDENTALLY ///////
+
+// if (localStorage.getItem('jwtToken')) {
+//   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+//   if (decodedToken.exp * 1000 < Date.now()) {
+//     localStorage.removeItem('jwtToken');
+//   } else {
+//     initialState.user = decodedToken;
+//   }
+// }
 
 const Context = createContext({
   user: null,
+  googleUser: null,
   currentUser: null,
   isAuth: false,
   userEmail: null,
@@ -57,13 +60,12 @@ export function ContextReducer(state, { type, payload}) {
 export function AuthProvider(props) {
   const initialState = useContext(Context)
   const [state, dispatch] = useReducer(ContextReducer, initialState);
-  console.log('auth.js dispatch:', dispatch)
 
-  function login(userData) {
+  function login(userData, googleUser) {
     localStorage.setItem('jwtToken', userData.token);
     dispatch({
       type: 'LOGIN',
-      payload: userData
+      payload: userData || googleUser
     });
   }
 
@@ -74,7 +76,7 @@ export function AuthProvider(props) {
 
   return (
       <Context.Provider
-        value={{ user: state.user, currentUser: state.currentUser, isAuth: state.isAuth, login, logout }}
+        value={{ user: state.user, currentUser: state.currentUser, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
         {...props}
       />
   )

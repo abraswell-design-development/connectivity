@@ -45,8 +45,25 @@
 }
 
 .login__button {
-  width: 25%;
+  width: 30%;
   margin: 0 auto;
+  font-size: 1.15em;
+}
+
+.google-button {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.google-button > button {
+  width: 100%;
+}
+
+.google-button > button > span{
+  margin: 0 auto;
+  font-size: 1.15em;
+  letter-spacing: .03em
 }
 
 /***************************For Tablets and Up****************************/
@@ -69,15 +86,15 @@
     overflow: hidden;
   }
   
-.login__img-container > img {
-    height: auto;
-    width: 100%;
-    border-radius: 15px;
-  } 
-  
-.login__info-container {
-    flex-basis: 50%;
-    margin-top: -2vh;
-  }
+  .login__img-container > img {
+      height: auto;
+      width: 100%;
+      border-radius: 15px;
+    } 
+    
+  .login__info-container {
+      flex-basis: 50%;
+      margin-top: -2vh;
+    }
 }
  

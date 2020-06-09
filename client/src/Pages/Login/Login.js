@@ -1,23 +1,68 @@
 import React, { useContext, useState } from 'react'
-import Context from '../../context/auth'
 import { useMutation } from '@apollo/react-hooks'
+import { GoogleLogin } from 'react-google-login'
+import { GraphQLClient } from 'graphql-request'
 
-import MyGoogleLogin from '../../Components/MyGoogleLogin/MyGoogleLogin'
+
+
+import Context from '../../context/auth'
 import { LOGIN_USER } from '../../graphql.js/mutations'
 import { useForm } from '../../util/hooks'
 import Form from '../../util/Form'
 
 import './Login.css'
 
+const ME_QUERY = `
+{
+  me {
+    id
+    name
+    email
+    picture
+  }
+}
+`
+
+
 
 export default function Login(props) {
-
-  const { dispatch } = useContext(Context)
-  console.log('Login.js dispatch:', dispatch)
   const context = useContext(Context)
+
+  // GOOGLE - APP ROUTE
+  const handleGoogleSuccess = async googleUser => {
+    try {
+            // grab the successfully logged-in user's Google idToken
+            const idToken = googleUser.getAuthResponse().id_token
+            // create a GraphQL Client object, pass it the token as an auth header
+            const client = new GraphQLClient('http://localhost:5000/graphql', {
+              headers: {
+                authorization: idToken,
+              },
+            })
+              // query the server (server verifies token, finds or creates a User, returns user's info)
+              const { me } = await client.request(ME_QUERY)
+              console.log(me)
+
+      // this gets the googleUser's mail and stores it in validatedEmail variable
+        const validatedEmail = googleUser.profileObj.email
+        console.log('email validated by Google: ', validatedEmail)
+      // this moves the user into the protected route to reach home page but user in currently undefined
+        context.login(googleUser)
+        // ^^^^^^^^  UPDATE THIS WHEN GOOGLE USER MOVES THROUGH google-users.js
+        props.history.push('/')
+    } catch (err) {
+      handleGoogleFailure(err)
+    }
+  }
+
+  const handleGoogleFailure = err => console.error('Error logging in', err)
+
+
+
+  
+  // JWT - APP ROUTE
   const [errors, setErrors] = useState({})
 
-  //APP ROUTE
   const { onChange, onSubmit, values } = useForm(loginUserCallback, {
     email: '',
     password: ''
@@ -133,7 +178,14 @@ export default function Login(props) {
           </Form>
           <h3 className='login__form-title'>Or through Google:</h3>
           <div className='google-button'>
-            <MyGoogleLogin/>
+            <GoogleLogin
+              clientId="689809248438-g6ah561eahind4bjqm66u0d8sfl7jhon.apps.googleusercontent.com"
+              onSuccess={handleGoogleSuccess}
+              onFailure={handleGoogleFailure}
+              buttonText="Google Login"
+              theme="dark"
+              //isSignedIn={true}
+            />
           </div>
         </div>
       </div>
