@@ -16,7 +16,6 @@ if (localStorage.getItem('jwtToken')) {
 
 export const JWTContext = createContext({
   user: null,
-  currentUser: null,
   isAuth: false,
   login: (userData) => {},
   logout: () => {}
@@ -25,25 +24,17 @@ export const JWTContext = createContext({
 export function JWTReducer(state, { type, payload}) {
   switch (type) {
     case 'LOGIN':
+      console.log('ran LOGIN case')
       return {
         ...state,
         user: payload
       };
     case 'LOGOUT':
+      console.log('ran LOGOUT case')
       return {
         ...state,
         user: null
       };
-    case 'LOGIN_GOOGLE_USER':
-      return {
-        ...state,
-        currentUser: payload,
-      }
-    case 'IS_GOOGLE_USER_LOGGED_IN':
-      return {
-        ...state,
-        isAuth: payload,
-      }
     default:
       return state;
   }
@@ -67,7 +58,7 @@ export function JWTProvider(props) {
 
   return (
       <JWTContext.Provider
-        value={{ user: state.user, currentUser: state.currentUser, isAuth: state.isAuth, login, logout }}
+        value={{ user: state.user, isAuth: state.isAuth, login, logout }}
         {...props}
       />
   )

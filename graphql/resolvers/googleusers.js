@@ -10,6 +10,6 @@ const authenticated = next => (root, args, ctx, info) => {
 
 module.exports = {
     Query: {
-        user: authenticated((root,args,ctx,info) => ctx.user)
+        me: authenticated((root,args,ctx,info) => ctx.user)
     }
 }

@@ -7,7 +7,6 @@ const initialState = {
 
 export const GoogleContext = createContext({
   user: null,
-  currentUser: null,
   isAuth: false,
   login: (googleUser) => {},
   logout: () => {}
@@ -16,22 +15,14 @@ export const GoogleContext = createContext({
 
 export function GoogleReducer(state, { type, payload}) {
   switch (type) {
-    case 'LOGIN':
-      return {
-        ...state,
-        user: payload
-      };
-    case 'LOGOUT':
-      return {
-        ...state,
-        user: null
-      };
     case 'LOGIN_GOOGLE_USER':
+      console.log('ran LOGIN_GOOGLE_USER case')
       return {
         ...state,
-        currentUser: payload,
+        user: payload,
       }
     case 'IS_GOOGLE_USER_LOGGED_IN':
+      console.log('ran IS_GOOGLE_USER_LOGGED_IN')
       return {
         ...state,
         isAuth: payload,
@@ -60,7 +51,7 @@ export function GoogleProvider(props) {
   return (
     <>
       <GoogleContext.Provider
-        value={{ user: state.user, currentUser: state.currentUser, isAuth: state.isAuth, login, logout }}
+        value={{ user: state.user, isAuth: state.isAuth, login, logout }}
         {...props}
       />
     </>
