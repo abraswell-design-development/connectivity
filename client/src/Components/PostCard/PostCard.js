@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import { Context } from '../../context/auth'
+import Context from '../../context/auth'
 import CommentButton from '../CommentButton/CommentButton'
 import DeleteButton from '../DeleteButton/DeleteButton'
 import LikeButton from '../LikeButton/LikeButton'
@@ -12,7 +12,7 @@ import './PostCard.css'
 
 
 export default function PostCard({
-  post: { body, createdAt, id, username, likeCount, commentCount, likes }
+  post: { body, createdAt, id, username, name, likeCount, commentCount, likes }
 }) {
   const { user } = useContext(Context)
 
@@ -39,7 +39,7 @@ export default function PostCard({
           <h3 className='post-card__title'>
             {/* TODO - Change to member id? */}
             <Link to={`/posts/${id}`}>
-             {username}
+             {username}{name}
             </Link>
           </h3>
 
@@ -66,7 +66,7 @@ export default function PostCard({
             </div>
 
             <div className='delete-button__container'>
-              {user && user.username === username && <DeleteButton postId={id} />}
+              {user && user.username === {username} && <DeleteButton postId={id} />}
             </div>
           </div>
 

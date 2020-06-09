@@ -1,5 +1,17 @@
 import gql from 'graphql-tag';
 
+export const LOGIN_USER = gql`
+mutation login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    id
+    email
+    name
+    createdAt
+    token
+  }
+}
+`
+
 export const FETCH_POSTS_QUERY = gql`
   {
     getPosts {
@@ -7,14 +19,17 @@ export const FETCH_POSTS_QUERY = gql`
       body
       createdAt
       username
+      name
       likeCount
       likes {
         username
+        name
       }
       commentCount
       comments {
         id
         username
+        name
         createdAt
         body
       }
@@ -29,6 +44,7 @@ export const FETCH_POST_QUERY = gql`
       body
       createdAt
       username
+      name
       likeCount
       likes {
         username
@@ -60,3 +76,4 @@ export const FETCH_USERS_QUERY = gql`
     }
   }
 `;
+

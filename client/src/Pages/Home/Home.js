@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 
-import { Context } from '../../context/auth'
+import Context from '../../context/auth'
 import PostCard from '../../Components/PostCard/PostCard'
 import PostForm from '../../Components/PostForm/PostForm'
 import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'

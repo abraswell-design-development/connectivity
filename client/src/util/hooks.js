@@ -19,25 +19,4 @@ export const useForm = (callback, initialState = {}) => {
     } 
 }
 
-export const handleGoogleSuccess = async userData => {
-    try {
-        // const idToken = userData.getAuthResponse().id_token
- 
-        const validatedEmail = userData.profileObj.email
-
-        //console.log(localStorage.validatedEmail)
-
-        
-        
-        //
-        // context.login(userData)
-        // props.history.push('/')
-
-    } catch (err) {
-        handleGoogleFailure(err)
-        }
-}
-
-export const handleGoogleFailure = err => console.error('Error logging in', err)
-
 

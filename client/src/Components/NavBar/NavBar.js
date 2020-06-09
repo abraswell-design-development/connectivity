@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { Context } from '../../context/auth'
+import Context from '../../context/auth'
 import Tooltip from '../Tooltip/Tooltip'
 import './NavBar.css'
 

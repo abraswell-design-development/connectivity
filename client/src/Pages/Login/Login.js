@@ -1,16 +1,41 @@
 import React, { useContext, useState } from 'react'
+import Context from '../../context/auth'
 import { useMutation } from '@apollo/react-hooks'
 
-import { Context } from '../../context/auth'
-import { LOGIN_USER } from '../../graphql.js/mutations'
+import { GoogleLogin } from 'react-google-login'
+
+import { LOGIN_USER } from '../../graphql.js/queries'
 import { useForm } from '../../util/hooks'
 import Form from '../../util/Form'
 
 import './Login.css'
-import MyGoogleLogIn from '../../Components/GoogleLogIn.js/GoogleLogIn';
 
 
 export default function Login(props) {
+
+  const { dispatch } = useContext(Context)
+  console.log('Login.js dispatch:', dispatch)
+
+
+  // GOOGLE - APP ROUTE
+  const handleGoogleSuccess = async userData => {
+    try {
+      const validatedEmail = userData.profileObj.email
+      console.log('google validated email:', validatedEmail)
+    // googleLogin(userData) 
+      // add the user's info to 'currentUser' field in state
+    //  dispatch({ type: 'LOGIN', payload: validatedEmail })
+    // dispatch({ type: 'IS_GOOGLE_USER_LOGGED_IN', payload: userData.isSignedIn() })
+
+      props.history.push('/')
+    } catch (err) {
+      handleGoogleFailure(err)
+    }
+  }
+
+  const handleGoogleFailure = err => console.error('Error logging in', err)
+
+  // JWT - APP ROUTE
   const context = useContext(Context)
   const [errors, setErrors] = useState({})
 
@@ -129,7 +154,14 @@ export default function Login(props) {
           </Form>
           <h3 className='login__form-title'>Or through Google:</h3>
           <div className='google-button'>
-            <MyGoogleLogIn />
+            <GoogleLogin
+              clientId="689809248438-g6ah561eahind4bjqm66u0d8sfl7jhon.apps.googleusercontent.com"
+              onSuccess={handleGoogleSuccess}
+              onFailure={handleGoogleFailure}
+              buttonText="Google Login"
+              theme="dark"
+              //isSignedIn={true}
+            />
           </div>
         </div>
       </div>

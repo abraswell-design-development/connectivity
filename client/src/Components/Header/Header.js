@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Context } from '../../context/auth'
+import Context from '../../context/auth'
 import Dropdown from '../Dropdown/Dropdown'
 import MenuBar from '../MenuBar/MenuBar'
 

@@ -6,6 +6,7 @@ module.exports = gql`
     body: String!
     createdAt: String!
     username: String
+    name: String
     comments: [Comment]!
     likes: [Like]!
     likeCount: Int!
@@ -14,12 +15,14 @@ module.exports = gql`
   type Comment {
     id: ID!
     createdAt: String!
+    name: String
     username: String
     body: String!
   }
   type Like {
     id: ID!
     createdAt: String!
+    name: String
     username: String
   }
   type User {
@@ -53,7 +56,7 @@ module.exports = gql`
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(email: String!, password: String!): User!
-    googleLogin(email: String!, id: String!): User!
+    # googleLogin(email: String!, id: String!): User!
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
     likePost(postId: ID!): Post!

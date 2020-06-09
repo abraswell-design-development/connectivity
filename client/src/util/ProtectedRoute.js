@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { Context } from '../context/auth';
+import Context from '../context/auth';
 
-function AuthRoute({ component: Component, ...rest }) {
+function ProtectedRoute({ component: Component, ...rest }) {
   const { user } = useContext(Context);
   // console.log(user)
 
@@ -17,4 +17,4 @@ function AuthRoute({ component: Component, ...rest }) {
   );
 }
 
-export default AuthRoute;
+export default ProtectedRoute;

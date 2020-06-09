@@ -22,20 +22,20 @@ const server = new ApolloServer({
   resolvers,
   context: async ({ req }) => { 
       if (!req.headers.authorization.split(`Bearer `)[1])  {
-         //Use Google
+        //Use Google
         let googleToken = null
-        let user = null
+        let currentUser = null
         try {
           googleToken = req.headers.authorization
           if (googleToken) {
             // find Google User in db or create a new user
-            user = await findOrCreateUser(googleToken)
+            currentUser = await findOrCreateUser(googleToken)
           }
         } catch (err) {
           console.error(`Unable to authenticate user with token ${googleToken}`)
         }
         // attach found (or created) Google User to the context object
-        return { user }
+        return { currentUser }
       } else {
         //Use jwt
         return {req, pubsub} 

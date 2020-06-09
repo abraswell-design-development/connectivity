@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import { Context } from '../../context/auth'
+import Context from '../../context/auth'
 import DeleteButton from '../../Components/DeleteButton/DeleteButton'
 import LikeButton from '../../Components/LikeButton/LikeButton'
 import { FETCH_POST_QUERY } from '../../graphql.js/queries'

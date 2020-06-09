@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useContext,useReducer, createContext } from 'react';
 import jwtDecode from 'jwt-decode';
 
 const initialState = {
@@ -10,19 +10,14 @@ if (localStorage.getItem('jwtToken')) {
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('jwtToken');
   } else {
+    console.log('auth.js decode token initialState: ', initialState)
     initialState.user = decodedToken;
   }
-// } else if (localStorage.getItem('googleToken')) {
-//   const decodedToken = jwtDecode(localStorage.getItem('googleToken'));
-//   if (decodedToken.exp * 1000 < Date.now()) {
-//     localStorage.removeItem('googleToken');
-//   } else {
-//     initialState.user = decodedToken;
-//   }
 }
 
-export const Context = createContext({
+const Context = createContext({
   user: null,
+  currentUser: null,
   isAuth: false,
   userEmail: null,
   login: (userData) => {},
@@ -50,7 +45,7 @@ export function ContextReducer(state, { type, payload}) {
         user: payload,
       }
     case 'IS_GOOGLE_USER_LOGGED_IN':
-      console.log('ran IS_GOOGLE_USER_LOGGED_IN')
+      console.log('ran IS_GOOGLE_USER_LOGGED_IN case')
       return {
         ...state,
         isAuth: payload,
@@ -60,8 +55,10 @@ export function ContextReducer(state, { type, payload}) {
   }
 }
 
-export function ContextProvider(props) {
+export function AuthProvider(props) {
+  const initialState = useContext(Context)
   const [state, dispatch] = useReducer(ContextReducer, initialState);
+  console.log('auth.js dispatch:', dispatch)
 
   function login(userData) {
     localStorage.setItem('jwtToken', userData.token);
@@ -78,8 +75,10 @@ export function ContextProvider(props) {
 
   return (
       <Context.Provider
-        value={{ user: state.user, isAuth: state.isAuth, login, logout }}
+        value={{ user: state.user, currentUser: state.currentUser, isAuth: state.isAuth, login, logout }}
         {...props}
       />
   )
 }
+
+export default Context
