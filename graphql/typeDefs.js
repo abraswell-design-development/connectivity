@@ -51,12 +51,10 @@ module.exports = gql`
     getPost(postId: ID!): Post
     getUsers: [User]
     getUser(userId: ID!): User
-    # me: User
   }
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(email: String!, password: String!): User!
-    # googleLogin(email: String!, id: String!): User!
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
     likePost(postId: ID!): Post!

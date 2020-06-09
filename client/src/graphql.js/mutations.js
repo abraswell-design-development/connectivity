@@ -13,6 +13,7 @@ export const DELETE_COMMENT_MUTATION = gql`
       comments {
         id
         username
+        name
         createdAt
         body
       }
@@ -28,6 +29,7 @@ mutation likePost($postId: ID!) {
     likes {
       id
       username
+      name
     }
     likeCount
   }
@@ -41,9 +43,11 @@ export const CREATE_POST_MUTATION = gql`
       body
       createdAt
       username
+      name
       likes {
         id
         username
+        name
         createdAt
       }
       likeCount
@@ -51,12 +55,27 @@ export const CREATE_POST_MUTATION = gql`
         id
         body
         username
+        name
         createdAt
       }
       commentCount
     }
   }
 `
+
+export const LOGIN_USER = gql`
+mutation login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    id
+    email
+    username
+    name
+    createdAt
+    token
+  }
+}
+`
+
 
 export const REGISTER_USER = gql`
 mutation register(
@@ -94,6 +113,7 @@ export const SUBMIT_COMMENT_MUTATION = gql`
         body
         createdAt
         username
+        name
       }
       commentCount
     }

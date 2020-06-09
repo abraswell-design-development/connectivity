@@ -52,6 +52,7 @@ function SinglePost(props) {
       body,
       createdAt,
       username,
+      name,
       comments,
       likes,
       likeCount,
@@ -60,7 +61,7 @@ function SinglePost(props) {
 
     postMarkup = (
       <section className='ItemPageMain'>
-        <h2 className='ItemPageMainTitle'>Public Post from {username}</h2> 
+        <h2 className='ItemPageMainTitle'>Public Post from {username}{name}</h2> 
         
         <div className='ListPage__Row__Item__FlexContainer'>
           

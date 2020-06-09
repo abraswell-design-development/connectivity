@@ -1,4 +1,3 @@
-//const googleUsersResolvers = require('./NOgoogleusers');
 const postsResolvers = require('./posts');
 const usersResolvers = require('./users');
 const commentsResolvers = require('./comments');
@@ -9,7 +8,6 @@ module.exports = {
     commentCount: (parent) => parent.comments.length
   },
   Query: {
-    // ...googleUsersResolvers.Query,
     ...usersResolvers.Query,
     ...postsResolvers.Query,
   },

@@ -18,7 +18,6 @@ export default function LikeButton({ user, post: { id, likeCount, likes } }) {
   const [likePost] = useMutation(LIKE_POST_MUTATION, {
     variables: { postId: id }
   })
-
   const moreThanZero = likeCount !== 0 ? true : false
 
   const likeButton = 
@@ -70,3 +69,4 @@ export default function LikeButton({ user, post: { id, likeCount, likes } }) {
     </div>
   )
 }
+

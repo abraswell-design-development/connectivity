@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks'
 
 import { GoogleLogin } from 'react-google-login'
 
-import { LOGIN_USER } from '../../graphql.js/queries'
+import { LOGIN_USER } from '../../graphql.js/mutations'
 import { useForm } from '../../util/hooks'
 import Form from '../../util/Form'
 
@@ -21,7 +21,7 @@ export default function Login(props) {
   const handleGoogleSuccess = async userData => {
     try {
       const validatedEmail = userData.profileObj.email
-      console.log('google validated email:', validatedEmail)
+      console.log('email validated by Google: ', validatedEmail)
     // googleLogin(userData) 
       // add the user's info to 'currentUser' field in state
     //  dispatch({ type: 'LOGIN', payload: validatedEmail })

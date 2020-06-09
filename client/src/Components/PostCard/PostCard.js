@@ -16,6 +16,7 @@ export default function PostCard({
 }) {
   const { user } = useContext(Context)
 
+
   const formattedTime = moment(createdAt).calendar()
 
   return (
@@ -39,7 +40,7 @@ export default function PostCard({
           <h3 className='post-card__title'>
             {/* TODO - Change to member id? */}
             <Link to={`/posts/${id}`}>
-             {username}{name}
+             {username}
             </Link>
           </h3>
 
@@ -66,7 +67,7 @@ export default function PostCard({
             </div>
 
             <div className='delete-button__container'>
-              {user && user.username === {username} && <DeleteButton postId={id} />}
+              {user && user.username === username && <DeleteButton postId={id} />}
             </div>
           </div>
 
