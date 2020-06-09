@@ -1,8 +1,5 @@
 import { useState } from 'react'
-// import { useMutation } from '@apollo/react-hooks'
 import { GraphQLClient } from 'graphql-request'
-import { ME_QUERY } from '../graphql.js/queries'
-// import { LOGIN_GOOGLE_USER } from '../graphql/mutations'
 
 
 export const useForm = (callback, initialState = {}) => {
@@ -16,7 +13,6 @@ export const useForm = (callback, initialState = {}) => {
         event.preventDefault()
         callback()
     }
-
     return {
         onChange,
         onSubmit,
@@ -24,39 +20,23 @@ export const useForm = (callback, initialState = {}) => {
     } 
 }
 
-export const handleGoogleFailure = err => console.error('Error logging in', err)
-
-
 export const handleGoogleSuccess = async userData => {
+
     try {
         const idToken = userData.getAuthResponse().id_token
-       // console.log("Google Token", idToken)
-        localStorage.setItem('googleToken', idToken)
         // create a GraphQL Client object, pass it the token as an auth header
-        const client = new GraphQLClient('http://localhost:5000/graphql', {
+        new GraphQLClient('http://localhost:5000/graphql', {
             headers: {
             authorization: idToken,
             },
         })
-        const data = await client.request(ME_QUERY)
-        const email = await data.me.email
-        const id = await data.me.id
-        const loggedInGoogleUser = { email, id }
-        console.log('Google Login worked!')
-        console.log("ME_QUERY returned:", loggedInGoogleUser)
-
-        // const [logInGoogle] = useMutation(LOGIN_GOOGLE_USER, {
-        //     update(proxy, result){
-        //         console.log(result)
-        //     },
-        //     variables: {
-        //         email: email,
-        //         id: id
-        //     }
-        // })
-
+        // put the token in local storage for dispatch in auth.js
+        localStorage.setItem('googleToken', idToken)
+        console.log(idToken)
     } catch (err) {
         handleGoogleFailure(err)
         }
 }
+
+export const handleGoogleFailure = err => console.error('Error logging in', err)
 

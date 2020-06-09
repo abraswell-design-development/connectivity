@@ -70,4 +70,3 @@ export default function LikeButton({ user, post: { id, likeCount, likes } }) {
     </div>
   )
 }
-

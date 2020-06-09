@@ -1,51 +1,19 @@
-import React, { useContext } from 'react'
-import { GraphQLClient } from 'graphql-request'
-import { ME_QUERY } from '../../graphql.js/queries'
-
+import React from 'react'
 import { GoogleLogin } from 'react-google-login'
-import { GoogleContext } from '../../context/google-auth'
+
+import { handleGoogleSuccess, handleGoogleFailure } from '../../util/hooks'
 
 
 
-const MyGoogleLogIn = () => {   
-  const { dispatch } = useContext(GoogleContext)
-  
-  const handleSuccess = async googleUser => {
-    try {
-      // grab the successfully logged-in user's Google idToken
-      const idToken = googleUser.getAuthResponse().id_token
-      // create a GraphQL Client object, pass it the token as an auth header
-      const client = new GraphQLClient('http://localhost:5000/graphql', {
-        headers: {
-          authorization: idToken,
-        },
-      })
-      // query the server (server verifies token, finds or creates a User, returns user's info)
-      const { me } = await client.request(ME_QUERY)
-      // add the user's info to 'currentUser' field in state
-     dispatch({ type: 'LOGIN', payload: me })
-     // console.log(dispatch)
-     dispatch({ type: 'IS_GOOGLE_USER_LOGGED_IN', payload: googleUser.isSignedIn() })
-      console.log(`Google sign in worked`)
-    } catch (err) {
-      handleFailure(err)
-    }
-  }
-
-  const handleFailure = err => console.error('Error logging in', err)
-  // console.log('login failed')
-
-
-
+export default function MyGoogleLogin(props) {   
   return ( 
       <GoogleLogin
         clientId="689809248438-g6ah561eahind4bjqm66u0d8sfl7jhon.apps.googleusercontent.com"
-        onSuccess={handleSuccess}
-        onFailure={handleFailure}
+        onSuccess={handleGoogleSuccess}
+        onFailure={handleGoogleFailure}
+        buttonText="Google Login"
+        theme="dark"
         //isSignedIn={true}
       />
   )
 }
-
-
-export default MyGoogleLogIn;

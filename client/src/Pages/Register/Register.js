@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
-import { JWTContext } from '../../context/jwt-auth'
+import { Context } from '../../context/auth'
 import { useForm } from '../../util/hooks'
 import { REGISTER_USER } from '../../graphql.js/mutations'
 import Form from '../../util/Form'
@@ -11,7 +11,7 @@ import './Register.css'
 
 
 function Register(props) {
-  const context = useContext(JWTContext)
+  const context = useContext(Context)
   const [errors, setErrors] = useState({})
 
 

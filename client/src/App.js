@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {faAddressCard, faBars, faEdit, faChevronLeft, faComment, faCommentAlt, faPaperPlane, faPlus, faThumbsUp, faTimes, faTrashAlt, faUsers, faCheckDouble, faPencilAlt,} 
@@ -7,8 +7,8 @@ import {faAddressCard, faBars, faEdit, faChevronLeft, faComment, faCommentAlt, f
 import 'semantic-ui-css/semantic.css';
 import './App.css'
 
-import { JWTProvider, JWTContext } from './context/jwt-auth'
-import ProtectedRoute from './util/ProtectedRoute'
+import { ContextProvider } from './context/auth'
+import AuthRoute from './util/AuthRoute'
 
 import Header from './Components/Header/Header'
 import NavBar from './Components/NavBar/NavBar'
@@ -25,10 +25,8 @@ library.add(faAddressCard, faBars, faPlus, faEdit, faChevronLeft, faComment, faC
 
 
 function App() {
-  const initialState = useContext(JWTContext)
- 
   return (
-    <JWTProvider>
+      <ContextProvider>
         <Router>
           <div className='App'>
             <div className='App__sidebar'>
@@ -38,20 +36,19 @@ function App() {
               <Header />
             </div>
             <main className='App__main'>
-              <ProtectedRoute exact path="/" component={Home} />
-              <ProtectedRoute exact path="/posts" component={Home} />
-              <ProtectedRoute exact path="/posts/:postId" component={SinglePost} />
-              <ProtectedRoute exact path="/members" component={Members} />
-              <ProtectedRoute exact path="/members/:memberId" component={SingleMember} />
-              <ProtectedRoute exact path="/about" component={About} />
+              <AuthRoute exact path="/" component={Home} />
+              <AuthRoute exact path="/posts" component={Home} />
+              <AuthRoute exact path="/posts/:postId" component={SinglePost} />
+              <AuthRoute exact path="/members" component={Members} />
+              <AuthRoute exact path="/members/:memberId" component={SingleMember} />
+              <AuthRoute exact path="/about" component={About} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
             </main>
           </div>
         </Router>
-    </JWTProvider>
+      </ContextProvider>
   )
 }
 
 export default App
-

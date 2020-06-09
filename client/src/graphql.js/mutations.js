@@ -63,7 +63,7 @@ mutation login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
     id
     email
-    username
+    name
     createdAt
     token
   }
