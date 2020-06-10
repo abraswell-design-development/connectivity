@@ -13,7 +13,6 @@ const authenticated = resolverFunc => (root, args, ctx, info) => {
   if (!ctx.currentUser) {
     throw new AuthenticationError('Coming from google-users.js.... No ctx.googleUser....You must be logged in')
   }
-  console.log('passing Authenticated User on to ME_QUERY')
   return resolverFunc(root, args, ctx, info)
 }
 

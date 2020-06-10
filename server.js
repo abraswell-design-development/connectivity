@@ -27,7 +27,7 @@ const server = new ApolloServer({
         let currentUser = null
         try {
           authToken = req.headers.authorization
-          console.log('authToken successful')
+          console.log('authToken received from request header')
           if (authToken) {
             // find Google User in db or create a new user
             // and update currentUser in CONTEXT to pass on to google-user.js
@@ -38,8 +38,8 @@ const server = new ApolloServer({
           console.error(`Unable to authenticate user with token`)
         }
         // attach found (or created) Google User to the context object
+        console.log('currentUser returned from server.js: ', currentUser)
         return { currentUser }
-
 
       } else {
         //Use jwt

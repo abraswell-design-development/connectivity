@@ -7,21 +7,11 @@ import { GraphQLClient } from 'graphql-request'
 
 import Context from '../../context/auth'
 import { LOGIN_USER } from '../../graphql.js/mutations'
+import { ME_QUERY } from '../../graphql.js/queries'
 import { useForm } from '../../util/hooks'
 import Form from '../../util/Form'
 
 import './Login.css'
-
-const ME_QUERY = `
-{
-  me {
-    id
-    name
-    email
-    picture
-  }
-}
-`
 
 
 
@@ -41,12 +31,13 @@ export default function Login(props) {
             })
               // query the server (server verifies token, finds or creates a User, returns user's info)
               const { me } = await client.request(ME_QUERY)
-              console.log(me)
+              console.log('me object returned from query: ', me)
 
       // this gets the googleUser's mail and stores it in validatedEmail variable
         const validatedEmail = googleUser.profileObj.email
         console.log('email validated by Google: ', validatedEmail)
-      // this moves the user into the protected route to reach home page but user in currently undefined
+        console.log('Login.js context: ', context)
+// this moves the user into the protected route to reach home page but user in currently undefined
         context.login(googleUser)
         // ^^^^^^^^  UPDATE THIS WHEN GOOGLE USER MOVES THROUGH google-users.js
         props.history.push('/')

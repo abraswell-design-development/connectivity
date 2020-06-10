@@ -4,7 +4,7 @@ const User = require('../models/User')
 const client = new OAuth2Client(process.env.OAUTH_CLIENT_ID)
 
 const verifyAuthToken = async token => {
-  console.log('verifying Auth token...')
+  console.log('verifying Auth token in database...')
   try {
     const ticket = await client.verifyIdToken({
       idToken: token,

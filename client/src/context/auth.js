@@ -22,7 +22,7 @@ const Context = createContext({
   currentUser: null,
   isAuth: false,
   userEmail: null,
-  login: (userData) => {},
+  login: (userData, googleUser) => {},
   logout: () => {}
 });
 
@@ -61,11 +61,11 @@ export function AuthProvider(props) {
   const initialState = useContext(Context)
   const [state, dispatch] = useReducer(ContextReducer, initialState);
 
-  function login(userData, googleUser) {
+  function login(userData, currentUser) {
     localStorage.setItem('jwtToken', userData.token);
     dispatch({
       type: 'LOGIN',
-      payload: userData || googleUser
+      payload: userData || currentUser
     });
   }
 
