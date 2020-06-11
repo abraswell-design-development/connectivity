@@ -5,7 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {faAddressCard, faBars, faEdit, faChevronLeft, faComment, faCommentAlt, faPaperPlane, faPlus, faThumbsUp, faTimes, faTrashAlt, faUsers, faCheckDouble, faPencilAlt,} 
   from '@fortawesome/free-solid-svg-icons'
 
-import 'semantic-ui-css/semantic.css';
+// import 'semantic-ui-css/semantic.css';
 import './App.css'
 
 //import Context from './context/auth'
@@ -47,7 +47,7 @@ function App() {
               <ProtectedRoute exact path="/posts/:postId" component={SinglePost} />
               <ProtectedRoute exact path="/members" component={Members} />
               <ProtectedRoute exact path="/members/:memberId" component={SingleMember} />
-              <ProtectedRoute exact path="/about" component={About} />
+              <Route exact path="/about" component={About} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
             </main>

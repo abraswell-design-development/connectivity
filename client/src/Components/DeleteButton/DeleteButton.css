@@ -1,22 +1,49 @@
-/* Final Delete Button */
-.Button--delete  {
-  background-color:#C23C47;
-  border: 1px solid #C23C47;
-  border-radius: 5px;
-  outline: none;
-  height: 100%;
-  width: 100%;
-  padding: 9px 15px;
-  color: #fff;
-  font-size: 1.2em;
+
+ /* override alert dialog defaults */
+.react-confirm-alert-overlay {
+  background: rgba(0,0,0,0.8);
+  z-index: 5000;
 }
 
-.Button--delete:hover {
-  background-color: #fff;
-  color: #C23C47;
-  cursor: pointer;
-  font-weight: bold;
+.react-confirm-alert {
+  background: white;
+  border-radius: 8px;
+  width: 50%;
+  padding: 2em;
 }
+
+/* custom alert dialog styles */
+.react-confirm-alert-body {
+  border-radius: 0;
+  padding: 10px 10px 15px;
+  margin: 0;
+  width: 100%;
+  font-size: 1.3em;
+  border-bottom: 1px solid #aaa
+}
+
+
+.react-confirm-alert-button-group {
+  margin-top: 6vh;
+  position: relative;
+  right: -10px;
+  float: right;
+}
+
+.react-confirm-alert-button-group > button:first-of-type {
+  background-color: #C23C47;
+  font-size: .9em;
+  letter-spacing: 0.03em;
+}
+
+.react-confirm-alert-button-group > button:last-of-type {
+  background-color: #378273;
+  font-size: .9em;
+  letter-spacing: 0.03em;
+}
+
+
+
 
 
 

@@ -7,14 +7,14 @@ const initialState = {
 
 //////  COMMENTED OUT UNTIL GOOGLE ROUTE IS COMPLETE SO SITE DOESN'T BREAK ACCIDENTALLY ///////
 
-// if (localStorage.getItem('jwtToken')) {
-//   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-//   if (decodedToken.exp * 1000 < Date.now()) {
-//     localStorage.removeItem('jwtToken');
-//   } else {
-//     initialState.user = decodedToken;
-//   }
-// }
+if (localStorage.getItem('jwtToken')) {
+  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+  if (decodedToken.exp * 1000 < Date.now()) {
+    localStorage.removeItem('jwtToken');
+  } else {
+    initialState.user = decodedToken;
+  }
+}
 
 const Context = createContext({
   user: null,
@@ -30,10 +30,12 @@ export function ContextReducer(state, { type, payload}) {
   switch (type) {
     case 'LOGIN':
       console.log('ran LOGIN case')
+      console.log ('payload contains: ', payload)
       return {
         ...state,
         user: payload
-      };
+      }
+      ;
     case 'LOGOUT':
       console.log('ran LOGOUT case')
       return {
