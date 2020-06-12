@@ -7,6 +7,7 @@ import {AuthContext} from '../../context/auth'
 import CommentButton from '../../Components/CommentButton/CommentButton'
 import DeleteButton from '../../Components/DeleteButton/DeleteButton'
 import LikeButton from '../../Components/LikeButton/LikeButton'
+import Form from '../../util/Form'
 import { FETCH_POST_QUERY } from '../../graphql.js/queries'
 import { SUBMIT_COMMENT_MUTATION } from '../../graphql.js/mutations'
 
@@ -29,6 +30,7 @@ function SinglePost(props) {
     }
   });
 
+
   const [submitComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
     update() {
       setComment('');
@@ -43,6 +45,7 @@ function SinglePost(props) {
   function deletePostCallback() {
     props.history.push('/');
   }
+
 
   let postMarkup;
   if (!getPost) {
@@ -65,10 +68,10 @@ function SinglePost(props) {
       <section className='single-post-main'>
         <h2 className='single-post__title'>Public Post</h2> 
         
-        <div className='post-card__flex-container'>
+        <div className='single-post-card__flex-container'>
           
-          <div className='post-card__thumbnail'>
-            <div className='post-card__thumbnail--round'>
+          <div className='single-post-card__thumbnail'>
+            <div className='single-post-card__thumbnail--round'>
               <img 
                 src={picture}
                 alt='member headshot'
@@ -77,13 +80,13 @@ function SinglePost(props) {
             </div>
           </div>
 
-          <div className='post-card__info'>
-            <h3 className='post-card__title'>
+          <div className='single-post-card__info'>
+            <h3 className='single-post-card__title'>
               <Link to={`/postId/${id}`}>
                 {name}
               </Link>
             </h3>
-            <div className='post-card__dates'>
+            <div className='single-post-card__dates'>
               <div className='Item__dates-created_at'>
                 <Link to={`/posts/${id}`}>
                 <span className='Date'>
@@ -92,10 +95,9 @@ function SinglePost(props) {
                 </Link>
               </div>
             </div> 
-            <p className='post-card__body'>{body}</p>
-            <hr />
-            <div className='post-card__button-container__flex-container'>
-              <div className='other-buttons__container'>
+            <p className='single-post-card__body'>{body}</p>
+            <div className='single-post-card__button-container__flex-container'>
+              <div className='single-other-buttons__container'>
                 <LikeButton 
                   user={username} 
                   post={{ id, likeCount, likes }} 
@@ -105,7 +107,7 @@ function SinglePost(props) {
                 /> 
               </div>
 
-              <div className='delete-button__container'>
+              <div className='single-post-card-delete-button__container'>
                 {user && user.username === username && (
                   <DeleteButton postId={id} callback={deletePostCallback} />
                 )}
@@ -114,40 +116,42 @@ function SinglePost(props) {
           </div>
         </div>
  
-              {user && (
-                <div className='Add__Comment'>
-                  <h3 className='ItemPageMainTitle'>Share Public Comment</h3>
-                  
-                  <div className='field form-group'>
-                    <textarea
-                      type="text"
-                      placeholder="Comment.."
-                      name="comment"
-                      value={comment}
-                      onChange={(event) => setComment(event.target.value)}
-                      ref={commentInputRef}
-                    />
-                  </div>
+        <div className='single-post-comments-section add-comment__form'>  
+          <Form>  
+            <h3 className='add-comment__form__title'>Share a Public Comment</h3>
+            
+            <div className='add-comment__flex-container'>
+              <div className='add-comment__form-group'>
+                <textarea
+                  className='new-comment__content'
+                  id='comment-content-input'
+                  type="text"
+                  placeholder="What's on your mind?"
+                  name="comment"
+                  value={comment}
+                  onChange={(event) => setComment(event.target.value)}
+                  ref={commentInputRef}
+                />
+              </div>
 
-                  <div className='buttons'>
-                    <button
-                      type="submit"
-                      className="ui button teal"
-                      disabled={comment.trim() === ''}
-                      onClick={submitComment}
-                    >
-                      Submit
-                    </button>
-                  </div>
-
-                </div>
-              )}
+              <div className='Button--submit add-comment__button'>
+                <button
+                  type="submit"
+                  className="ui button teal"
+                  disabled={comment.trim() === ''}
+                  onClick={submitComment}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </Form>    
 
 
 
         
-          <div className='ItemPageMain__activity'>
-            <ul className='ItemPageMain__Activity__List'>
+          <div className='single-post-comments'>
+            <ul className='single-post-comments__comment-list'>
               {comments.map((comment) => (
                 <li key={comment.id}>
 
@@ -168,7 +172,10 @@ function SinglePost(props) {
               ))}
               </ul>
           </div>
-          
+
+
+
+        </div>  
       </section>
     )
   }

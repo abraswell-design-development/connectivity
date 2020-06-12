@@ -1,3 +1,5 @@
+/* POST CARD STYLING  */
+
 .post-card__flex-container {
   width: 100%;
   height: auto;
@@ -5,7 +7,7 @@
   border: 1px solid #999;
   box-shadow: 0 8px 21px 0 rgba(0,0,0,.2);
   border-radius: 8px;
-  margin:0 auto 3vh;
+  margin: 3vh auto;
   padding: 1vh 5% 1vh 0;
   display: flex;
   flex-direction: row;
@@ -118,6 +120,58 @@ p.post-card__body {
   position: absolute;
   top: 3.3vh;
 }
+
+/* ADD COMMENT FORM  */
+
+.add-comment__form {
+  width: 90%;
+  margin: 4vh auto 2vh;
+}
+
+.add-comment__title {
+margin-bottom: 1vh;
+}
+
+.add-comment__flex-container {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+}
+   
+.add-comment__form-group {
+display: block;
+font-family: var(--custom-font);
+font-size: 20px;
+flex-basis: 85%;  
+}
+
+.add-comment__button {
+flex-basis: 10%;
+margin-left: 3%; 
+position: relative;
+top: -.25vh;
+
+}
+
+/* .new-post__content {
+box-shadow: 0 8px 20px 0 rgba(0,0,0,.1);
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){

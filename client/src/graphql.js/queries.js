@@ -19,8 +19,6 @@ export const FETCH_POSTS_QUERY = gql`
       comments {
         id
         username
-        name
-        picture
         createdAt
         body
       }
@@ -47,9 +45,6 @@ export const FETCH_POST_QUERY = gql`
       comments {
         id
         username
-        name
-        picture
-        # relation
         createdAt
         body
       }
