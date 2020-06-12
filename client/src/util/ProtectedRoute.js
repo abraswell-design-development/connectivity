@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import {Context} from '../context/auth';
+import {AuthContext} from '../context/auth';
 
 function ProtectedRoute({ component: Component, ...rest }) {
-  const { user } = useContext(Context);
+  const { user } = useContext(AuthContext);
   console.log('ProtectedRoute user:', user)
 
   return (

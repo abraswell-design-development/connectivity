@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import {Context} from '../../context/auth'
+import {AuthContext} from '../../context/auth'
 import DeleteButton from '../../Components/DeleteButton/DeleteButton'
 import LikeButton from '../../Components/LikeButton/LikeButton'
 import { FETCH_POST_QUERY } from '../../graphql.js/queries'
@@ -15,7 +15,7 @@ import { SUBMIT_COMMENT_MUTATION } from '../../graphql.js/mutations'
 // fake comment for commit
 function SinglePost(props) {
   const postId = props.match.params.postId;
-  const { user } = useContext(Context);
+  const { user } = useContext(AuthContext);
   const commentInputRef = useRef(null);
 
   const [comment, setComment] = useState('');

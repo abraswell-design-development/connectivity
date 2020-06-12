@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-import {Context} from '../../context/auth'
+import {AuthContext} from '../../context/auth'
 import './MenuBar.css'
 
 
 
 export default function MenuBar() {
-  const { user, logout } = useContext(Context)
+  const { user, logout } = useContext(AuthContext)
 
   const menuBar = user ? (
     <nav>

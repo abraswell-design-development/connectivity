@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
-import {Context} from '../../context/auth'
+import {AuthContext} from '../../context/auth'
 import { useForm } from '../../util/hooks'
 import { REGISTER_USER } from '../../graphql.js/mutations'
 import Form from '../../util/Form'
@@ -11,7 +11,7 @@ import './Register.css'
 
 
 function Register(props) {
-  const context = useContext(Context)
+  const context = useContext(AuthContext)
   const [errors, setErrors] = useState({})
 
 

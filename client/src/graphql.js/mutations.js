@@ -15,6 +15,7 @@ export const DELETE_COMMENT_MUTATION = gql`
         username
         name
         createdAt
+        picture
         body
       }
       commentCount
@@ -44,6 +45,7 @@ export const CREATE_POST_MUTATION = gql`
       createdAt
       username
       name
+      picture
       likes {
         id
         username
@@ -55,6 +57,7 @@ export const CREATE_POST_MUTATION = gql`
         id
         body
         username
+        picture
         name
         createdAt
       }
@@ -68,8 +71,13 @@ mutation login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
     id
     email
-    username
     name
+    about
+    city
+    state
+    picture
+    username
+    relation
     createdAt
     token
   }
@@ -139,6 +147,7 @@ export const SUBMIT_COMMENT_MUTATION = gql`
         body
         createdAt
         username
+        picture
         name
       }
       commentCount

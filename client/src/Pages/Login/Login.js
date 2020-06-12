@@ -5,7 +5,7 @@ import { GraphQLClient } from 'graphql-request'
 
 
 
-import {Context} from '../../context/auth'
+import {AuthContext} from '../../context/auth'
 import { LOGIN_USER } from '../../graphql.js/mutations'
 import { ME_QUERY } from '../../graphql.js/queries'
 import { useForm } from '../../util/hooks'
@@ -16,7 +16,7 @@ import './Login.css'
 
 
 export default function Login(props) {
-  const context = useContext(Context)
+  const context = useContext(AuthContext)
 
   // GOOGLE - APP ROUTE
   const handleGoogleSuccess = async googleUser => {

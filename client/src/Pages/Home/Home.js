@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 
-import {Context} from '../../context/auth'
+import {AuthContext} from '../../context/auth'
 import PostCard from '../../Components/PostCard/PostCard'
 import PostForm from '../../Components/PostForm/PostForm'
 import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
@@ -9,12 +9,12 @@ import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
 import './Home.css'
 
 export default function Home() {
-  const { user } = useContext(Context)
+  const { user } = useContext(AuthContext)
   const { 
     loading, 
     data: { getPosts: posts }
   } = useQuery(FETCH_POSTS_QUERY)
-  console.log(posts)
+  console.log(user)
   return (
     <section className='home-main'>
     <h2 className='home__title'>Public Posts</h2>

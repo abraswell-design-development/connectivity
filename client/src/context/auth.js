@@ -24,13 +24,9 @@ if (localStorage.getItem('jwtToken')) {
 }
 
 
-export const Context = createContext({
+const AuthContext = createContext({
   user: null,
-  googleUser: null,
-  currentUser: null,
-  isAuth: false,
-  userEmail: null,
-  login: (userData, googleUser) => {},
+  login: (userData) => {},
   logout: () => {}
 });
 
@@ -67,17 +63,14 @@ export function ContextReducer(state, { type, payload}) {
   }
 }
 
-export function ContextProvider(props) {
-  const initialState = useContext(Context)
+function AuthProvider(props) {
   const [state, dispatch] = useReducer(ContextReducer, initialState);
-  console.log('auth.js state: ', state)
 
-  function login(userData, currentUser) {
+  function login(userData) {
     localStorage.setItem('jwtToken', userData.token);
-    console.log(localStorage)
     dispatch({
       type: 'LOGIN',
-      payload: userData || currentUser
+      payload: userData
     });
   }
 
@@ -86,12 +79,13 @@ export function ContextProvider(props) {
     dispatch({ type: 'LOGOUT' });
   }
 
+
   return (
-      <Context.Provider
-        value={{ user: state.user, currentUser: state.currentUser, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
-        {...props}
-      />
-  )
+    <AuthContext.Provider
+      value={{ user: state.user, login, logout }}
+      {...props}
+    />
+  );
 }
 
-export default Context
+export { AuthContext, AuthProvider };
