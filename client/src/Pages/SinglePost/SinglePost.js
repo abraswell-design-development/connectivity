@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import Context from '../../context/auth'
+import {Context} from '../../context/auth'
 import DeleteButton from '../../Components/DeleteButton/DeleteButton'
 import LikeButton from '../../Components/LikeButton/LikeButton'
 import { FETCH_POST_QUERY } from '../../graphql.js/queries'
@@ -78,7 +78,7 @@ function SinglePost(props) {
           <div className='ItemPage__info__container'>
             <h3 className='Item__title'>
               <Link to={`/postId/${id}`}>
-                {username}
+                {name}
               </Link>
             </h3>
             <div className='Item__dates'>

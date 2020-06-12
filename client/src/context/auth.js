@@ -1,4 +1,4 @@
-import React, { useContext,useReducer, createContext } from 'react';
+import React, { useContext, useReducer, createContext } from 'react';
 import jwtDecode from 'jwt-decode';
 
 const initialState = {
@@ -13,11 +13,18 @@ if (localStorage.getItem('jwtToken')) {
     localStorage.removeItem('jwtToken');
   } else {
     initialState.user = decodedToken;
-    console.log('decodedToken still valid: ', decodedToken)
   }
+// } else if (localStorage.getItem('googleToken')) {
+//   const decodedToken = jwtDecode(localStorage.getItem('googleToken'));
+//   if (decodedToken.exp * 1000 < Date.now()) {
+//     localStorage.removeItem('googleToken');
+//   } else {
+//     initialState.user = decodedToken;
+//   }
 }
 
-const Context = createContext({
+
+export const Context = createContext({
   user: null,
   googleUser: null,
   currentUser: null,
@@ -60,7 +67,7 @@ export function ContextReducer(state, { type, payload}) {
   }
 }
 
-export function AuthProvider(props) {
+export function ContextProvider(props) {
   const initialState = useContext(Context)
   const [state, dispatch] = useReducer(ContextReducer, initialState);
   console.log('auth.js state: ', state)

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import Context from '../../context/auth'
+import {Context} from '../../context/auth'
 import CommentButton from '../CommentButton/CommentButton'
 import DeleteButton from '../DeleteButton/DeleteButton'
 import LikeButton from '../LikeButton/LikeButton'
@@ -12,10 +12,9 @@ import './PostCard.css'
 
 
 export default function PostCard({
-  post: { body, createdAt, id, username, name, likeCount, commentCount, likes }
+  post: { body, createdAt, id, username, name, picture, likeCount, commentCount, likes }
 }) {
   const { user } = useContext(Context)
-
 
   const formattedTime = moment(createdAt).calendar()
 
@@ -27,7 +26,7 @@ export default function PostCard({
         {/* <Link to={`/members/${post.member_id}`}> */}
           <div className='post-card__thumbnail--round'>
             <img 
-                src={require(`../../Images/User_Seedy_All.jpg`)} 
+                src={picture}
                 alt='member headshot'
             >
             </img>
@@ -40,7 +39,7 @@ export default function PostCard({
           <h3 className='post-card__title'>
             {/* TODO - Change to member id? */}
             <Link to={`/posts/${id}`}>
-             {username}
+             {name}
             </Link>
           </h3>
 

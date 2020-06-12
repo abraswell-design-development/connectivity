@@ -4,12 +4,14 @@ const postSchema = new Schema({
   body: String,
   username: String,
   name: String,
+  picture: String,
   createdAt: String,
   comments: [
     {
       body: String,
       username: String,
       name: String,
+      picture: String,
       createdAt: String
     }
   ],

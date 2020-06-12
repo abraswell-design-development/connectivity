@@ -5,7 +5,7 @@ import { GraphQLClient } from 'graphql-request'
 
 
 
-import Context from '../../context/auth'
+import {Context} from '../../context/auth'
 import { LOGIN_USER } from '../../graphql.js/mutations'
 import { ME_QUERY } from '../../graphql.js/queries'
 import { useForm } from '../../util/hooks'
