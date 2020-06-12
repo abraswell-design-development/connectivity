@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../PostCard/PostCard.css'
+import './MemberCard.css'
 
 
 
@@ -9,12 +9,12 @@ export default function MemberCard({
 }) 
     
 {return (
-    <section className='post-card__flex-container'>
+    <section className='member-card__flex-container'>
 
-      <div className='post-card__thumbnail'>
+      <div className='member-card__thumbnail'>
         {/* TODO Fix Link to Member page */}
         <Link to={`/members/${id}`}>
-          <div className='post-card__thumbnail--round'>
+          <div className='member-card__thumbnail--round'>
             <img 
                 src={require(`../../Images/User_Seedy_All.jpg`)} 
                 alt='member headshot'
@@ -24,17 +24,21 @@ export default function MemberCard({
         </Link>
       </div>
       
-
-        <div className='post-card__info'>
-        <Link to={`/members/${id}`}>
-          <h3 className='post-card__title'>
-              {name}
-          </h3>
-        </Link>
-          <p className='post-card__body'>
-          {city}, {state}
-          </p>
-        </div>
+      <div className='member-card__info'>
+      <Link to={`/members/${id}`}>
+        <h3 className='member-card__title'>
+            {name}
+        </h3>
+      </Link>
+        { city ? 
+          (<p className='member-card__location'>
+              {city}, {state}
+            </p>
+          ) 
+          : 
+          ('')
+        }
+      </div>
       
     </section>
   )

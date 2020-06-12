@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import MemberCard from '../../Components/MemberCard/MemberCard'
 import { FETCH_USERS_QUERY } from '../../graphql.js/queries'
 
+import './Members.css'
 
 export default function Members() {
   const { 
@@ -13,7 +14,7 @@ export default function Members() {
   return (
     <section className='members-main'>
     <h2 className='members__title'>Group Members</h2>
-      <ul>
+      <ul className='members__grid--container'>
         {loading ? (
           <h2>Loading members..</h2>
         ) : (

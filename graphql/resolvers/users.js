@@ -75,6 +75,27 @@ module.exports = {
         token
       };
     },
+
+    async update(_, {_id, about, city, state, picture, relation }) {
+      const { errors, valid } = validateLoginInput(email, password);
+
+      if (!valid) {
+        throw new UserInputError('Errors', { errors });
+      }
+
+      const user = await User.findOne({ _id });
+
+      if (!user) {
+        errors.general = 'User not found';
+        throw new UserInputError('User not found', { errors });
+      }
+
+      return {
+        ...user._doc,
+        id: user._id,
+      };
+    },
+
     async register(
       _,
       {

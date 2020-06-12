@@ -354,7 +354,7 @@ textarea {
 
 /************ Grid List Pages **************/
 
-.ListPage__Grid__Container {
+/* .ListPage__Grid__Container {
   width: 100%;
   padding: 0 24% 0 6%;
   display: grid;
@@ -385,7 +385,7 @@ textarea {
   width: 100%;
   position: relative;
   text-align: center;
-}
+} */
 
 /**************************** Item Pages *****************************/
 
@@ -467,9 +467,7 @@ ul.ItemPageMain__Activity__List {
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
 
-  .ListPage__Grid__Container {
-    grid-template-columns: 50% 50%;
-  }
+
 
   p {
     font-family: Arial, Helvetica, sans-serif;

@@ -103,6 +103,33 @@ mutation register(
 }
 `;
 
+export const UPDATE_USER = gql`
+mutation update(
+  $about: String
+  $city: String
+  $state: String
+  $picture: String
+  $relation: String
+) {
+  update(
+    updateInput: {
+      about: $about
+      city: $city
+      state: $state
+      picture: $picture
+      relation: $relation
+    }
+  ) {
+    id
+    about
+    city
+    state
+    picture
+    relation
+  }
+}
+`;
+
 export const SUBMIT_COMMENT_MUTATION = gql`
   mutation($postId: ID!, $body: String!) {
     createComment(postId: $postId, body: $body) {

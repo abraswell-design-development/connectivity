@@ -9,6 +9,7 @@ const userSchema = new Schema({
   city: String,
   state: String,
   picture: String,
+  relation: String,
   token: String,
   createdAt: String
 });

@@ -13,6 +13,7 @@ if (localStorage.getItem('jwtToken')) {
     localStorage.removeItem('jwtToken');
   } else {
     initialState.user = decodedToken;
+    console.log('decodedToken still valid: ', decodedToken)
   }
 }
 
@@ -42,18 +43,18 @@ export function ContextReducer(state, { type, payload}) {
         ...state,
         user: null
       };
-      case 'LOGIN_GOOGLE_USER':
-      console.log('ran LOGIN_GOOGLE_USER case')
-      return {
-        ...state,
-        user: payload,
-      }
-    case 'IS_GOOGLE_USER_LOGGED_IN':
-      console.log('ran IS_GOOGLE_USER_LOGGED_IN case')
-      return {
-        ...state,
-        isAuth: payload,
-      }
+      // case 'LOGIN_GOOGLE_USER':
+      // console.log('ran LOGIN_GOOGLE_USER case')
+      // return {
+      //   ...state,
+      //   user: payload,
+      // }
+    // case 'IS_GOOGLE_USER_LOGGED_IN':
+    //   console.log('ran IS_GOOGLE_USER_LOGGED_IN case')
+    //   return {
+    //     ...state,
+    //     isAuth: payload,
+    //   }
     default:
       return state;
   }
@@ -62,9 +63,11 @@ export function ContextReducer(state, { type, payload}) {
 export function AuthProvider(props) {
   const initialState = useContext(Context)
   const [state, dispatch] = useReducer(ContextReducer, initialState);
+  console.log('auth.js state: ', state)
 
   function login(userData, currentUser) {
     localStorage.setItem('jwtToken', userData.token);
+    console.log(localStorage)
     dispatch({
       type: 'LOGIN',
       payload: userData || currentUser
