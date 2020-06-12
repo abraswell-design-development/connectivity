@@ -26,7 +26,6 @@
     height: 100%;
     width: auto;
     object-fit: contain;
-    margin-left: -17%;
   }
   
   .member-card__info {
@@ -43,7 +42,7 @@
   }
   
   .member-card__title a {
-    color: #111;
+    color: blue;
     display: block;
     text-decoration: none;
   }

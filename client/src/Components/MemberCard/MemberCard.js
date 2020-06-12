@@ -16,7 +16,7 @@ export default function MemberCard({
         <Link to={`/members/${id}`}>
           <div className='member-card__thumbnail--round'>
             <img 
-                src={require(`../../Images/User_Seedy_All.jpg`)} 
+                src={picture}
                 alt='member headshot'
             >
             </img>

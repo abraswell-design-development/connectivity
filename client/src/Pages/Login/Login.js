@@ -121,8 +121,8 @@ export default function Login(props) {
       <div className='login__flex-container'>
         <div className='login__img-container'>
           <img 
-              src={require(`../../Images/Patient_Photo.jpg`)} 
-              alt='member headshot'
+              src='https://res.cloudinary.com/connectivity/image/upload/v1589224863/Demo/Patient_Photo_lij5r3.jpg'
+              alt='patient headshot'
           >
           </img>    
         </div>

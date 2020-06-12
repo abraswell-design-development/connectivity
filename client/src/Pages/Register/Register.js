@@ -89,7 +89,7 @@ function Register(props) {
       <div className='register__flex-container'>
         <div className='register__img-container'>
           <img 
-            src={require(`../../Images/Patient_Photo.jpg`)} 
+            src='https://res.cloudinary.com/connectivity/image/upload/v1589224863/Demo/Patient_Photo_lij5r3.jpg'
             alt='patient headshot'
           >
           </img>    

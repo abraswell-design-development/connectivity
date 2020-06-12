@@ -53,6 +53,7 @@ function SinglePost(props) {
       createdAt,
       username,
       name,
+      picture,
       comments,
       likes,
       likeCount,
@@ -68,7 +69,7 @@ function SinglePost(props) {
           <div className='ItemPage__img__container'>
             <div className='ItemPage__img__container'>
               <img 
-                src={require(`../../Images/User_Seedy_All.jpg`)} 
+                src={picture}
                 alt='member headshot'
               >
               </img>    

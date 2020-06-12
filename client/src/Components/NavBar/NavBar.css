@@ -28,6 +28,12 @@
   .nav__item a {
     color: white;
   }
+
+  .nav__item a:hover, 
+  .nav__item a:active, 
+  .nav__item a:visited {
+    color: white
+  }
  
   svg {
       margin: 0;
@@ -112,7 +118,7 @@
       padding: 10px;
       position: absolute;
       left: -1.5em;
-      top: calc(-4.75vh - 14px);
+      top: -7vh;
       text-align: center;
       font-size: .4em;
       letter-spacing: .04em;
@@ -125,11 +131,11 @@
       border-top: 10px solid hsla(0, 0%, 8%, 0.9);
       content: '';
       font-size: 0;
-      left: 40px;
+      left: 35%;
       line-height: 0;
       margin-left: 5px;
       position: absolute;
-      top: calc(29px + 14px);
+      top: 5.1vh;
       width: 0
   }
 

@@ -52,6 +52,10 @@
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
     .Tooltip-message {
-    top: -7vh
+    top: -9.5vh
+    }
+
+    .Tooltip-message:after {
+        top: 5.1vh; 
     }
 }
