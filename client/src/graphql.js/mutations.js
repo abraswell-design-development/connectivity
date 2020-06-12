@@ -57,6 +57,7 @@ export const CREATE_POST_MUTATION = gql`
         id
         body
         username
+        picture
         name
         createdAt
       }

@@ -73,7 +73,6 @@ module.exports = {
       return {
         ...user._doc,
         id: user._id,
-        picture: user.picture,
         token
       };
     },

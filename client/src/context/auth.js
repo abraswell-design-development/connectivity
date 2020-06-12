@@ -7,13 +7,13 @@ const initialState = {
 
 //////  COMMENTED OUT UNTIL GOOGLE ROUTE IS COMPLETE SO SITE DOESN'T BREAK ACCIDENTALLY ///////
 
-// if (localStorage.getItem('jwtToken')) {
-//   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-//   if (decodedToken.exp * 1000 < Date.now()) {
-//     localStorage.removeItem('jwtToken');
-//   } else {
-//     initialState.user = decodedToken;
-//   }
+if (localStorage.getItem('jwtToken')) {
+  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+  if (decodedToken.exp * 1000 < Date.now()) {
+    localStorage.removeItem('jwtToken');
+  } else {
+    initialState.user = decodedToken;
+  }
 // } else if (localStorage.getItem('googleToken')) {
 //   const decodedToken = jwtDecode(localStorage.getItem('googleToken'));
 //   if (decodedToken.exp * 1000 < Date.now()) {
@@ -21,7 +21,7 @@ const initialState = {
 //   } else {
 //     initialState.user = decodedToken;
 //   }
-// }
+}
 
 
 const AuthContext = createContext({
