@@ -12,41 +12,41 @@ const MONGO_URI = process.env.MONGO_URI;
 const pubsub = new PubSub();
 
 //UNCOMMENT TO USE GraphQL PLAYGROUND!!!
-// const server = new ApolloServer({
-//   typeDefs,
-//   resolvers,
-//   context: ({ req }) => {req, pubsub} })
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: async ({ req }) => { 
-      if (!req.headers.authorization.split(`Bearer `)[1])  {
-        //Use Google
-        let authToken = null
-        let currentUser = null
-        try {
-          authToken = req.headers.authorization
-          console.log('authToken received from request header')
-          if (authToken) {
-            // find Google User in db or create a new user
-            // and update currentUser in CONTEXT to pass on to google-user.js
-            currentUser = await findOrCreateUser(authToken) 
-          }
-        } 
-        catch (err) {
-          console.error(`Unable to authenticate user with token`)
-        }
-        // attach found (or created) Google User to the context object
-        console.log('currentUser returned from server.js: ', currentUser)
-        return { currentUser }
+  context: ({ req }) => {req, pubsub} })
 
-      } else {
-        //Use jwt
-        return {req, pubsub} 
-      }
-    }
-  })
+// const server = new ApolloServer({
+//   typeDefs,
+//   resolvers,
+//   context: async ({ req }) => { 
+//       if (!req.headers.authorization.split(`Bearer `)[1])  {
+//         //Use Google
+//         let authToken = null
+//         let currentUser = null
+//         try {
+//           authToken = req.headers.authorization
+//           console.log('authToken received from request header')
+//           if (authToken) {
+//             // find Google User in db or create a new user
+//             // and update currentUser in CONTEXT to pass on to google-user.js
+//             currentUser = await findOrCreateUser(authToken) 
+//           }
+//         } 
+//         catch (err) {
+//           console.error(`Unable to authenticate user with token`)
+//         }
+//         // attach found (or created) Google User to the context object
+//         console.log('currentUser returned from server.js: ', currentUser)
+//         return { currentUser }
+
+//       } else {
+//         //Use jwt
+//         return {req, pubsub} 
+//       }
+//     }
+//   })
 
 mongoose
   .connect(MONGO_URI, { 

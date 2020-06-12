@@ -1,18 +1,19 @@
 import React, { useContext, useState, useRef } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 import {AuthContext} from '../../context/auth'
+import CommentButton from '../../Components/CommentButton/CommentButton'
 import DeleteButton from '../../Components/DeleteButton/DeleteButton'
 import LikeButton from '../../Components/LikeButton/LikeButton'
 import { FETCH_POST_QUERY } from '../../graphql.js/queries'
 import { SUBMIT_COMMENT_MUTATION } from '../../graphql.js/mutations'
 
+import './SinglePost.css'
 
 
-// fake comment for commit
+
 function SinglePost(props) {
   const postId = props.match.params.postId;
   const { user } = useContext(AuthContext);
@@ -61,13 +62,13 @@ function SinglePost(props) {
     } = getPost;
 
     postMarkup = (
-      <section className='ItemPageMain'>
-        <h2 className='ItemPageMainTitle'>Public Post from {username}{name}</h2> 
+      <section className='single-post-main'>
+        <h2 className='single-post__title'>Public Post</h2> 
         
-        <div className='ListPage__Row__Item__FlexContainer'>
+        <div className='post-card__flex-container'>
           
-          <div className='ItemPage__img__container'>
-            <div className='ItemPage__img__container'>
+          <div className='post-card__thumbnail'>
+            <div className='post-card__thumbnail--round'>
               <img 
                 src={picture}
                 alt='member headshot'
@@ -76,13 +77,13 @@ function SinglePost(props) {
             </div>
           </div>
 
-          <div className='ItemPage__info__container'>
-            <h3 className='Item__title'>
+          <div className='post-card__info'>
+            <h3 className='post-card__title'>
               <Link to={`/postId/${id}`}>
                 {name}
               </Link>
             </h3>
-            <div className='Item__dates'>
+            <div className='post-card__dates'>
               <div className='Item__dates-created_at'>
                 <Link to={`/posts/${id}`}>
                 <span className='Date'>
@@ -91,28 +92,24 @@ function SinglePost(props) {
                 </Link>
               </div>
             </div> 
-            <p className='Item__content'>{body}</p>
+            <p className='post-card__body'>{body}</p>
             <hr />
-            <div className='Item__button__container'>
-              <LikeButton user={user} post={{ id, likeCount, likes }} />
-              {/* <PopUp content="Comment on post"> */}
-                <Link to={`/posts/${id}`}> 
-                  <button
-                    className='Item__comment'
-                    type='button'
-                  >
-                    <span>
-                    <FontAwesomeIcon icon={['fas', 'comment']} />
-                    </span>
-                    <span>
-                      {commentCount}
-                    </span>
-                  </button>
-                </Link>
-              {/* </PopUp>  */}
-              {user && user.username === username && (
-                <DeleteButton postId={id} callback={deletePostCallback} />
-              )}
+            <div className='post-card__button-container__flex-container'>
+              <div className='other-buttons__container'>
+                <LikeButton 
+                  user={username} 
+                  post={{ id, likeCount, likes }} 
+                />
+                <CommentButton 
+                  post={{ id, commentCount }} 
+                /> 
+              </div>
+
+              <div className='delete-button__container'>
+                {user && user.username === username && (
+                  <DeleteButton postId={id} callback={deletePostCallback} />
+                )}
+              </div>
             </div>
           </div>
         </div>

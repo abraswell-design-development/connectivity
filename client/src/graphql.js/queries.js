@@ -49,7 +49,7 @@ export const FETCH_POST_QUERY = gql`
         username
         name
         picture
-        relation
+        # relation
         createdAt
         body
       }

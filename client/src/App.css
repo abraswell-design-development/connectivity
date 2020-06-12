@@ -449,24 +449,9 @@ ul.ItemPageMain__Activity__List {
 
 /*****************************Individual Adjustments************************/
 
-.Add_Comment {
-    width: 85%;
-    margin: 3vh 10% 0 5%;
-}
-
-
-
-
-
-
-
-
-
 
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
-
-
 
   p {
     font-family: Arial, Helvetica, sans-serif;
