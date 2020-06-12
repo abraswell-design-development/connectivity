@@ -35,9 +35,9 @@ module.exports = gql`
     email: String,
     about: String,
     relation: String,
+    picture: String,
     city: String,
     state: String,
-    picture: String,
     token: String,
     createdAt: String,
   }
@@ -51,7 +51,7 @@ module.exports = gql`
   type Query {
     getPosts: [Post]
     getPost(postId: ID!): Post
-    getUsers: [User!]
+    getUsers: [User]
     getUser(userId: ID!): User
     me: User
   }

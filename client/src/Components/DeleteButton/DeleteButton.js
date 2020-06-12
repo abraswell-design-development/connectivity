@@ -58,7 +58,7 @@ function DeleteButton({ postId, commentId, callback }) {
   }
 
   return (
-    <>
+    <div className='delete__button'>
       <Tooltip left= "-20px"  message={commentId ? 'Delete comment' : 'Delete post'}>
         <button
           className='Button--delete'
@@ -68,7 +68,7 @@ function DeleteButton({ postId, commentId, callback }) {
           <FontAwesomeIcon icon={['fa', 'trash-alt']} />
         </button>
       </Tooltip>
-    </>
+    </div>
   );
 }
 

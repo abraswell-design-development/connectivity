@@ -135,8 +135,21 @@
       line-height: 0;
       margin-left: 5px;
       position: absolute;
-      top: 5.1vh;
+      top: 4.4vh;
       width: 0
+  }
+
+}
+
+/**************************************** FOR DESKTOPS AND UP ************************************/
+@media (min-width: 1600px){
+
+  .nav__item .Tooltip-message {
+    top: -5.5vh;
+  }
+
+  .nav__item .Tooltip-message:after {
+      top: 3.3vh;
   }
 
 }

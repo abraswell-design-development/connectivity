@@ -1,4 +1,6 @@
+/********************************** TOOLTIP POP UP *********************************/
 
+/***********************************CONFIRM POP UP ************************/
 .react-confirm-alert-blur {
   filter: url(#gaussian-blur);
   filter: blur(2px);
@@ -118,6 +120,21 @@
   to {
     opacity: 1;
   }
+}
+
+/***************************For Tablets and Up****************************/
+@media (min-width: 1000px){
+.delete__button .Tooltip-message {
+  margin-left: -2%;
+}
+}
+
+/**************************************** FOR DESKTOPS AND UP ************************************/
+@media (min-width: 1600px){
+  .delete__button .Tooltip-message {
+    margin-left: 12%;
+  }
+
 }
 
 

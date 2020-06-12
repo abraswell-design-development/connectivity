@@ -39,7 +39,7 @@ module.exports = {
         user: user.id,
         username: user.username,
         name: user.name,
-        picture: user.picture,
+        picture: user.name,
         createdAt: new Date().toISOString()
       });
 
