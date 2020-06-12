@@ -11,6 +11,7 @@ const postSchema = new Schema({
     {
       body: String,
       username: String,
+      name: String,
       createdAt: String
     }
   ],

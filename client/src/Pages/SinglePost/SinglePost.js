@@ -87,12 +87,10 @@ function SinglePost(props) {
               </Link>
             </h3>
             <div className='single-post-card__dates'>
-              <div className='Item__dates-created_at'>
-                <Link to={`/posts/${id}`}>
+              <div className='single-post-card__dates-created_at'>
                 <span className='Date'>
-                  {moment(createdAt).fromNow(true)}
+                  {moment(createdAt).fromNow()}
                 </span>
-                </Link>
               </div>
             </div> 
             <p className='single-post-card__body'>{body}</p>
@@ -122,22 +120,23 @@ function SinglePost(props) {
             
             <div className='add-comment__flex-container'>
               <div className='add-comment__form-group'>
-                <textarea
-                  className='new-comment__content'
-                  id='comment-content-input'
-                  type="text"
-                  placeholder="What's on your mind?"
-                  name="comment"
-                  value={comment}
-                  onChange={(event) => setComment(event.target.value)}
-                  ref={commentInputRef}
-                />
+                <label htmlFor="comment-content"> 
+                  <textarea
+                    className='new-comment__content'
+                    id='comment-content-input'
+                    type="text"
+                    placeholder="What's on your mind?"
+                    name="comment"
+                    value={comment}
+                    onChange={(event) => setComment(event.target.value)}
+                    ref={commentInputRef}
+                  />
+                </label>
               </div>
 
               <div className='Button--submit add-comment__button'>
                 <button
                   type="submit"
-                  className="ui button teal"
                   disabled={comment.trim() === ''}
                   onClick={submitComment}
                 >
@@ -148,26 +147,48 @@ function SinglePost(props) {
           </Form>    
 
 
-
-        
           <div className='single-post-comments'>
             <ul className='single-post-comments__comment-list'>
               {comments.map((comment) => (
-                <li key={comment.id}>
+                <li key={comment.id} className='single-post-comment-in-list__flex-container'>
+                  
+                  <div className='single-post-comment__list__thumbnail'>
 
-                  {user && user.username === comment.username && (
-                    <DeleteButton postId={id} commentId={comment.id} />
-                  )}
-                  <h3 className='Item__title'>{comment.username}</h3>
-                  <div className='Item__dates'>
-                    <div className='Item__dates-created_at'>
-                      <span className='Date'>
-                        {moment(comment.createdAt).fromNow()}
-                      </span> 
+                  </div>
+
+
+
+                  <div className="single-post-comment__info">
+
+                    <h3 className='single-post-comment__title'>{comment.username}</h3>
+                    <div className='single-post-comment__dates'>
+                      <div className='single-post-comment__dates-created_at'>
+                        <span className='Date'>
+                          {moment(comment.createdAt).fromNow()}
+                        </span> 
+                      </div>
+                    </div> 
+                    <p className='single-post-comment__body'>{comment.body}</p>
+
+                    <div className='single-post-card__button-container__flex-container'>
+                      <div className='comment-card-other-buttons__container'>
+                        {/* TODO -- ADD LIKES AND LIKECOUNT TO COMMENTS / CHANGE post={{ id, likeCount, likes }}  */}
+                        <LikeButton 
+                          user={username} 
+                          post={{ id, likeCount, likes }} 
+                        />
+                      </div>
+
+                      <div className='comment-card-delete-button__container'>
+                        {user && user.username === comment.username && (
+                          <DeleteButton postId={id} commentId={comment.id} />
+                        )}
+                      </div>
                     </div>
-                  </div> 
-                  <p className='Item__content'>{comment.body}</p>
 
+
+
+                  </div>
                 </li>
               ))}
               </ul>

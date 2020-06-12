@@ -17,7 +17,7 @@ export default function PostCard({
 }) {
   const { user } = useContext(AuthContext)
 
-  const formattedTime = moment(createdAt).calendar()
+  const formattedTime = moment(createdAt).fromNow()
 
   return (
     <section className='post-card__flex-container'>

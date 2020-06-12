@@ -11,7 +11,9 @@
   width: 100%;
 }
 
-.single-post-card__flex-container {
+.single-post-card__flex-container,
+.single-post-comment-in-list__flex-container
+{
     width: 100%;
     height: auto;
     background-color:#eee;
@@ -26,7 +28,9 @@
     align-items: center;
   }
 
-  .single-post-card__thumbnail {
+  .single-post-card__thumbnail,
+  .single-post-comment__list__thumbnail
+  {
     flex-basis:15%;
     text-align: center;
     align-items: center;
@@ -34,7 +38,9 @@
     margin-right: -3%;
   }
 
-  .single-post-card__thumbnail--round{
+  .single-post-card__thumbnail--round,
+  .single-post-comment__list__thumbnail--round
+  {
     width: 100px;
     height: 100px;
     overflow: hidden;
@@ -42,35 +48,46 @@
     border: 1px solid #333;
   }
 
-  .single-post-card__info {
+  .single-post-card__info,
+  .single-post-comment__info
+  {
     flex-basis: 80%;
     padding: 2vh 0 2vh 7%;
   } 
 
-  .single-post-card__thumbnail--round >img {
+  .single-post-card__thumbnail--round >img,
+  .single-post-comment__list__thumbnail--round > img
+  {
     height: 100%;
     width: auto;
     object-fit: contain;
   }
 
   /* info components*/
-  .single-post-card__title {
+  .single-post-card__title,
+  .single-post-comment__title
+  {
     text-transform: capitalize;
     font-size: 1.7em;
     margin: 0 0 1vh;
   }
 
-  .single-post-card__title a {
+  .single-post-card__title a,
+  .single-post-comment__title
+  {
     color: #111;
     display: block;
     text-decoration: none;
   }
 
-  p.single-post-card__body {
+  p.single-post-card__body,
+  p.single-post-comment__body
+  {
     margin-top: 1vh;
   }
 
-  .single-post-card__dates {
+  .single-post-card__dates-created_at,
+  .single-post-comment__dates-created_at {
     color:#555;
     font-size: 1.1em;
   }
@@ -97,24 +114,50 @@
     align-self: flex-end;
   }
 
-  /* Comments Section */
+  /************** Comments Section ***************/
+
+  /* Add Comment Form  */
+  .add-comment__flex-container {
+    margin-bottom: 3vh;
+  }
+
   .add-comment__form__title {
     font-size: 1.5em;
     font-weight: 400;
     width: 80%;
   }
 
+  .new-comment__content {
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 21px 0 rgba(0,0,0,.2);
+  }
+
+  .single-post-comments {
+    width: 100%;
+  } 
+  
+  .single-post-comment-in-list__flex-container {
+    border: 1px solid #999;
+  }
+  
+
+
+
 /******************************** TABLETS AND UP *******************************/
   @media (min-width: 1000px){
 
-    .single-post-card__flex-container {
-        margin: 1vh auto 5vh;
-        padding: 3vh 3%;
-        justify-content: space-between;
-        align-items: top;
-      }
+    .single-post-card__flex-container,
+    .single-post-comment-in-list__flex-container 
+    {
+      margin: 1vh auto 5vh;
+      padding: 3vh 3%;
+      justify-content: space-between;
+      align-items: top;
+    }
 
-    .single-post-card__thumbnail {
+    .single-post-card__thumbnail,
+    .single-post-comment__list__thumbnail
+    {
       width: 25%;
       text-align: center;
       align-items: center;
@@ -122,7 +165,9 @@
       margin-right: 0;
     }
 
-    .single-post-card__thumbnail--round{
+    .single-post-card__thumbnail--round,
+    .single-post-comment__list__thumbnail--round
+    {
         width: 150px;
         height: 150px;
         overflow: hidden;
@@ -130,73 +175,13 @@
         border: 1px solid #333;
       }
 
-    .single-post-card__info {
+    .single-post-card__info,
+    .single-post-comment__info
+    {
       flex-basis: 75%;
       padding: 0;
     } 
 
   }
 
-  /* h3 Title above Comment, Message, and Post Lists on Item Main pages*/
-.ItemPageMain__section__title {
-    font-size: 1.5em;
-    font-weight: 400;
-    text-align: center;
-    width: 80%;
-    margin: 4vh 30.5% 8px 9.5%;
-  }
-
-  /* Comment, Message, and Post Lists on Item Main pages */
-  .ItemPageMain__activity {
-    width: 100%;
-  } 
-
-  .ItemPageMain__activity__section {
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  .Item__in__activity__list {
-    margin: 0 0 8px 0;
-    border: 1px solid #000;
-    padding: 8px;
-    background-color: #ccc;
-    color: #111;
-  }
-
-  ul.ItemPageMain__Activity__List {
-    padding: 0 0 0 0;
-  }
-
-  .Item__in__activity__list__FlexContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: top;
-  }
-
-  .Item__in__activity__list__FlexItem__Thumbnail {
-    flex-basis: 23%;
-    overflow: hidden;
-    justify-content: space-between;
-    text-align: center;
-    align-items: top;
-  }
-
-  .Item__in__activity__list__FlexItem__Thumbnail > img {
-    height: auto;
-    width: 100%;
-    object-fit: cover;
-  } 
-
-  .Item__in__activity__list__FlexItem__Info {
-    flex-basis: 75%;
-    padding-left: 3%;
-    text-align: left;
-  } 
-
-  .Add_Comment {
-    width: 85%;
-    margin: 3vh 10% 0 5%;
-}
-
+  
