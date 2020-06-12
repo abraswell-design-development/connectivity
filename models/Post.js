@@ -5,12 +5,14 @@ const postSchema = new Schema({
   username: String,
   name: String,
   picture: String,
+  relation: String,
   createdAt: String,
   comments: [
     {
       body: String,
       username: String,
       name: String,
+      relation: String,
       picture: String,
       createdAt: String
     }

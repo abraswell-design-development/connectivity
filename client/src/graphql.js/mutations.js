@@ -46,6 +46,7 @@ export const CREATE_POST_MUTATION = gql`
       username
       name
       picture
+      relation
       likes {
         id
         username

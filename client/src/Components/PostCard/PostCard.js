@@ -6,13 +6,14 @@ import {AuthContext} from '../../context/auth'
 import CommentButton from '../CommentButton/CommentButton'
 import DeleteButton from '../DeleteButton/DeleteButton'
 import LikeButton from '../LikeButton/LikeButton'
+import Tooltip from '../Tooltip/Tooltip'
 
 import './PostCard.css'
 
 
 
 export default function PostCard({
-  post: { body, createdAt, id, username, name, picture, likeCount, commentCount, likes }
+  post: { body, createdAt, id, username, name, picture, relation, likeCount, commentCount, likes }
 }) {
   const { user } = useContext(AuthContext)
 
@@ -22,22 +23,25 @@ export default function PostCard({
     <section className='post-card__flex-container'>
 
       <div className='post-card__thumbnail'>
-        {/* TODO Fix Link to Member page */}
-        {/* <Link to={`/members/${post.member_id}`}> */}
-          <div className='post-card__thumbnail--round'>
-            <img 
-                src={picture}
-                alt='member headshot'
-            >
-            </img>
-          </div>  
-        {/* </Link> */}
+        <Link to={`/members/${id}`}>
+          <Tooltip  left='-15px'
+              message={relation}>
+            <div className='post-card__thumbnail--round'>
+
+              <img 
+                  src={picture}
+                  alt='member headshot'
+              >
+              </img>
+            </div>  
+          </Tooltip>
+        </Link>
       </div>
+     
       
 
       <div className='post-card__info'>
           <h3 className='post-card__title'>
-            {/* TODO - Change to member id? */}
             <Link to={`/posts/${id}`}>
              {name}
             </Link>
@@ -45,7 +49,6 @@ export default function PostCard({
 
           <Link to={`/posts/${id}`}>
             <span className='post-card__dates'>
-            {/* {moment(formattedTime).format('ll')} */}
             {formattedTime}
             </span>
           </Link>
