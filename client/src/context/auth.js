@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useReducer, createContext, useContext } from 'react';
 import jwtDecode from 'jwt-decode';
 
 const initialState = {
@@ -68,6 +68,7 @@ export function ContextReducer(state, { type, payload}) {
 }
 
 function AuthProvider(props) {
+  const initialState = useContext(AuthContext)
   const [state, dispatch] = useReducer(ContextReducer, initialState);
 
   function login(userData, currentUser) {

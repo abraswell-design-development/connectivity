@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useContext, useReducer } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {faAddressCard, faBars, faCamera, faEdit, faChevronLeft, faComment, faCommentAlt, faPaperPlane, faPlus, faThumbsUp, faTimes, faTrashAlt, faUsers, faCheckDouble, faPencilAlt,} 
   from '@fortawesome/free-solid-svg-icons'
 
-import { AuthProvider } from './context/auth'
+import { AuthProvider, ContextReducer, AuthContext } from './context/auth'
 import ProtectedRoute from './util/ProtectedRoute'
 import Header from './Components/Header/Header'
 import NavBar from './Components/NavBar/NavBar'
@@ -26,31 +26,67 @@ library.add(faAddressCard, faBars, faCamera, faPlus, faEdit, faChevronLeft, faCo
 
 function App() {
 
-  return (
-      <AuthProvider>
-        <Router>
-          <div className='App'>
-            <div className='App__sidebar'>
-            <NavBar/>
-            </div>
-            <div className='navigation'>
-              <Header />
-            </div>
-            <main className='App__main'>
-              <ProtectedRoute exact path="/" component={Home} />
-              <ProtectedRoute exact path="/posts" component={Home} />
-              <ProtectedRoute exact path="/posts/:postId" component={SinglePost} />
-              <ProtectedRoute exact path="/members" component={Members} />
-              <ProtectedRoute exact path="/members/:memberId" component={SingleMember} />
-              <ProtectedRoute exact path="/photos" component={Photos} />
-              <Route exact path="/about" component={About} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-            </main>
+  const initialState = useContext(AuthContext)
+  const [state, dispatch] = useReducer(ContextReducer, initialState)
+
+  const googleUser = (state.user)
+  console.log(googleUser)
+
+  const returnStatement = googleUser ? 
+  (
+    <AuthProvider value={{ state, dispatch }}>
+      <Router>
+        <div className='App'>
+          <div className='App__sidebar'>
+          <NavBar/>
           </div>
-        </Router>
-      </AuthProvider>
+          <div className='navigation'>
+            <Header />
+          </div>
+          <main className='App__main'>
+            <ProtectedRoute exact path="/" component={Home} />
+            <ProtectedRoute exact path="/posts" component={Home} />
+            <ProtectedRoute exact path="/posts/:postId" component={SinglePost} />
+            <ProtectedRoute exact path="/members" component={Members} />
+            <ProtectedRoute exact path="/members/:memberId" component={SingleMember} />
+            <ProtectedRoute exact path="/photos" component={Photos} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+          </main>
+        </div>
+      </Router>
+    </AuthProvider>
+  ) 
+  : 
+  (
+    <AuthProvider>
+      <Router>
+        <div className='App'>
+          <div className='App__sidebar'>
+          <NavBar/>
+          </div>
+          <div className='navigation'>
+            <Header />
+          </div>
+          <main className='App__main'>
+            <ProtectedRoute exact path="/" component={Home} />
+            <ProtectedRoute exact path="/posts" component={Home} />
+            <ProtectedRoute exact path="/posts/:postId" component={SinglePost} />
+            <ProtectedRoute exact path="/members" component={Members} />
+            <ProtectedRoute exact path="/members/:memberId" component={SingleMember} />
+            <ProtectedRoute exact path="/photos" component={Photos} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+          </main>
+        </div>
+      </Router>
+    </AuthProvider>
   )
+ 
+
+  return ( {returnStatement})
 }
 
 export default App
