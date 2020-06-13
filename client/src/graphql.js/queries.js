@@ -70,6 +70,23 @@ export const FETCH_USERS_QUERY = gql`
   }
 `;
 
+export const FETCH_USER_QUERY = gql`
+  query($userId: ID!) {
+    getUser(userId: $userId) {
+    id
+    username
+    name
+    about
+    city
+    state
+    relation
+    email
+    picture
+    createdAt
+    }
+  }
+`;
+
 export const ME_QUERY = `
 {
   me {

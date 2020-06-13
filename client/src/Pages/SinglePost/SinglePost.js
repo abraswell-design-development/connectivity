@@ -46,7 +46,6 @@ function SinglePost(props) {
     props.history.push('/');
   }
 
-
   let postMarkup;
   if (!getPost) {
     postMarkup = <p>Loading post..</p>;
@@ -156,8 +155,6 @@ function SinglePost(props) {
 
                   </div>
 
-
-
                   <div className="single-post-comment__info">
 
                     <h3 className='single-post-comment__title'>{comment.username}</h3>
@@ -185,8 +182,6 @@ function SinglePost(props) {
                         )}
                       </div>
                     </div>
-
-
 
                   </div>
                 </li>
