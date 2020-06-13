@@ -8,7 +8,7 @@ import { AuthProvider } from './context/auth'
 import ProtectedRoute from './util/ProtectedRoute'
 import Header from './Components/Header/Header'
 import NavBar from './Components/NavBar/NavBar'
-import UpdateMemberInfo from './Pages/About/About'
+import About from './Pages/About/About'
 import Home from './Pages/Home/Home'
 import Login from './Pages/Login/Login'
 import Members from './Pages/Members/Members'
@@ -41,7 +41,7 @@ function App() {
               <ProtectedRoute exact path="/posts/:postId" component={SinglePost} />
               <ProtectedRoute exact path="/members" component={Members} />
               <ProtectedRoute exact path="/members/:memberId" component={SingleMember} />
-              <Route exact path="/about" component={UpdateMemberInfo} />
+              <Route exact path="/about" component={About} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
             </main>
