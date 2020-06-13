@@ -31,9 +31,9 @@ export default function NavBar() {
           </Tooltip>
         </div>
         <div className='nav__item'>
-          <Tooltip message='Messages'>
-            <Link to={'/messages'} name="messages">
-              <FontAwesomeIcon icon={['fa', 'comment-alt']} />
+          <Tooltip message='Photos'>
+            <Link to={'/photos'} name="photos">
+              <FontAwesomeIcon icon={['fas', 'camera']} />
             </Link>
           </Tooltip>
         </div>
