@@ -31,13 +31,13 @@ export default function SingleMember(props) {
         }
     })
 
-    const countPostsForMember = (posts=[], member_id) =>
-        posts.filter(post => post.member_id === parseInt(member_id)).length
+    const countPostsForMember = (posts=[], name) =>
+        posts.filter(post => post.name === parseInt(name)).length
 
-    const getPostsFromMember = (posts = [], member_id) => {
-        const filteredPosts = !member_id
+    const getPostsFromMember = (posts = [], name) => {
+        const filteredPosts = !name
         ? posts
-        : posts.filter((post) => post.member_id === parseInt(member_id))
+        : posts.filter((post) => post.name === name)
     
         return [...filteredPosts].sort((a, b) => {
         return +b.id - +a.id;
@@ -132,7 +132,7 @@ export default function SingleMember(props) {
             Public Posts From This Member:
             {' '}{countPostsForMember(posts, id)}
             </h3>
-            {/* <ul className='ItemPageMain__Activity__List'>
+            <ul className='ItemPageMain__Activity__List'>
                 {getPostsFromMember.map(post =>
                 <li key={post.id} className='Item__in__activity__list'>
                     <div className='Item__in__activity__list__FlexItem__Info'>
@@ -140,7 +140,7 @@ export default function SingleMember(props) {
                     </div>
                 </li>
                 )}
-            </ul> */}
+            </ul>
         </div>
         
       </section>
