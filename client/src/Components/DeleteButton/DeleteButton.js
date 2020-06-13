@@ -1,15 +1,16 @@
 import React from 'react'
+import {confirmAlert} from 'react-confirm-alert'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMutation } from '@apollo/react-hooks'
-import {confirmAlert} from 'react-confirm-alert'
 
-import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
 import { DELETE_COMMENT_MUTATION, DELETE_POST_MUTATION } from '../../graphql.js/mutations'
+import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
 import Tooltip from '../Tooltip/Tooltip'
 import './DeleteButton.css'
 
 
-function DeleteButton({ postId, commentId, callback }) {
+
+export default function DeleteButton({ postId, commentId, callback }) {
 
   const confirmDelete = () => {
     return(
@@ -35,7 +36,6 @@ function DeleteButton({ postId, commentId, callback }) {
     update(proxy) {
       
       if (!commentId) {
-        console.log('delete Comment Called')
         const data = proxy.readQuery({
           query: FETCH_POSTS_QUERY
         })
@@ -43,7 +43,6 @@ function DeleteButton({ postId, commentId, callback }) {
         proxy.writeQuery({ query: FETCH_POSTS_QUERY, data })
       }
       if (callback) {
-        console.log('delete Post Called')
         callback()
       }
     },
@@ -73,5 +72,5 @@ function DeleteButton({ postId, commentId, callback }) {
 }
 
 
-export default DeleteButton
+
 

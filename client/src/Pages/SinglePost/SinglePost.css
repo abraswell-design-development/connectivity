@@ -73,7 +73,7 @@
   }
 
   .single-post-card__title a,
-  .single-post-comment__title
+  .single-post-comment__title a
   {
     color: #111;
     display: block;

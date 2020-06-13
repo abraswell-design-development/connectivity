@@ -8,6 +8,7 @@ import MenuBar from '../MenuBar/MenuBar'
 import './Header.css'
 
 
+
 export default function Header() {
     const { user, logout } = useContext(AuthContext)
 
@@ -33,19 +34,17 @@ export default function Header() {
         }
       ]
 
-      
-
     return(
         <header>
             <div className='Desktop__header'>
                 <div className='app__header__logo__container'>
-                <h1>
-                    <Link to='/'>Connectivity</Link>{' '}
-                </h1>
+                    <h1>
+                        <Link to='/'>Connectivity</Link>{' '}
+                    </h1>
                 </div>
 
                 <div className='menubar__container'>
-                <MenuBar />
+                    <MenuBar />
                 </div>  
             </div>
 

@@ -3,13 +3,11 @@ import { useMutation } from '@apollo/react-hooks'
 import { GoogleLogin } from 'react-google-login'
 import { GraphQLClient } from 'graphql-request'
 
-
-
 import {AuthContext} from '../../context/auth'
+import Form from '../../util/Form'
 import { LOGIN_USER } from '../../graphql.js/mutations'
 import { ME_QUERY } from '../../graphql.js/queries'
 import { useForm } from '../../util/hooks'
-import Form from '../../util/Form'
 
 import './Login.css'
 
@@ -47,8 +45,6 @@ export default function Login(props) {
   }
 
   const handleGoogleFailure = err => console.error('Error logging in', err)
-
-
 
   
   // JWT - APP ROUTE

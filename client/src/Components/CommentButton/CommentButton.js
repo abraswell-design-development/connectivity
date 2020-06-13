@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Tooltip from '../Tooltip/Tooltip'
 
 
+
 export default function CommentButton({ post: {id, commentCount}}) {
     
     const moreThanZero = commentCount !== 0 ? true : false

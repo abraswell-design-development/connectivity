@@ -56,10 +56,12 @@ p {
   font-size: 1.3em;
   color: #182d3f;
   opacity: .85;
+  text-transform: none;
 }
 
 a {
   text-decoration: none;
+  text-transform: none;
 }
 
 /*************************** Buttons *****************************/

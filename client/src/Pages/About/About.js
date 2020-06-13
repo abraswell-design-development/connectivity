@@ -9,9 +9,8 @@ import '../Register/Register.css'
 
 
 
-function UpdateMemberInfo(props) {
+export default function UpdateMemberInfo(props) {
   const [errors, setErrors] = useState({})
-
 
   const { onChange, onSubmit, values } = useForm(updateUserCallback, {
     name: '',
@@ -136,7 +135,7 @@ function UpdateMemberInfo(props) {
 }
 
 
-export default UpdateMemberInfo;
+
 
 
 

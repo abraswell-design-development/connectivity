@@ -15,7 +15,7 @@ import './SinglePost.css'
 
 
 
-function SinglePost(props) {
+export default function SinglePost(props) {
   const postId = props.match.params.postId;
   const { user } = useContext(AuthContext);
   const commentInputRef = useRef(null);
@@ -29,7 +29,6 @@ function SinglePost(props) {
       postId
     }
   });
-
 
   const [submitComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
     update() {
@@ -145,7 +144,6 @@ function SinglePost(props) {
             </div>
           </Form>    
 
-
           <div className='single-post-comments'>
             <ul className='single-post-comments__comment-list'>
               {comments.map((comment) => (
@@ -188,9 +186,6 @@ function SinglePost(props) {
               ))}
               </ul>
           </div>
-
-
-
         </div>  
       </section>
     )
@@ -198,8 +193,3 @@ function SinglePost(props) {
   return postMarkup;
 }
 
-
-
-
-
-export default SinglePost;

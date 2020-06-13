@@ -7,6 +7,7 @@ import Tooltip from '../Tooltip/Tooltip'
 import './NavBar.css'
 
 
+
 export default function NavBar() {
   const { user } = useContext(AuthContext)
 

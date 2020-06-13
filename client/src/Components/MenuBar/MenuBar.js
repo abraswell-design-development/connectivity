@@ -42,8 +42,5 @@ export default function MenuBar() {
     </nav>
   );
 
-
-
-
   return menuBar;
 }

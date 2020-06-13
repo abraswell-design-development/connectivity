@@ -38,8 +38,6 @@ export default function PostCard({
         </Link>
       </div>
      
-      
-
       <div className='post-card__info'>
           <h3 className='post-card__title'>
             <Link to={`/posts/${id}`}>

@@ -4,6 +4,7 @@ import onClickOutside from 'react-onclickoutside'
 import './Dropdown.css'
 
 
+
 function Dropdown({ title, items = [], multiSelect = false }) {
     const [open, setOpen] = useState(false)
     const toggle = () => setOpen(!open)
@@ -39,8 +40,6 @@ function Dropdown({ title, items = [], multiSelect = false }) {
         </div>
     )
 }
-
-
 
 const clickOutsideConfig = {
     handleClickOutside: () => Dropdown.handleClickOutside

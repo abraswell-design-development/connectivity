@@ -10,10 +10,9 @@ import './Register.css'
 
 
 
-function Register(props) {
+export default function Register(props) {
   const context = useContext(AuthContext)
   const [errors, setErrors] = useState({})
-
 
   const { onChange, onSubmit, values } = useForm(registerUser, {
     username: '',
@@ -84,7 +83,6 @@ function Register(props) {
         Susie
       </p>
       </div>
-
 
       <div className='register__flex-container'>
         <div className='register__img-container'>
@@ -180,4 +178,3 @@ function Register(props) {
 }
 
 
-export default Register;
