@@ -130,9 +130,9 @@ export default function SingleMember(props) {
         <div className='ItemPageMain__activity__section'>
             <h3 className='ItemPageMain__section__title'>
             Public Posts From This Member:
-            {' '}{countPostsForMember(posts, id)}
+            {' '}{countPostsForMember(posts, name)}
             </h3>
-            <ul className='ItemPageMain__Activity__List'>
+            {/* <ul className='ItemPageMain__Activity__List'>
                 {getPostsFromMember.map(post =>
                 <li key={post.id} className='Item__in__activity__list'>
                     <div className='Item__in__activity__list__FlexItem__Info'>
@@ -140,7 +140,7 @@ export default function SingleMember(props) {
                     </div>
                 </li>
                 )}
-            </ul>
+            </ul> */}
         </div>
         
       </section>
