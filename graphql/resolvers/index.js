@@ -1,3 +1,4 @@
+const photosResolvers = require('./photos')
 const postsResolvers = require('./posts');
 const usersResolvers = require('./users');
 const googleUsersResolvers = require('./google-users');
@@ -9,14 +10,16 @@ module.exports = {
     commentCount: (parent) => parent.comments.length
   },
   Query: {
-    ...usersResolvers.Query,
     ...googleUsersResolvers.Query,
+    ...photosResolvers.Query,
     ...postsResolvers.Query,
+    ...usersResolvers.Query,
   },
   Mutation: {
-    ...usersResolvers.Mutation,
-    ...postsResolvers.Mutation,
     ...commentsResolvers.Mutation,
+    ...photosResolvers.Mutation,
+    ...postsResolvers.Mutation,
+    ...usersResolvers.Mutation,
   },
   Subscription: {
     ...postsResolvers.Subscription
