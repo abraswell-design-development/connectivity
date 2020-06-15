@@ -20,7 +20,8 @@ module.exports = gql`
     caption: String!
     subcaption: String!
     image: String!
-    thumbnail: String!
+    # thumbnail: String!
+    author: User!
     folder: String!
     createdAt: String!
   }
@@ -54,13 +55,13 @@ module.exports = gql`
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(email: String!, password: String!): User!
-    update(about: String, city: String, state: String, picture: String, relation: String): User!
+    updateProfile(about: String, city: String, state: String, picture: String, relation: String): User!
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
     likePost(postId: ID!): Post!
     createComment(postId: ID!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
-    createPhoto(input: CreatePhotoInput!): Photo!
+    createPhoto(input: CreatePhotoInput!): Photo
     deletePhoto(photoId: ID!): Photo!
   }
   type Query {
@@ -75,13 +76,12 @@ module.exports = gql`
   type Subscription {
     newPost: Post!
   }
-
   input CreatePhotoInput {
-    caption: String!
-    subcaption: String!
-    image: String!
-    thumbnail: String!
-    folder: String!
+    caption: String
+    subcaption: String
+    image: String
+    # thumbnail: String
+    folder: String
   }
   input RegisterInput {
     username: String!

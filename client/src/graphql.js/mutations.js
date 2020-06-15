@@ -1,71 +1,6 @@
 import gql from 'graphql-tag';
 
-export const DELETE_POST_MUTATION = gql`
-  mutation deletePost($postId: ID!) {
-    deletePost(postId: $postId)
-  }
-`
 
-export const DELETE_COMMENT_MUTATION = gql`
-  mutation deleteComment($postId: ID!, $commentId: ID!) {
-    deleteComment(postId: $postId, commentId: $commentId) {
-      id
-      comments {
-        id
-        username
-        name
-        createdAt
-        picture
-        body
-      }
-      commentCount
-    }
-  }
-`
-
-export const LIKE_POST_MUTATION = gql`
-mutation likePost($postId: ID!) {
-  likePost(postId: $postId) {
-    id
-    likes {
-      id
-      username
-      name
-    }
-    likeCount
-  }
-}
-`
-
-export const CREATE_POST_MUTATION = gql`
-  mutation createPost($body: String!) {
-    createPost(body: $body) {
-      id
-      body
-      createdAt
-      username
-      name
-      picture
-      relation
-      likes {
-        id
-        username
-        name
-        createdAt
-      }
-      likeCount
-      comments {
-        id
-        body
-        username
-        picture
-        name
-        createdAt
-      }
-      commentCount
-    }
-  }
-`
 
 export const LOGIN_USER = gql`
 mutation login($email: String!, $password: String!) {
@@ -113,7 +48,7 @@ mutation register(
 `;
 
 export const UPDATE_USER = gql`
-mutation update(
+mutation updateProfile(
   $about: String
   $city: String
   $state: String
@@ -139,8 +74,58 @@ mutation update(
 }
 `;
 
+export const CREATE_POST_MUTATION = gql`
+  mutation createPost($body: String!) {
+    createPost(body: $body) {
+      id
+      body
+      createdAt
+      username
+      name
+      picture
+      relation
+      likes {
+        id
+        username
+        name
+        createdAt
+      }
+      likeCount
+      comments {
+        id
+        body
+        username
+        picture
+        name
+        createdAt
+      }
+      commentCount
+    }
+  }
+`
+
+export const DELETE_POST_MUTATION = gql`
+  mutation deletePost($postId: ID!) {
+    deletePost(postId: $postId)
+  }
+`
+
+export const LIKE_POST_MUTATION = gql`
+mutation likePost($postId: ID!) {
+  likePost(postId: $postId) {
+    id
+    likes {
+      id
+      username
+      name
+    }
+    likeCount
+  }
+}
+`
+
 export const SUBMIT_COMMENT_MUTATION = gql`
-  mutation($postId: ID!, $body: String!) {
+  mutation createComment($postId: ID!, $body: String!) {
     createComment(postId: $postId, body: $body) {
       id
       comments {
@@ -153,3 +138,52 @@ export const SUBMIT_COMMENT_MUTATION = gql`
     }
   }
 `;
+
+export const DELETE_COMMENT_MUTATION = gql`
+  mutation deleteComment($postId: ID!, $commentId: ID!) {
+    deleteComment(postId: $postId, commentId: $commentId) {
+      id
+      comments {
+        id
+        username
+        name
+        createdAt
+        picture
+        body
+      }
+      commentCount
+    }
+  }
+`
+
+export const CREATE_PHOTO_MUTATION = `
+  mutation(
+    $caption: String!,
+    $subcaption: String,
+    $image: String!,
+    # $thumbnail: String,
+    $folder: String!
+  ) {
+    createPhoto(input: {
+      caption: $caption
+      subcaption: $subcaption
+      image: $image
+      # thumbnail: $thumbnail
+      folder: $folder
+    }) {
+      id
+      createdAt
+      caption
+      subcaption
+      image
+      # thumbnail
+      folder
+      author {
+        id
+        name
+        email
+        picture
+      }
+    }
+  }
+`

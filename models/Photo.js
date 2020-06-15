@@ -4,7 +4,7 @@ const photoSchema = new Schema({
     caption: String,
     subcaption: String,
     image: String,
-    thumbnail: String,
+    // thumbnail: String,
     folder: String,
     createdAt: String
 });
