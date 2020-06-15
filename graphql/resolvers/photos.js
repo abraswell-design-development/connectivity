@@ -1,5 +1,7 @@
 const { AuthenticationError } = require('apollo-server')
 
+const Photo = require('../../models/Photo');
+
 //* a Higher-Order-Function that will wrap all resolver functions. Checks there is a verified user on context. 
 // If so, returns the resolver function it wrapped, otherwise throws an Error.
 
@@ -16,17 +18,18 @@ module.exports = {
         me: authenticated((root, args, ctx) => ctx.currentUser),
         getPhotos: async (root, args, { Photo }) => {
           return Photo.find({})
-            .populate('author')
+          .populate('author')
         },
     },
     Mutation: {
         createPhoto: authenticated(async (root, { input }, { currentUser, Photo }) => {
           const newPhoto = await new Photo({
-            ...input,
+            ...args.input,
             author: currentUser._id,
           }).save()
-    
+
           return Photo.populate(newPhoto, 'author')
+
         }),
         deletePhoto: authenticated(async (root, { photoId }, { currentUser, Photo }) => {
           return Photo.findOneAndDelete({

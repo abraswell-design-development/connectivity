@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import ReactBnbGallery from 'react-bnb-gallery'
-
+import PhotoForm from '../../Components/PhotoForm/PhotoForm'
 import './Photos.scss'
 
 const photos = [{
@@ -36,14 +36,15 @@ export default class Photos extends Component {
 
   render () {
     return (
-        <>
-      <button onClick={this.toggleGallery}>Open photo gallery</button>
-      <ReactBnbGallery
-        show={this.state.galleryOpened}
-        photos={photos}
-        showThumbnails={true}
-        onClose={this.toggleGallery} />
-        </>
+      <>
+        <button onClick={this.toggleGallery}>Open photo gallery</button>
+        <ReactBnbGallery
+          show={this.state.galleryOpened}
+          photos={photos}
+          showThumbnails={true}
+          onClose={this.toggleGallery} />
+        <PhotoForm />
+      </>
     )
   }
 }

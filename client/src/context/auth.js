@@ -28,6 +28,7 @@ const AuthContext = createContext({
   user: null,
   googleUser: null,
   currentUser: null,
+  photos: [],
   isAuth: false,
   userEmail: null,
   login: (userData) => {},
@@ -49,6 +50,13 @@ export function ContextReducer(state, { type, payload}) {
       return {
         ...state,
         user: null
+      };
+    case "CREATE_PHOTO":
+      const newPhoto = payload;
+      const prevPhotos = state.photos.filter(photo => photo._id !== newPhoto._id);
+      return {
+        ...state,
+        pins: [...prevPhotos, newPhoto]
       };
       // case 'LOGIN_GOOGLE_USER':
       // console.log('ran LOGIN_GOOGLE_USER case')
@@ -87,7 +95,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-    value={{ user: state.user, currentUser: state.currentUser, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
+    value={{ user: state.user, currentUser: state.currentUser, pins: state.pins, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
     {...props}
     />
   );

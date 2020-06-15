@@ -1,8 +1,9 @@
+const commentsResolvers = require('./comments');
+const googleUsersResolvers = require('./google-users');
 const photosResolvers = require('./photos')
 const postsResolvers = require('./posts');
 const usersResolvers = require('./users');
-const googleUsersResolvers = require('./google-users');
-const commentsResolvers = require('./comments');
+
 
 module.exports = {
   Post: {
