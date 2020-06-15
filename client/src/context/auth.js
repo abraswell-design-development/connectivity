@@ -14,13 +14,13 @@ if (localStorage.getItem('jwtToken')) {
   } else {
     initialState.user = decodedToken;
   }
-// } else if (localStorage.getItem('googleToken')) {
-//   const decodedToken = jwtDecode(localStorage.getItem('googleToken'));
-//   if (decodedToken.exp * 1000 < Date.now()) {
-//     localStorage.removeItem('googleToken');
-//   } else {
-//     initialState.user = decodedToken;
-//   }
+} else if (localStorage.getItem('googleToken')) {
+  const decodedToken = jwtDecode(localStorage.getItem('googleToken'));
+  if (decodedToken.exp * 1000 < Date.now()) {
+    localStorage.removeItem('googleToken');
+  } else {
+    initialState.user = decodedToken;
+  }
 }
 
 
