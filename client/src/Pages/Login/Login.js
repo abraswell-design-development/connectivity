@@ -31,7 +31,6 @@ export default function Login(props) {
 // query the server (server verifies token, finds or creates a User, returns user's info)
         const { me } = await client.request(ME_QUERY)
         console.log('me object returned from query: ', me)
-
 // this gets the googleUser's mail and stores it in validatedEmail variable
         const validatedEmail = googleUser.profileObj.email
         console.log('email validated by Google: ', validatedEmail)

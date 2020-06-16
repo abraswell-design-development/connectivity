@@ -1,7 +1,7 @@
 const { AuthenticationError, UserInputError } = require('apollo-server');
 
 const Post = require('../../models/Post');
-const checkAuth = require('../../controllers/jwt-user-controller');
+const checkAuth = require('../../controllers/user-middleware-controller');
 
 module.exports = {
   Query: {
@@ -28,6 +28,8 @@ module.exports = {
   },
   Mutation: {
     async createPost(_, { body }, context) {
+
+      // THIS IS THE PROBLEM!!! GOOGLE USER IS NOT GOING THROUGH MIDDLEWARE JWT-USER-CONTROLLER.JS
       const user = checkAuth(context);
 
       if (body.trim() === '') {
@@ -37,7 +39,6 @@ module.exports = {
       const newPost = new Post({
         body,
         user: user.id,
-        username: user.username,
         name: user.name,
         picture: user.picture,
         relation: user.relation,

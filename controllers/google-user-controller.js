@@ -3,6 +3,7 @@ const User = require('../models/User')
 
 const client = new OAuth2Client(process.env.OAUTH_CLIENT_ID)
 
+
 const verifyAuthToken = async token => {
   console.log('verifying Auth token in database...')
   try {
@@ -32,9 +33,18 @@ exports.findOrCreateUser = async token => {
   // verify auth token
   const googleUser = await verifyAuthToken(token)
   // check if User exists
-  const user = await checkIfUserExists(googleUser.email)
+  let user = await checkIfUserExists(googleUser.email)
   console.log('Google User Found in database!')
+  console.log('Token from google-user-controller: ', token)
   // if user exists, return them, otherwise create new User
-  return user || createNewUser(googleUser)
+  return {    
+    ...user._doc,
+    id: user._id,
+    token 
+  }
+  || 
+  createNewUser(googleUser)
 }
+
+
 

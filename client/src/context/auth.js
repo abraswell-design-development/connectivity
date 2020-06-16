@@ -31,7 +31,6 @@ const initialState = {
 const AuthContext = createContext({
   user: null,
   googleUser: null,
-  currentUser: null,
   photos: [],
   isAuth: false,
   userEmail: null,
@@ -90,14 +89,6 @@ function AuthProvider(props) {
     });
   }
 
-  // function loginGoogle(currentUser) {
-  //   localStorage.setItem('jwtToken', currentUser.token);
-  //   dispatch({
-  //     type: 'LOGIN_GOOGLE_USER',
-  //     payload: currentUser
-  //   });
-  // }
-
   function logout() {
     localStorage.removeItem('jwtToken');
     dispatch({ type: 'LOGOUT' });
@@ -106,7 +97,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-    value={{ user: state.user, currentUser: state.currentUser, pins: state.pins, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
+    value={{ user: state.user,  pins: state.pins, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
     {...props}
     />
   );

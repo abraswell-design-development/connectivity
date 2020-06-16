@@ -6,7 +6,7 @@ const Photo = require('../../models/Photo');
 // If so, returns the resolver function it wrapped, otherwise throws an Error.
 
 const authenticated = resolverFunc => (root, args, ctx, info) => {
-  if (!ctx.currentUser) {
+  if (!ctx.user) {
     throw new AuthenticationError('You must be logged in')
   }
   return resolverFunc(root, args, ctx, info)
@@ -15,26 +15,26 @@ const authenticated = resolverFunc => (root, args, ctx, info) => {
 
 module.exports = {
     Query: {
-        me: authenticated((root, args, ctx) => ctx.currentUser),
+        me: authenticated((root, args, ctx) => ctx.user),
         getPhotos: async (root, args, { Photo }) => {
           return Photo.find({})
           .populate('author')
         },
     },
     Mutation: {
-        createPhoto: authenticated(async (root, { input }, { currentUser, Photo }) => {
+        createPhoto: authenticated(async (root, { input }, { user, Photo }) => {
           const newPhoto = await new Photo({
             ...args.input,
-            author: currentUser._id,
+            author: user._id,
           }).save()
 
           return Photo.populate(newPhoto, 'author')
 
         }),
-        deletePhoto: authenticated(async (root, { photoId }, { currentUser, Photo }) => {
+        deletePhoto: authenticated(async (root, { photoId }, { user, Photo }) => {
           return Photo.findOneAndDelete({
             _id: photoId,
-            author: currentUser._id,
+            author: user._id,
           })
         }),      
     },

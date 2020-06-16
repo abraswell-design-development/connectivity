@@ -10,7 +10,7 @@ export const useClient = () => {
     setIdToken(
       window.gapi.auth2
         .getAuthInstance()
-        .currentUser.get()
+        .user.get()
         .getAuthResponse().id_token
     )
   }, [])
