@@ -15,53 +15,29 @@ import './Login.css'
 
 export default function Login(props) {
   const context = useContext(AuthContext)
-  //const { dispatch } = useContext(AuthContext)
-
-
-  // const handleGoogleSuccess = async googleUser => {
-  //   try {
-  //     // grab the successfully logged-in user's Google idToken
-  //     const idToken = googleUser.getAuthResponse().id_token
-  //     // create a GraphQL Client object, pass it the token as an auth header
-  //     const client = new GraphQLClient('http://localhost:5000/graphql', {
-  //       headers: {
-  //         authorization: idToken,
-  //       },
-  //     })
-  //     // query the server (server verifies token, finds or creates a User, returns user's info)
-  //     const { me } = await client.request(ME_QUERY)
-  //     console.log(me)
-  //     // add the user's info to 'currentUser' field in state
-  //     dispatch({ type: 'LOGIN', payload: me })
-  //     //dispatch({ type: 'IS_LOGGED_IN', payload: googleUser.isSignedIn() })
-  //     props.history.push('/')
-  //   } catch (err) {
-  //     handleGoogleFailure(err)
-  //   }
-  // }
+  
 
 // GOOGLE - APP ROUTE
- const handleGoogleSuccess = async googleUser => {
-    try {
-            // grab the successfully logged-in user's Google idToken
-            const idToken = googleUser.getAuthResponse().id_token
-            // create a GraphQL Client object, pass it the token as an auth header
-            const client = new GraphQLClient('http://localhost:5000/graphql', {
-              headers: {
-                authorization: idToken,
-              }, 
-            })
-              // query the server (server verifies token, finds or creates a User, returns user's info)
-              const { me } = await client.request(ME_QUERY)
-              console.log('me object returned from query: ', me)
+  const handleGoogleSuccess = async googleUser => {
+      try {
+// grab the successfully logged-in user's Google idToken
+        const idToken = googleUser.getAuthResponse().id_token
+// create a GraphQL Client object, pass it the token as an auth header
+        const client = new GraphQLClient('http://localhost:5000/graphql', {
+          headers: {
+            authorization: idToken,
+          }, 
+        })
+// query the server (server verifies token, finds or creates a User, returns user's info)
+        const { me } = await client.request(ME_QUERY)
+        console.log('me object returned from query: ', me)
 
-      // this gets the googleUser's mail and stores it in validatedEmail variable
+// this gets the googleUser's mail and stores it in validatedEmail variable
         const validatedEmail = googleUser.profileObj.email
         console.log('email validated by Google: ', validatedEmail)
         console.log('Login.js context: ', context)
 // this moves the user into the protected route to reach home page but user in currently undefined
         context.login(googleUser)
-        // ^^^^^^^^  UPDATE THIS WHEN GOOGLE USER MOVES THROUGH google-users.js
         props.history.push('/')
     } catch (err) {
       handleGoogleFailure(err)

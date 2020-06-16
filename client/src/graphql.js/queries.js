@@ -87,6 +87,32 @@ export const FETCH_USER_QUERY = gql`
   }
 `;
 
+export const FETCH_PHOTOS_QUERY = gql`
+  {
+    getPhotos {
+    id
+    caption
+    subcaption
+    image
+    folder
+    createdAt
+    }
+  }
+`;
+
+export const FETCH_PHOTO_QUERY = gql`
+  query($photoId: ID!) {
+    getPhoto(photoId: $photoId) {
+    id
+    caption
+    subcaption
+    image
+    folder
+    createdAt
+    }
+  }
+`;
+
 export const ME_QUERY = `
 {
   me {

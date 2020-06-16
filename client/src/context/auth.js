@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useContext } from 'react';
+import React, { useReducer, createContext } from 'react';
 import jwtDecode from 'jwt-decode';
 
 const initialState = {
@@ -7,21 +7,25 @@ const initialState = {
 
 //////  COMMENTED OUT UNTIL GOOGLE ROUTE IS COMPLETE SO SITE DOESN'T BREAK ACCIDENTALLY ///////
 
-if (localStorage.getItem('jwtToken')) {
-  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem('jwtToken');
-  } else {
-    initialState.user = decodedToken;
-  }
-} else if (localStorage.getItem('googleToken')) {
-  const decodedToken = jwtDecode(localStorage.getItem('googleToken'));
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem('googleToken');
-  } else {
-    initialState.user = decodedToken;
-  }
-}
+// if (localStorage.getItem('jwtToken')) {
+//   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+//   if (decodedToken.exp * 1000 < Date.now()) {
+//     localStorage.removeItem('jwtToken');
+//   } else {
+//     initialState.user = decodedToken;
+//   } 
+// } 
+
+
+// else  (localStorage.getItem('googleToken')) {
+//   const decodedToken = jwtDecode(localStorage.getItem('googleToken'));
+//   if (decodedToken.exp * 1000 < Date.now()) {
+//     localStorage.removeItem('googleToken');
+//   } else {
+//     initialState.user = decodedToken;
+//   }
+// }
+
 
 
 const AuthContext = createContext({
@@ -76,16 +80,23 @@ export function ContextReducer(state, { type, payload}) {
 }
 
 function AuthProvider(props) {
-  const initialState = useContext(AuthContext)
   const [state, dispatch] = useReducer(ContextReducer, initialState);
 
-  function login(userData, currentUser) {
+  function login(userData) {
     localStorage.setItem('jwtToken', userData.token);
     dispatch({
       type: 'LOGIN',
-      payload: userData || currentUser
+      payload: userData
     });
   }
+
+  // function loginGoogle(currentUser) {
+  //   localStorage.setItem('jwtToken', currentUser.token);
+  //   dispatch({
+  //     type: 'LOGIN_GOOGLE_USER',
+  //     payload: currentUser
+  //   });
+  // }
 
   function logout() {
     localStorage.removeItem('jwtToken');

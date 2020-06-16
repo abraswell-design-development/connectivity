@@ -8,13 +8,15 @@ import './MenuBar.css'
 
 export default function MenuBar() {
   const { user, logout } = useContext(AuthContext)
+  console.log('AuthContext user is: ', user)
 
   const menuBar = user ? (
     <nav>
       <div className='menubar__flex-container'>
         <div className='menubar__flex-item'>
           <Link to={'/'}>
-            {user.name}
+            {user.name || user.profileObj.name}
+            {console.log({user})}
           </Link>
         </div>
         <div className='menubar__flex-item'>
