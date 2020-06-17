@@ -87,15 +87,39 @@ export const FETCH_USER_QUERY = gql`
   }
 `;
 
+
+ export const FETCH_FOLDERS_QUERY = gql`
+  {
+    getFolders {
+    id
+    name
+    createdAt
+    }
+  }
+  `;
+
+export const FETCH_FOLDER_QUERY = gql`
+query($folderId: ID!) {
+  getFolder(folderId: $userId) {
+  id
+  name
+  createdAt
+  }
+}
+`;
+
+
+
 export const FETCH_PHOTOS_QUERY = gql`
   {
     getPhotos {
-    id
-    caption
-    subcaption
-    image
-    folder
-    createdAt
+      id
+      image
+      createdAt
+      folder{
+        name
+        createdAt
+      }
     }
   }
 `;
@@ -103,15 +127,19 @@ export const FETCH_PHOTOS_QUERY = gql`
 export const FETCH_PHOTO_QUERY = gql`
   query($photoId: ID!) {
     getPhoto(photoId: $photoId) {
-    id
-    caption
-    subcaption
-    image
-    folder
-    createdAt
+      id
+      image
+      createdAt
+      folder{
+        name
+        createdAt
+      }
     }
   }
 `;
+
+
+
 
 export const ME_QUERY = `
 {

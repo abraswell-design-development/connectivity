@@ -1,41 +1,92 @@
-const { AuthenticationError } = require('apollo-server')
+const { AuthenticationError, UserInputError } = require('apollo-server');
 
 const Photo = require('../../models/Photo');
-
-//* a Higher-Order-Function that will wrap all resolver functions. Checks there is a verified user on context. 
-// If so, returns the resolver function it wrapped, otherwise throws an Error.
-
-const authenticated = resolverFunc => (root, args, ctx, info) => {
-  if (!ctx.user) {
-    throw new AuthenticationError('You must be logged in')
-  }
-  return resolverFunc(root, args, ctx, info)
-}
-
+const Folder = require('../../models/Folder')
+const checkAuth = require('../../controllers/user-middleware-controller');
 
 module.exports = {
-    Query: {
-        me: authenticated((root, args, ctx) => ctx.user),
-        getPhotos: async (root, args, { Photo }) => {
-          return Photo.find({})
-          .populate('author')
-        },
+  Query: {
+    async getPhotos() {
+      try {
+        const photos = await Photo.find().sort({ createdAt: -1 });
+        return photos;
+      } catch (err) {
+        throw new Error(err);
+      }
     },
-    Mutation: {
-        createPhoto: authenticated(async (root, { input }, { user, Photo }) => {
-          const newPhoto = await new Photo({
-            ...args.input,
-            author: user._id,
-          }).save()
-
-          return Photo.populate(newPhoto, 'author')
-
-        }),
-        deletePhoto: authenticated(async (root, { photoId }, { user, Photo }) => {
-          return Photo.findOneAndDelete({
-            _id: photoId,
-            author: user._id,
-          })
-        }),      
+    async getPhoto(_, { photoId }) {
+      try {
+        const photo = await Photo.findById(photoId);
+        if (photo) {
+          return photo;
+        } else {
+          throw new Error('Photo not found');
+        }
+      } catch (err) {
+        throw new Error(err);
+      }
     },
-}
+    async getFolders() {
+      try {
+        const folders = await Folder.find().sort({ createdAt: -1 });
+        return folders;
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
+    async getFolder(_, { folderId }) {
+      try {
+        const folder = await Folder.findById(folderId);
+        if (folder) {
+          return folder;
+        } else {
+          throw new Error('Photo not found');
+        }
+      } catch (err) {
+        throw new Error(err);
+      }
+    }
+  },
+  Mutation: {
+    async createPhoto(_, { image }, context) {
+
+      if (image.trim() === '') {
+        throw new Error('Photo body must not be empty');
+      }
+
+      const newPhoto = new Photo({
+        image,
+        createdAt: new Date().toISOString()
+      });
+
+      const photo = await newPhoto.save();
+
+      context.pubsub.publish('NEW_PHOTO', {
+        newPhoto: photo
+      });
+
+      return photo;
+    },
+    // async deletePhoto(_, { photoId }, context) {
+    //   const user = checkAuth(context);
+
+    //   try {
+    //     const photo = await Photo.findById(photoId);
+    //     if (user.name === photo.name) {
+    //       await photo.delete();
+    //       return 'Photo deleted successfully';
+    //     } else {
+    //       throw new AuthenticationError('Action not allowed');
+    //     }
+    //   } catch (err) {
+    //     throw new Error(err);
+    //   }
+    // },
+    
+  },
+  Subscription: {
+    newPost: {
+      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator('NEW_POST')
+    }
+  }
+};

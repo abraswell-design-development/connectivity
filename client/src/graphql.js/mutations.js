@@ -156,34 +156,17 @@ export const DELETE_COMMENT_MUTATION = gql`
   }
 `
 
-export const CREATE_PHOTO_MUTATION = gql`
-  mutation(
-    $caption: String!,
-    $subcaption: String,
-    $image: String!,
-    # $thumbnail: String,
-    $folder: String!
-  ) {
-    createPhoto(input: {
-      caption: $caption
-      subcaption: $subcaption
-      image: $image
-      # thumbnail: $thumbnail
-      folder: $folder
-    }) {
-      id
-      createdAt
-      caption
-      subcaption
+
+export const CREATE_PHOTO_MUTATION = gql` 
+  mutation{
+    createPhoto(image: ""){
       image
-      # thumbnail
-      folder
-      author {
-        id
-        name
-        email
-        picture
-      }
+      id
     }
   }
 `
+
+
+
+
+

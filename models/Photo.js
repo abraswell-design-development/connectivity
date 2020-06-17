@@ -1,14 +1,15 @@
 const { model, Schema } = require('mongoose');
 
 const photoSchema = new Schema({
-    caption: String,
-    subcaption: String,
-    image: String,
-    // thumbnail: String,
-    folder: String,
-    createdAt: String
+  image: String,
+  createdAt: String,
+  folder: [
+    {
+      id: String,
+      name: String,
+      createdAt: String
+    }
+  ]
 });
-
-
 
 module.exports = model('Photo', photoSchema);

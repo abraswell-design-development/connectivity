@@ -7,14 +7,14 @@ const initialState = {
 
 //////  COMMENTED OUT UNTIL GOOGLE ROUTE IS COMPLETE SO SITE DOESN'T BREAK ACCIDENTALLY ///////
 
-// if (localStorage.getItem('jwtToken')) {
-//   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-//   if (decodedToken.exp * 1000 < Date.now()) {
-//     localStorage.removeItem('jwtToken');
-//   } else {
-//     initialState.user = decodedToken;
-//   } 
-// } 
+if (localStorage.getItem('jwtToken')) {
+  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+  if (decodedToken.exp * 1000 < Date.now()) {
+    localStorage.removeItem('jwtToken');
+  } else {
+    initialState.user = decodedToken;
+  } 
+} 
 
 
 // else  (localStorage.getItem('googleToken')) {
@@ -59,7 +59,7 @@ export function ContextReducer(state, { type, payload}) {
       const prevPhotos = state.photos.filter(photo => photo._id !== newPhoto._id);
       return {
         ...state,
-        pins: [...prevPhotos, newPhoto]
+        photos: [...prevPhotos, newPhoto]
       };
       // case 'LOGIN_GOOGLE_USER':
       // console.log('ran LOGIN_GOOGLE_USER case')
@@ -97,7 +97,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-    value={{ user: state.user,  pins: state.pins, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
+    value={{ user: state.user,  pins: state.pins, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
     {...props}
     />
   );

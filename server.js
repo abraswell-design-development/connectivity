@@ -11,7 +11,7 @@ const resolvers = require('./graphql/resolvers');
 const MONGO_URI = process.env.MONGO_URI;
 const pubsub = new PubSub();
 
-//UNCOMMENT TO USE GraphQL PLAYGROUND!!!
+// UNCOMMENT TO USE GraphQL PLAYGROUND!!!
 // const server = new ApolloServer({
 //   typeDefs,
 //   resolvers,

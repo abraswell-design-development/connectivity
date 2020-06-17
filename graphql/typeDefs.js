@@ -9,6 +9,11 @@ module.exports = gql`
     picture: String
     body: String!
   }
+  type Folder {
+    id: ID!
+    name: String!
+    createdAt: String!
+  }
   type Like {
     id: ID!
     createdAt: String!
@@ -17,13 +22,9 @@ module.exports = gql`
   }
   type Photo {
     id: ID!
-    caption: String!
-    subcaption: String!
     image: String!
-    # thumbnail: String!
-    author: User!
-    folder: String!
     createdAt: String!
+    folder: [Folder]!
   }
   type Post {
     id: ID!
@@ -61,12 +62,14 @@ module.exports = gql`
     likePost(postId: ID!): Post!
     createComment(postId: ID!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
-    createPhoto(input: CreatePhotoInput!): Photo
+    createPhoto(photoId: ID!, image: String!): Photo
     deletePhoto(photoId: ID!): Photo!
   }
   type Query {
     getPhotos: [Photo]
     getPhoto(photoId: ID!): Photo
+    getFolders: [Folder]
+    getFolder(folderId: ID!): Folder
     getPosts: [Post]
     getPost(postId: ID!): Post
     getUsers: [User]
@@ -75,13 +78,6 @@ module.exports = gql`
   }
   type Subscription {
     newPost: Post!
-  }
-  input CreatePhotoInput {
-    caption: String
-    subcaption: String
-    image: String
-    # thumbnail: String
-    folder: String
   }
   input RegisterInput {
     username: String!
