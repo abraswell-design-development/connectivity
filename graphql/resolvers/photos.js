@@ -48,19 +48,14 @@ module.exports = {
     }
   },
   Mutation: {
-    async createPost(_, { image, folder }, context) {
+    async createPhoto(_, { image }, context) {
 
       if (image.trim() === '') {
-        throw new Error('Image body must not be empty');
-      }
-
-      if (folder.trim() === '') {
-        throw new Error('Folder body must not be empty');
+        throw new Error('Photo body must not be empty');
       }
 
       const newPhoto = new Photo({
         image,
-        folder,
         createdAt: new Date().toISOString()
       });
 
@@ -72,12 +67,26 @@ module.exports = {
 
       return photo;
     },
+    // async deletePhoto(_, { photoId }, context) {
+    //   const user = checkAuth(context);
 
+    //   try {
+    //     const photo = await Photo.findById(photoId);
+    //     if (user.name === photo.name) {
+    //       await photo.delete();
+    //       return 'Photo deleted successfully';
+    //     } else {
+    //       throw new AuthenticationError('Action not allowed');
+    //     }
+    //   } catch (err) {
+    //     throw new Error(err);
+    //   }
+    // },
     
   },
-  // Subscription: {
-  //   newP: {
-  //     subscribe: (_, __, { pubsub }) => pubsub.asyncIterator('NEW_POST')
-  //   }
-  // }
+  Subscription: {
+    newPost: {
+      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator('NEW_POST')
+    }
+  }
 };

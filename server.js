@@ -32,7 +32,6 @@ const server = new ApolloServer({
             // find Google User in db or create a new user
             // and update user in CONTEXT to pass on to google-user.js
             user = await findOrCreateUser(authToken) 
-            console.log('authToken: ', authToken)
           }
         } 
         catch (err) {

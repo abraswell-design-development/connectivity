@@ -88,7 +88,7 @@ export const FETCH_USER_QUERY = gql`
 `;
 
 
- export const FETCH_FOLDERS_QUERY = `
+ export const FETCH_FOLDERS_QUERY = gql`
   {
     getFolders {
     id

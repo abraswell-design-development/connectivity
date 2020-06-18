@@ -22,7 +22,6 @@ export default function Login(props) {
       try {
 // grab the successfully logged-in user's Google idToken
         const idToken = googleUser.getAuthResponse().id_token
-        console.log('idToken: ', idToken)
 // create a GraphQL Client object, pass it the token as an auth header
         const client = new GraphQLClient('http://localhost:5000/graphql', {
           headers: {

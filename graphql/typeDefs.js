@@ -62,7 +62,7 @@ module.exports = gql`
     likePost(postId: ID!): Post!
     createComment(postId: ID!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
-    createPhoto(image: String!, folder: String!): Photo
+    createPhoto(photoId: ID!, image: String!): Photo
     deletePhoto(photoId: ID!): Photo!
   }
   type Query {
