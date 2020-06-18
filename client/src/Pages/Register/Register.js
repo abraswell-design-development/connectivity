@@ -15,7 +15,6 @@ export default function Register(props) {
   const [errors, setErrors] = useState({})
 
   const { onChange, onSubmit, values } = useForm(registerUser, {
-    username: '',
     name: '',
     email: '',
     password: '',
@@ -116,17 +115,6 @@ export default function Register(props) {
                   type="text"
                   value={values.name}
                   error={errors.name ? true : false}
-                  onChange={onChange}
-                />
-              </label>
-              <label htmlFor="Username">
-                <input
-                  className='register__form-group'
-                  placeholder="Username.."
-                  name="username"
-                  type="text"
-                  value={values.username}
-                  error={errors.username ? true : false}
                   onChange={onChange}
                 />
               </label>

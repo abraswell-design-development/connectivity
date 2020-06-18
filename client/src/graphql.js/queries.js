@@ -6,19 +6,17 @@ export const FETCH_POSTS_QUERY = gql`
       id
       body
       createdAt
-      username
       name
       picture
       relation
       likeCount
       likes {
-        username
         name
       }
       commentCount
       comments {
         id
-        username
+        name
         createdAt
         body
       }
@@ -32,19 +30,17 @@ export const FETCH_POST_QUERY = gql`
       id
       body
       createdAt
-      username
       name
       picture
       relation
       likeCount
       likes {
-        username
         name
       }
       commentCount
       comments {
         id
-        username
+        name
         createdAt
         body
       }
@@ -57,7 +53,6 @@ export const FETCH_USERS_QUERY = gql`
     getUsers {
     id
     name
-    username
     about
     city
     state
@@ -74,7 +69,6 @@ export const FETCH_USER_QUERY = gql`
   query($userId: ID!) {
     getUser(userId: $userId) {
     id
-    username
     name
     about
     city

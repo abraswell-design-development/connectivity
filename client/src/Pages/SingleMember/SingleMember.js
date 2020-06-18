@@ -32,7 +32,6 @@ export default function SingleMember(props) {
   } else {
     const {
         id,
-        username,
         name,
         city,
         state,
@@ -62,7 +61,7 @@ export default function SingleMember(props) {
 
     userMarkup = (
       <section className='single-member-main'>
-        <h2 className='single-member__title'>More about {username}...</h2> 
+        <h2 className='single-member__title'>More about {name}...</h2> 
         
         <div className='single-member-card__flex-container'>
           

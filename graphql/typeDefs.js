@@ -5,7 +5,6 @@ module.exports = gql`
     id: ID!
     createdAt: String!
     name: String
-    username: String
     picture: String
     body: String!
   }
@@ -18,7 +17,6 @@ module.exports = gql`
     id: ID!
     createdAt: String!
     name: String
-    username: String
   }
   type Photo {
     id: ID!
@@ -30,7 +28,6 @@ module.exports = gql`
     id: ID!
     body: String!
     createdAt: String!
-    username: String
     name: String
     picture: String
     relation: String
@@ -42,7 +39,6 @@ module.exports = gql`
   type User {
     id: ID!
     name: String
-    username: String
     password: String
     email: String
     about: String
@@ -80,7 +76,6 @@ module.exports = gql`
     newPost: Post!
   }
   input RegisterInput {
-    username: String!
     name: String!
     password: String!
     confirmPassword: String!
@@ -88,7 +83,6 @@ module.exports = gql`
   }
   input UpdateProfileInput {
     name: String!
-    username: String!
     email: String!
     about: String
     relation: String

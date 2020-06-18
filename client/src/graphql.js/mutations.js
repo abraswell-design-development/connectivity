@@ -12,7 +12,6 @@ mutation login($email: String!, $password: String!) {
     city
     state
     picture
-    username
     relation
     createdAt
     token
@@ -23,7 +22,6 @@ mutation login($email: String!, $password: String!) {
 export const REGISTER_USER = gql`
 mutation register(
   $name: String!
-  $username: String!
   $email: String!
   $password: String!
   $confirmPassword: String!
@@ -31,7 +29,6 @@ mutation register(
   register(
     registerInput: {
       name: $name
-      username: $username
       email: $email
       password: $password
       confirmPassword: $confirmPassword
@@ -39,7 +36,6 @@ mutation register(
   ) {
     id
     email
-    username
     name
     createdAt
     token
@@ -80,13 +76,11 @@ export const CREATE_POST_MUTATION = gql`
       id
       body
       createdAt
-      username
       name
       picture
       relation
       likes {
         id
-        username
         name
         createdAt
       }
@@ -94,7 +88,6 @@ export const CREATE_POST_MUTATION = gql`
       comments {
         id
         body
-        username
         picture
         name
         createdAt
@@ -116,7 +109,6 @@ mutation likePost($postId: ID!) {
     id
     likes {
       id
-      username
       name
     }
     likeCount
@@ -132,7 +124,7 @@ export const SUBMIT_COMMENT_MUTATION = gql`
         id
         body
         createdAt
-        username
+        name
       }
       commentCount
     }
@@ -145,7 +137,6 @@ export const DELETE_COMMENT_MUTATION = gql`
       id
       comments {
         id
-        username
         name
         createdAt
         picture
