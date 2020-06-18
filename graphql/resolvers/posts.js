@@ -39,7 +39,7 @@ module.exports = {
       const newPost = new Post({
         body,
         user: user.id,
-        name: user.name,
+        name: user.name || user.profileObj.name,
         picture: user.picture,
         relation: user.relation,
         createdAt: new Date().toISOString()
@@ -58,7 +58,7 @@ module.exports = {
 
       try {
         const post = await Post.findById(postId);
-        if (user.name === post.name) {
+        if (user.name || user.profileObj.name === post.name || post.profileObj.name) {
           await post.delete();
           return 'Post deleted successfully';
         } else {
@@ -73,9 +73,9 @@ module.exports = {
 
       const post = await Post.findById(postId);
       if (post) {
-        if (post.likes.find((like) => like.name === name)) {
+        if (post.likes.find((like) => like.name || like.profileObj.name === name)) {
           // Post already likes, unlike it
-          post.likes = post.likes.filter((like) => like.name !== name);
+          post.likes = post.likes.filter((like) => like.name || like.profileObj.name !== name);
         } else {
           // Not liked, like post
           post.likes.push({

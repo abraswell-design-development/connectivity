@@ -1,5 +1,4 @@
 module.exports.validateRegisterInput = (
-  username,
   name,
   email,
   password,
@@ -7,10 +6,7 @@ module.exports.validateRegisterInput = (
 ) => {
   const errors = {};
   if (name.trim() === '') {
-    errors.username = 'Name must not be empty';
-  }
-  if (username.trim() === '') {
-    errors.name = 'Username must not be empty';
+    errors.name = 'Name must not be empty';
   }
   if (email.trim() === '') {
     errors.email = 'Email must not be empty';

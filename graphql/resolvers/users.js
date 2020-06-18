@@ -14,7 +14,6 @@ function generateToken(user) {
     {
       id: user.id,
       email: user.email,
-      username: user.username,
       name: user.name,
       picture: user.picture
     },
@@ -100,12 +99,11 @@ module.exports = {
     async register(
       _,
       {
-        registerInput: { username, name, email, password, confirmPassword }
+        registerInput: { name, email, password, confirmPassword }
       }
     ) {
       // Validate user data
       const { valid, errors } = validateRegisterInput(
-        username,
         name,
         email,
         password,
@@ -115,11 +113,11 @@ module.exports = {
         throw new UserInputError('Errors', { errors });
       }
       // TODO: Make sure user does not already exist
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ email });
       if (user) {
-        throw new UserInputError('Username is taken', {
+        throw new UserInputError('Email is registered', {
           errors: {
-            username: 'This username is taken'
+            email: 'This email is already registered'
           }
         });
       }
@@ -128,7 +126,6 @@ module.exports = {
 
       const newUser = new User({
         email,
-        username,
         name,
         password,
         createdAt: new Date().toISOString()

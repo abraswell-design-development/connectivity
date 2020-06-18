@@ -53,7 +53,6 @@ export default function SinglePost(props) {
       id,
       body,
       createdAt,
-      username,
       name,
       picture,
       comments,
@@ -95,7 +94,7 @@ export default function SinglePost(props) {
             <div className='single-post-card__button-container__flex-container'>
               <div className='single-other-buttons__container'>
                 <LikeButton 
-                  user={username} 
+                  user={name} 
                   post={{ id, likeCount, likes }} 
                 />
                 <CommentButton 
@@ -104,7 +103,7 @@ export default function SinglePost(props) {
               </div>
 
               <div className='single-post-card-delete-button__container'>
-                {user && user.username === username && (
+                {user && user.name === name && (
                   <DeleteButton postId={id} callback={deletePostCallback} />
                 )}
               </div>
@@ -155,7 +154,7 @@ export default function SinglePost(props) {
 
                   <div className="single-post-comment__info">
 
-                    <h3 className='single-post-comment__title'>{comment.username}</h3>
+                    <h3 className='single-post-comment__title'>{comment.name || comment.profileObj.name}</h3>
                     <div className='single-post-comment__dates'>
                       <div className='single-post-comment__dates-created_at'>
                         <span className='Date'>
@@ -169,13 +168,13 @@ export default function SinglePost(props) {
                       <div className='comment-card-other-buttons__container'>
                         {/* TODO -- ADD LIKES AND LIKECOUNT TO COMMENTS / CHANGE post={{ id, likeCount, likes }}  */}
                         <LikeButton 
-                          user={username} 
+                          user={name} 
                           post={{ id, likeCount, likes }} 
                         />
                       </div>
 
                       <div className='comment-card-delete-button__container'>
-                        {user && user.username === comment.username && (
+                        {user && user.name === comment.name && (
                           <DeleteButton postId={id} commentId={comment.id} />
                         )}
                       </div>

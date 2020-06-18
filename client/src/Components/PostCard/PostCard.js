@@ -13,7 +13,7 @@ import './PostCard.css'
 
 
 export default function PostCard({
-  post: { body, createdAt, id, username, name, picture, relation, likeCount, commentCount, likes }
+  post: { body, createdAt, id, name, picture, relation, likeCount, commentCount, likes }
 }) {
   const { user } = useContext(AuthContext)
 
@@ -67,7 +67,7 @@ export default function PostCard({
             </div>
 
             <div className='delete-button__container'>
-              {user && user.username === username && <DeleteButton postId={id} />}
+              {user && user.name === name && <DeleteButton postId={id} />}
             </div>
           </div>
 

@@ -6,7 +6,7 @@ const Post = require('../../models/Post');
 module.exports = {
   Mutation: {
     createComment: async (_, { postId, body }, context) => {
-      const { username } = checkAuth(context);
+      const { name } = checkAuth(context);
       if (body.trim() === '') {
         throw new UserInputError('Empty comment', {
           errors: {
@@ -20,7 +20,7 @@ module.exports = {
       if (post) {
         post.comments.unshift({
           body,
-          username,
+          name,
           createdAt: new Date().toISOString()
         });
         await post.save();
@@ -28,14 +28,14 @@ module.exports = {
       } else throw new UserInputError('Post not found');
     },
     async deleteComment(_, { postId, commentId }, context) {
-      const { username } = checkAuth(context);
+      const { name } = checkAuth(context);
 
       const post = await Post.findById(postId);
 
       if (post) {
         const commentIndex = post.comments.findIndex((c) => c.id === commentId);
 
-        if (post.comments[commentIndex].username === username) {
+        if (post.comments[commentIndex].name || post.comments[commentIndex].profileObj.name === name) {
           post.comments.splice(commentIndex, 1);
           await post.save();
           return post;
