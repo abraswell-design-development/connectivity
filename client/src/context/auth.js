@@ -56,10 +56,10 @@ export function ContextReducer(state, { type, payload}) {
       };
     case "CREATE_PHOTO":
       const newPhoto = payload;
-      const prevPhotos = state.photos.filter(photo => photo._id !== newPhoto._id);
+      // const prevPhotos = state.photos.filter(photo => photo._id !== newPhoto._id);
       return {
         ...state,
-        photos: [...prevPhotos, newPhoto]
+        photos: [ newPhoto]
       };
       // case 'LOGIN_GOOGLE_USER':
       // console.log('ran LOGIN_GOOGLE_USER case')
@@ -80,12 +80,20 @@ export function ContextReducer(state, { type, payload}) {
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(ContextReducer, initialState);
+  console.log(state)
 
   function login(userData) {
     localStorage.setItem('jwtToken', userData.token);
     dispatch({
       type: 'LOGIN',
       payload: userData
+    });
+  }
+
+  function createPhoto(e) {
+    dispatch({
+      type: 'CREATE_PHOTO',
+      payload: e
     });
   }
 
@@ -97,7 +105,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-    value={{ user: state.user,  pins: state.pins, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
+    value={{ user: state.user,  pins: state.pins, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout, createPhoto }}
     {...props}
     />
   );

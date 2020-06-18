@@ -157,11 +157,17 @@ export const DELETE_COMMENT_MUTATION = gql`
 `
 
 
-export const CREATE_PHOTO_MUTATION = gql` 
-  mutation{
-    createPhoto(image: ""){
-      image
+export const CREATE_PHOTO_MUTATION = `
+  mutation createPhoto($image: String!, $folder: String!) {
+    createPhoto(image: $image, folder: $folder) {
       id
+      image
+      createdAt
+      folder {
+        id
+        name
+        createdAt
+      }
     }
   }
 `
