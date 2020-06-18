@@ -7,14 +7,14 @@ const initialState = {
 
 //////  COMMENTED OUT UNTIL GOOGLE ROUTE IS COMPLETE SO SITE DOESN'T BREAK ACCIDENTALLY ///////
 
-if (localStorage.getItem('jwtToken')) {
-  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem('jwtToken');
-  } else {
-    initialState.user = decodedToken;
-  } 
-} 
+// if (localStorage.getItem('jwtToken')) {
+//   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+//   if (decodedToken.exp * 1000 < Date.now()) {
+//     localStorage.removeItem('jwtToken');
+//   } else {
+//     initialState.user = decodedToken;
+//   } 
+// } 
 
 
 // else  (localStorage.getItem('googleToken')) {
@@ -56,10 +56,10 @@ export function ContextReducer(state, { type, payload}) {
       };
     case "CREATE_PHOTO":
       const newPhoto = payload;
-      // const prevPhotos = state.photos.filter(photo => photo._id !== newPhoto._id);
+      const prevPhotos = state.photos.filter(photo => photo._id !== newPhoto._id);
       return {
         ...state,
-        photos: [ newPhoto]
+        photos: [...prevPhotos, newPhoto]
       };
       // case 'LOGIN_GOOGLE_USER':
       // console.log('ran LOGIN_GOOGLE_USER case')
@@ -80,20 +80,12 @@ export function ContextReducer(state, { type, payload}) {
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(ContextReducer, initialState);
-  console.log(state)
 
   function login(userData) {
     localStorage.setItem('jwtToken', userData.token);
     dispatch({
       type: 'LOGIN',
       payload: userData
-    });
-  }
-
-  function createPhoto(e) {
-    dispatch({
-      type: 'CREATE_PHOTO',
-      payload: e
     });
   }
 
@@ -105,7 +97,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-    value={{ user: state.user,  pins: state.pins, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout, createPhoto }}
+    value={{ user: state.user,  pins: state.pins, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
     {...props}
     />
   );

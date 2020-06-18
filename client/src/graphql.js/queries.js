@@ -82,7 +82,7 @@ export const FETCH_USER_QUERY = gql`
 `;
 
 
- export const FETCH_FOLDERS_QUERY = `
+ export const FETCH_FOLDERS_QUERY = gql`
   {
     getFolders {
     id
@@ -131,9 +131,6 @@ export const FETCH_PHOTO_QUERY = gql`
     }
   }
 `;
-
-
-
 
 export const ME_QUERY = `
 {

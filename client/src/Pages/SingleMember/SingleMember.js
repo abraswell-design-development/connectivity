@@ -44,7 +44,7 @@ export default function SingleMember(props) {
     const countPostsForMember = (posts) => {
         const filteredPosts = []
         posts.map((post) => (
-            post.name === name ?  filteredPosts.push(post) : ''
+            post.name || post.profileObj.name      === name ?  filteredPosts.push(post) : ''
         ))
         const countedPosts = (filteredPosts.length)
         return(countedPosts)
@@ -53,7 +53,7 @@ export default function SingleMember(props) {
     const getPostsFromMember = (posts) => {
         const filteredPosts = []
         posts.map((post) => (
-            post.name === name ?  filteredPosts.push(post) : ''
+            post.name || post.profileObj.name   === name ?  filteredPosts.push(post) : ''
         ))
         const sortedPosts = (filteredPosts)
         return(sortedPosts)

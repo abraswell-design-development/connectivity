@@ -42,12 +42,6 @@ const checkIfUserExists = async email => {
   return User.findOne({ email }).exec()
 }
 
-const createNewUser = googleUser => {
-  console.log('createNewUser triggered...')
-  const { name, email, picture } = googleUser
-  const user = { name, email, picture }
-  return new User(user).save()
-}
 
 exports.findOrCreateUser = async token => {
   console.log('Looking for Google user in database....')
@@ -65,6 +59,13 @@ exports.findOrCreateUser = async token => {
   }
   || 
   createNewUser(googleUser)
+}
+
+const createNewUser = googleUser => {
+  console.log('createNewUser triggered...')
+  const { name, email, picture } = googleUser
+  const user = { name, email, picture }
+  return new User(user).save()
 }
 
 
