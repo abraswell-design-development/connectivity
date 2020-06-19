@@ -16,6 +16,9 @@ export default function PostCard({
   post: { body, createdAt, id, name, picture, relation, likeCount, commentCount, likes }
 }) {
   const { user } = useContext(AuthContext)
+  const deleteName = user.name || user.profileObj.name
+
+
 
   const formattedTime = moment(createdAt).fromNow()
 
@@ -67,7 +70,7 @@ export default function PostCard({
             </div>
 
             <div className='delete-button__container'>
-              {user && user.name === name && <DeleteButton postId={id} />}
+              {user && deleteName === name && <DeleteButton postId={id} />}
             </div>
           </div>
 

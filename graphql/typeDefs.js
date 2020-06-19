@@ -5,7 +5,7 @@ module.exports = gql`
     id: ID!
     createdAt: String!
     name: String
-    picture: String
+    # picture: String
     body: String!
   }
   type Folder {

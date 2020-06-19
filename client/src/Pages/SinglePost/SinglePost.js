@@ -10,6 +10,7 @@ import LikeButton from '../../Components/LikeButton/LikeButton'
 import Form from '../../util/Form'
 import { FETCH_POST_QUERY } from '../../graphql.js/queries'
 import { SUBMIT_COMMENT_MUTATION } from '../../graphql.js/mutations'
+// import Tooltip from '../../Components/Tooltip/Tooltip'
 
 import './SinglePost.css'
 
@@ -18,8 +19,8 @@ import './SinglePost.css'
 export default function SinglePost(props) {
   const postId = props.match.params.postId;
   const { user } = useContext(AuthContext);
+  const deleteName = user.name || user.profileObj.name
   const commentInputRef = useRef(null);
-
   const [comment, setComment] = useState('');
 
   const {
@@ -103,7 +104,7 @@ export default function SinglePost(props) {
               </div>
 
               <div className='single-post-card-delete-button__container'>
-                {user && user.name === name && (
+                {user && deleteName === name && (
                   <DeleteButton postId={id} callback={deletePostCallback} />
                 )}
               </div>
@@ -147,9 +148,20 @@ export default function SinglePost(props) {
             <ul className='single-post-comments__comment-list'>
               {comments.map((comment) => (
                 <li key={comment.id} className='single-post-comment-in-list__flex-container'>
-                  
                   <div className='single-post-comment__list__thumbnail'>
+                    <Link to={`/members/${id}`}>
+                      {/* <Tooltip  left='-15px'
+                          message={relation}> */}
+                        <div className='post-card__thumbnail--round'>
 
+                          <img 
+                              src={comment.picture}
+                              alt='member headshot'
+                          >
+                          </img>
+                        </div>  
+                      {/* </Tooltip> */}
+                    </Link>
                   </div>
 
                   <div className="single-post-comment__info">
@@ -174,7 +186,7 @@ export default function SinglePost(props) {
                       </div>
 
                       <div className='comment-card-delete-button__container'>
-                        {user && user.name === comment.name && (
+                        {user && deleteName === comment.name && (
                           <DeleteButton postId={id} commentId={comment.id} />
                         )}
                       </div>

@@ -123,6 +123,7 @@ export const SUBMIT_COMMENT_MUTATION = gql`
       comments {
         id
         body
+        picture
         createdAt
         name
       }
