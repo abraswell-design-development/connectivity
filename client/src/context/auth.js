@@ -7,14 +7,14 @@ const initialState = {
 
 //////  COMMENTED OUT UNTIL GOOGLE ROUTE IS COMPLETE SO SITE DOESN'T BREAK ACCIDENTALLY ///////
 
-// if (localStorage.getItem('jwtToken')) {
-//   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-//   if (decodedToken.exp * 1000 < Date.now()) {
-//     localStorage.removeItem('jwtToken');
-//   } else {
-//     initialState.user = decodedToken;
-//   } 
-// } 
+if (localStorage.getItem('jwtToken')) {
+  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+  if (decodedToken.exp * 1000 < Date.now()) {
+    localStorage.removeItem('jwtToken');
+  } else {
+    initialState.user = decodedToken;
+  } 
+} 
 
 
 // else  (localStorage.getItem('googleToken')) {
@@ -82,7 +82,9 @@ function AuthProvider(props) {
   const [state, dispatch] = useReducer(ContextReducer, initialState);
 
   function login(userData) {
-    localStorage.setItem('jwtToken', userData.token);
+    // localStorage.setItem('jwtToken', userData.token);
+    localStorage.setItem('jwtToken', userData.token || userData.tokenId)
+    console.log('login() userData: ', userData)
     dispatch({
       type: 'LOGIN',
       payload: userData

@@ -26,6 +26,7 @@ library.add(faAddressCard, faBars, faCamera, faPlus, faEdit, faChevronLeft, faCo
 
 function App() {
 
+
   return ( 
     <div>
     <AuthProvider>

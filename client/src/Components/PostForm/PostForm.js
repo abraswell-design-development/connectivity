@@ -1,6 +1,6 @@
+
 import React from 'react'
 import { useMutation } from '@apollo/react-hooks'
-
 import { CREATE_POST_MUTATION } from '../../graphql.js/mutations'
 import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
 import Form from '../../util/Form'
@@ -14,6 +14,7 @@ export default function PostForm() {
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
     body: ''
   })
+
 
   const [createPost, { loading }] = useMutation(CREATE_POST_MUTATION, {
     variables: values,
