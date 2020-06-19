@@ -1,8 +1,7 @@
 
-import React, { useContext } from 'react'
+import React from 'react'
 import {gql} from 'apollo-boost'
 import { useMutation, useQuery } from '@apollo/react-hooks'
-import {AuthContext} from '../../context/auth'
 import { CREATE_PHOTO_MUTATION } from '../../graphql.js/mutations'
 import { FETCH_PHOTOS_QUERY, FETCH_FOLDERS_QUERY } from '../../graphql.js/queries'
 import Form from '../../util/Form'
@@ -14,7 +13,6 @@ import { useForm } from '../../util/hooks'
 export default function PhotoForm() {
 
   const {data} = useQuery(FETCH_FOLDERS_QUERY)
-  const { user } = useContext(AuthContext)
 
   console.log(data)
 

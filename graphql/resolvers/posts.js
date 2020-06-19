@@ -30,7 +30,7 @@ module.exports = {
     async createPost(_, { body }, context) {
 
       // THIS IS THE PROBLEM!!! GOOGLE USER IS NOT GOING THROUGH MIDDLEWARE JWT-USER-CONTROLLER.JS
-      const user =  checkAuth(context);
+      const user =  await checkAuth(context);
       console.log('posts.js user: ', user)
 
       if (body.trim() === '') {
@@ -40,7 +40,7 @@ module.exports = {
       const newPost = new Post({
         body,
         user: user.id,
-        name: user.profileObj.name,
+        name: user.name || user.profileObj.name,
         picture: user.picture,
         relation: user.relation,
         createdAt: new Date().toISOString()
@@ -55,7 +55,7 @@ module.exports = {
       return post;
     },
     async deletePost(_, { postId }, context) {
-      const user =  checkAuth(context);
+      const user =  await checkAuth(context);
 
       try {
         const post = await Post.findById(postId);
@@ -70,7 +70,7 @@ module.exports = {
       }
     },
     async likePost(_, { postId }, context) {
-      const { name } =  checkAuth(context);
+      const { name } =  await checkAuth(context);
 
       const post = await Post.findById(postId);
       if (post) {
