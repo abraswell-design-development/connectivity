@@ -160,5 +160,3 @@ export const CREATE_PHOTO_MUTATION = gql`
 
 
 
-
-

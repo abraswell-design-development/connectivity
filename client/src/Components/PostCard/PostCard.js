@@ -17,9 +17,7 @@ export default function PostCard({
 }) {
   const { user } = useContext(AuthContext)
   const deleteName = user.name || user.profileObj.name
-
-
-
+ 
   const formattedTime = moment(createdAt).fromNow()
 
   return (

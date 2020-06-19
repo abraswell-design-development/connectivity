@@ -6,7 +6,6 @@ const Post = require('../../models/Post');
 module.exports = {
   Mutation: {
     createComment: async (_, { postId, body }, context) => {
-      console.log('trying to create comment')
       const { name } = await checkAuth(context);
     
       if (body.trim() === '') {
@@ -22,7 +21,6 @@ module.exports = {
       if (post) {
         post.comments.unshift({
           body,
-          // picture,
           name,
           createdAt: new Date().toISOString()
         });
