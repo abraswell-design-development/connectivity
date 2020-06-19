@@ -148,7 +148,6 @@ export const DELETE_COMMENT_MUTATION = gql`
   }
 `
 
-
 export const CREATE_PHOTO_MUTATION = gql` 
   mutation{
     createPhoto(image: ""){

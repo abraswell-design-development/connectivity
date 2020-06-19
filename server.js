@@ -3,7 +3,7 @@ require('dotenv').config()
 const { ApolloServer, PubSub } = require('apollo-server');
 const mongoose = require('mongoose');
 
-const { findOrCreateUser } = require('./controllers/google-user-controller')
+const { findOrCreateUser } = require('./controllers/google-login-controller')
 
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');

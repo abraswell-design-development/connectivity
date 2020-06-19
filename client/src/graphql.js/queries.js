@@ -102,8 +102,6 @@ query($folderId: ID!) {
 }
 `;
 
-
-
 export const FETCH_PHOTOS_QUERY = gql`
   {
     getPhotos {
