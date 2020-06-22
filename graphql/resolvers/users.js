@@ -76,7 +76,7 @@ module.exports = {
       };
     },
 
-    async updateProfile(_, {_id, about, city, state, picture, relation }) {
+    async updateProfile(_, {_id, about, phone, city, state, picture, banner, relation }) {
       const { errors, valid } = validateLoginInput(email, password);
 
       if (!valid) {

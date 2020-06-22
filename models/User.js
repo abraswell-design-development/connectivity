@@ -4,10 +4,12 @@ const userSchema = new Schema({
   name: String,
   password: String,
   email: String,
+  phone: String,
   about: String,
   city: String,
   state: String,
   picture: String,
+  banner: String,
   relation: String,
   token: String,
   createdAt: String

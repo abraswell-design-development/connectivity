@@ -6,7 +6,7 @@ import {AuthContext} from '../../context/auth'
 import CommentButton from '../CommentButton/CommentButton'
 import DeleteButton from '../DeleteButton/DeleteButton'
 import LikeButton from '../LikeButton/LikeButton'
-import Tooltip from '../Tooltip/Tooltip'
+
 
 import './PostCard.css'
 
@@ -20,13 +20,13 @@ export default function PostCard({
  
   const formattedTime = moment(createdAt).fromNow()
 
+  // console.log(post)
+
   return (
     <section className='post-card__flex-container'>
 
       <div className='post-card__thumbnail'>
         <Link to={`/members/${id}`}>
-          <Tooltip  left='-15px'
-              message={relation}>
             <div className='post-card__thumbnail--round'>
 
               <img 
@@ -35,7 +35,6 @@ export default function PostCard({
               >
               </img>
             </div>  
-          </Tooltip>
         </Link>
       </div>
      

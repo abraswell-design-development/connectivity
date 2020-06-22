@@ -30,7 +30,6 @@ module.exports = gql`
     createdAt: String!
     name: String
     picture: String
-    relation: String
     comments: [Comment]!
     likes: [Like]!
     likeCount: Int!
@@ -41,9 +40,11 @@ module.exports = gql`
     name: String
     password: String
     email: String
+    phone: String
     about: String
     relation: String
     picture: String
+    banner: String
     city: String
     state: String
     token: String

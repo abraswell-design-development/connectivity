@@ -6,7 +6,7 @@ const Post = require('../../models/Post');
 module.exports = {
   Mutation: {
     createComment: async (_, { postId, body }, context) => {
-      const { name } = await checkAuth(context);
+      const { name, picture } = await checkAuth(context);
     
       if (body.trim() === '') {
         throw new UserInputError('Empty comment', {
@@ -22,6 +22,7 @@ module.exports = {
         post.comments.unshift({
           body,
           name,
+          picture,
           createdAt: new Date().toISOString()
         });
         await post.save();

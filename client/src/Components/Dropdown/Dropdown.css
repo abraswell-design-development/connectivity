@@ -4,7 +4,7 @@
 
 .dd-wrapper {
     display: flex;
-    min-height: 10vh;
+    height: 4vh;
     flex-wrap: wrap;
 }
 
@@ -46,7 +46,7 @@
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
     width: 100%;
     position: relative;
-    top: -3vh;
+    top: 3.5vh;
 }
 
 

@@ -10,7 +10,6 @@ import LikeButton from '../../Components/LikeButton/LikeButton'
 import Form from '../../util/Form'
 import { FETCH_POST_QUERY } from '../../graphql.js/queries'
 import { SUBMIT_COMMENT_MUTATION } from '../../graphql.js/mutations'
-// import Tooltip from '../../Components/Tooltip/Tooltip'
 
 import './SinglePost.css'
 
@@ -46,6 +45,10 @@ export default function SinglePost(props) {
     props.history.push('/');
   }
 
+  function goBack() {
+    props.history.replace('/')
+  }
+
   let postMarkup;
   if (!getPost) {
     postMarkup = <p>Loading post..</p>;
@@ -64,18 +67,24 @@ export default function SinglePost(props) {
 
     postMarkup = (
       <section className='single-post-main'>
-        <h2 className='single-post__title'>Public Post</h2> 
+        <h2 className='single-post__title'>Public Post</h2>
+          <button 
+            className = "Button--back"
+            onClick = {goBack}
+          >
+            Back
+          </button>
         
         <div className='single-post-card__flex-container'>
           
           <div className='single-post-card__thumbnail'>
-            <div className='single-post-card__thumbnail--round'>
-              <img 
-                src={picture}
-                alt='member headshot'
-              >
-              </img>    
-            </div>
+              <div className='post-card__thumbnail--round'>
+                <img 
+                    src={picture}
+                    alt='member headshot'
+                >
+                </img>
+              </div>  
           </div>
 
           <div className='single-post-card__info'>
@@ -85,7 +94,7 @@ export default function SinglePost(props) {
               </Link>
             </h3>
             <div className='single-post-card__dates'>
-              <div className='single-post-card__dates-created_at'>
+          <div className='single-post-card__dates-created_at'>
                 <span className='Date'>
                   {moment(createdAt).fromNow()}
                 </span>
@@ -148,38 +157,37 @@ export default function SinglePost(props) {
             <ul className='single-post-comments__comment-list'>
               {comments.map((comment) => (
                 <li key={comment.id} className='single-post-comment-in-list__flex-container'>
-                  <div className='single-post-comment__list__thumbnail'>
+                  <div className='single-post-comment__list__thumbnail--round'>
                     <Link to={`/members/${id}`}>
-                      {/* <Tooltip  left='-15px'
-                          message={relation}> */}
-                        <div className='post-card__thumbnail--round'>
-
+                        <div className='comment__thumbnail'>
                           <img 
                               src={comment.picture}
                               alt='member headshot'
                           >
                           </img>
                         </div>  
-                      {/* </Tooltip> */}
                     </Link>
                   </div>
 
-                  <div className="single-post-comment__info">
+                  <div className="single-post-comment__content__flex-container">
+                    
+                    <div className="single-post-comment__info">
+                      <h3 className='single-post-comment__title'>{comment.name}</h3>
+                      <div className='single-post-comment__dates'>
+                        <div className='single-post-comment__dates-created_at'>
+                          <span className='Date'>
+                            {moment(comment.createdAt).fromNow()}
+                          </span> 
+                        </div>
+                      </div> 
+                      <p className='single-post-comment__body'>{comment.body}</p>
+                    </div>
 
-                    <h3 className='single-post-comment__title'>{comment.name}</h3>
-                    <div className='single-post-comment__dates'>
-                      <div className='single-post-comment__dates-created_at'>
-                        <span className='Date'>
-                          {moment(comment.createdAt).fromNow()}
-                        </span> 
-                      </div>
-                    </div> 
-                    <p className='single-post-comment__body'>{comment.body}</p>
-
-                    <div className='single-post-card__button-container__flex-container'>
+                    <div className='single-post-comment__button-container__flex-container'>
                       <div className='comment-card-other-buttons__container'>
                         {/* TODO -- ADD LIKES AND LIKECOUNT TO COMMENTS / CHANGE post={{ id, likeCount, likes }}  */}
                         <LikeButton 
+                          className="comment__like-button"
                           user={name} 
                           post={{ id, likeCount, likes }} 
                         />

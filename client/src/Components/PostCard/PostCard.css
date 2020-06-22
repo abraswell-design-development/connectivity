@@ -17,9 +17,7 @@
 
 .post-card__thumbnail {
   flex-basis: 20%;
-  text-align: center;
-  align-items: center;
-  padding: 5px 30px 50px;
+  padding: 5px 30px 50px 20px;
   margin-right: -3%;
 }
 
@@ -33,6 +31,7 @@
 
 .post-card__info {
   flex-basis: 80%;
+  padding-top: 1vh;
   padding-bottom: 1vh;
 } 
 
@@ -154,25 +153,6 @@ top: -.25vh;
 
 }
 
-/* .new-post__content {
-box-shadow: 0 8px 20px 0 rgba(0,0,0,.1);
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
 
@@ -182,16 +162,12 @@ box-shadow: 0 8px 20px 0 rgba(0,0,0,.1);
 
   .post-card__thumbnail {
     flex-basis: 20%;
-    text-align: center;
-    align-items: center;
-    padding: 2vh 60px 2vh;
-    margin-right: -3%;
+    padding: 1vh 30px 2vh;
+    margin-right: 0;
   }
 
   .post-card__info {
-    flex-basis: 80%;
-    padding-bottom: 1vh;
-    padding: 2vh 0 2vh;
+    flex-basis: 80%; 
   } 
 
   /* Tooltip above profile pix */

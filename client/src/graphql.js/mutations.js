@@ -12,6 +12,8 @@ mutation login($email: String!, $password: String!) {
     city
     state
     picture
+    banner
+    phone
     relation
     createdAt
     token
@@ -49,14 +51,18 @@ mutation updateProfile(
   $city: String
   $state: String
   $picture: String
+  $banner: String
+  $phone: String
   $relation: String
 ) {
   update(
     updateInput: {
       about: $about
+      phone: $phone
       city: $city
       state: $state
       picture: $picture
+      banner: $picture
       relation: $relation
     }
   ) {
@@ -65,6 +71,8 @@ mutation updateProfile(
     city
     state
     picture
+    banner
+    phone
     relation
   }
 }
@@ -78,7 +86,7 @@ export const CREATE_POST_MUTATION = gql`
       createdAt
       name
       picture
-      relation
+      banner
       likes {
         id
         name

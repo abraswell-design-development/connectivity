@@ -42,7 +42,6 @@ module.exports = {
         user: user.id,
         name: user.name || user.profileObj.name,
         picture: user.picture,
-        relation: user.relation,
         createdAt: new Date().toISOString()
       });
 

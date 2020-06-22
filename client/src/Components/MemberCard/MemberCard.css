@@ -90,17 +90,16 @@
     margin: 0 auto
   }
 
-
   /* Tooltip above profile pix */
   .member-card__thumbnail .Tooltip-message {
     position: relative;
     margin-left: 9%;
-    top: -30.75vh;
+    top: -34vh;
   }
 
   .member-card__thumbnail .Tooltip-message:after {
     position: absolute;
-    top: 4.5vh;
+    top: 4.6vh;
   }
 
 }

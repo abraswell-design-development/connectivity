@@ -8,7 +8,6 @@ export const FETCH_POSTS_QUERY = gql`
       createdAt
       name
       picture
-      relation
       likeCount
       likes {
         name
@@ -17,6 +16,7 @@ export const FETCH_POSTS_QUERY = gql`
       comments {
         id
         name
+        picture
         createdAt
         body
       }
@@ -32,7 +32,6 @@ export const FETCH_POST_QUERY = gql`
       createdAt
       name
       picture
-      relation
       likeCount
       likes {
         name
@@ -41,6 +40,7 @@ export const FETCH_POST_QUERY = gql`
       comments {
         id
         name
+        picture
         createdAt
         body
       }
@@ -59,6 +59,7 @@ export const FETCH_USERS_QUERY = gql`
     relation
     email
     picture
+    banner
     token
     createdAt
     }
@@ -74,6 +75,7 @@ export const FETCH_USER_QUERY = gql`
     city
     state
     relation
+    banner
     email
     picture
     createdAt

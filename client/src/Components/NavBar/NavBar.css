@@ -64,11 +64,11 @@
     border-top: 10px solid hsla(0, 0%, 20%, 0.9);
     content: '';
     font-size: 0;
-    left: 40px;
+    left: 35px;
     line-height: 0;
     margin-left: 5px;
     position: absolute;
-    top: calc(29px + 14px);
+    top: calc(35px);
     width: 0
 }
 
@@ -85,8 +85,6 @@
   visibility: visible;
   transition-delay: .45s;
 }
-
-  
 
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
@@ -108,35 +106,14 @@
     } 
 
     .nav__item .Tooltip-message {
-      background-color: hsla(0, 0%, 10%, 0.9);
-      border-radius: 8px;
-      color: #fff;
-      margin-bottom: 5px;
-      margin-left: 1%;
-      margin-right: 1%;
-      min-width: 100px;
-      padding: 10px;
-      position: absolute;
       left: -1.5em;
       top: -7vh;
-      text-align: center;
       font-size: .4em;
-      letter-spacing: .04em;
-      white-space: nowrap;
     }
   
     .nav__item .Tooltip-message:after {
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
       border-top: 10px solid hsla(0, 0%, 8%, 0.9);
-      content: '';
-      font-size: 0;
-      left: 35%;
-      line-height: 0;
-      margin-left: 5px;
-      position: absolute;
-      top: 4.4vh;
-      width: 0
+      top: 4.8vh;
   }
 
 }

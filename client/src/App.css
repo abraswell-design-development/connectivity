@@ -65,54 +65,31 @@ a {
 }
 
 /*************************** Buttons *****************************/
-/* FINAL Submit Button */
-.Button--submit button {
-  background-color: #378273;
-  border: 1px solid #378273;
-  border-radius: 5px;
-  outline: none;
-  text-align: center;
-  color: #fff;
-  outline: none;
-  height: 6vh;
-  width: 100%;
-  padding: 0 10px;
-  font-size: 1.1em;
-  letter-spacing: .03em;
-} 
 
-.Button--submit button:hover {
-  background-color: #fff;
-  color: #378273;
-  cursor: pointer;
-}
-
-/* FINAL Like Button */
-.Button--like {
-  background-color: #378273;
-  border: 1px solid #378273;
+/* FINAL Back Button */
+.Button--back {
+  background-color: #243d57;
+  border: 1px solid #243d57;
   border-radius: 5px;
   color: white;
   outline: none;
   height: 100%;
-  margin-right: 20px;
-  width: 100%;
-  padding: 9px 20px;
+  width: 13%;
+  padding: 9px 8px;
   font-size: 1.3em;
+  position: relative;
+  top: -2vh;
+  left: 87%;
 }
 
-.Button--like > span, .Button--comment > span {
+.Button--back > span {
   letter-spacing: 0.05em;
 }
 
-.Button--like:hover, .Button--comment:hover {
+.Button--back:hover {
   background-color: white;
-  color: #378273;
+  color:  #243d57;
   cursor: pointer;
-}
-
-svg {
-  margin-right: 5%;
 }
 
 /* FINAL Comment Button */
@@ -158,6 +135,57 @@ svg {
   cursor: pointer;
   font-weight: bold;
 }
+
+/* FINAL Like Button */
+.Button--like {
+  background-color: #378273;
+  border: 1px solid #378273;
+  border-radius: 5px;
+  color: white;
+  outline: none;
+  height: 100%;
+  margin-right: 20px;
+  width: 100%;
+  padding: 9px 20px;
+  font-size: 1.3em;
+}
+
+.Button--like > span {
+  letter-spacing: 0.05em;
+}
+
+.Button--like:hover {
+  background-color: white;
+  color: #378273;
+  cursor: pointer;
+}
+
+/* FINAL Submit Button */
+.Button--submit button {
+  background-color: #378273;
+  border: 1px solid #378273;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+  color: #fff;
+  outline: none;
+  width: 100%;
+  padding: 9px 10px;
+  font-size: 1.3em;
+  letter-spacing: .03em;
+} 
+
+.Button--submit button:hover {
+  background-color: #fff;
+  color: #378273;
+  cursor: pointer;
+}
+
+svg {
+  margin-right: 5%;
+}
+
+
 
 
 /******** End of Buttons *********/
@@ -353,8 +381,6 @@ textarea {
 }  
 
 
-
-
 /**************************** Item Pages *****************************/
 
 /* h3 Title above Comment, Message, and Post Lists on Item Main pages*/
@@ -455,8 +481,10 @@ ul.ItemPageMain__Activity__List {
     overflow: auto;
   } 
 
-  .Button--submit button {
-    height: 4.25vh;
+
+  .Button--back {
+    width: 8%;
+    left: 92%;
   }
 
   .Mobile__header {

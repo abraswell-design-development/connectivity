@@ -1,5 +1,3 @@
-
-
 .single-member-main {
   height: auto;
   width: 100%;
@@ -8,50 +6,48 @@
 }
 
 .single-member__title {
-font-size: 2em;
-text-align: left;
-width: 100%;
+  font-size: 2em;
+  text-align: left;
+  width: 100%;
+  }
+
+.single-member-main .Button--back {
+  position: relative;
+  top: -7.5vh;
 }
 
-.single-member-card__flex-container
+.single-member-card__banner
 {
   width: 100%;
+  height: 150px;
+  overflow: hidden;
+  margin: -4vh auto 0;
+  border: 1px solid #333;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.single-member-card__banner >img
+{
   height: auto;
-  background-color:#eee;
-  border: 1px solid #999;
-  box-shadow: 0 8px 21px 0 rgba(0,0,0,.2);
-  border-radius: 8px;
-  margin: 3vh auto;
-  padding: 1vh 3%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
+  object-fit: cover;
 }
 
 .single-member-card__thumbnail
 {
-  flex-basis:15%;
-  text-align: center;
-  align-items: center;
-  padding: 5px 10px 50px;
-  margin-right: -3%;
+  margin: 0 auto;
+  z-index: 500;
 }
 
 .single-member-card__thumbnail--round
 {
-  width: 100px;
-  height: 100px;
+  width: 125px;
+  height: 125px;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid #333;
+  margin: -9vh auto 0;
 }
-
-.single-member-card__info
-{
-  flex-basis: 80%;
-  padding: 2vh 0 2vh 7%;
-} 
 
 .single-member-card__thumbnail--round >img
 {
@@ -60,29 +56,34 @@ width: 100%;
   object-fit: contain;
 }
 
-/* info components*/
-.single-member-card__title
+.single-member-card__info
 {
-  font-size: 1.7em;
-  margin: 0 0 1vh;
+  width: 85%;
+  margin: 0 auto;
+  padding: 2vh 0;
+} 
+
+.single-member-card__name {
+  font-size: 2em;
+  text-align: center;
+  width: 100%;
+  text-transform: capitalize;
+  margin-bottom: 3vh;
+  }
+
+
+
+/******************* Info Section *******************/
+
+.question {
+  font-weight: 600;
+  border-bottom: 1px solid #999;
+  line-height: 2.5em;
 }
 
-.single-member-card__title a
-{
-  color: #111;
-  display: block;
-  text-decoration: none;
-}
-
-.single-member-card__location {
-  font-size: .85em;
-  font-weight: 400;
-}
-
-
-p.single-member-card__body
-{
-  margin-top: 1vh;
+.answer {
+  margin: -1.75vh 0 3vh;
+  color: #333;
 }
 
 /************** Comments Section ***************/
@@ -102,38 +103,41 @@ p.single-member-card__body
 /******************************** TABLETS AND UP *******************************/
 @media (min-width: 1000px){
 
+  .single-member-main .Button--back {
+    top: -6.75vh;
+  }
+
   .single-member-card__flex-container
   {
-    margin: 1vh auto 5vh;
     padding: 3vh 3%;
-    justify-content: space-between;
-    align-items: top;
+  }
+
+  .single-member-card__banner
+  {
+    height: 225px;
+    margin: 0 auto 0;
   }
 
   .single-member-card__thumbnail
   {
     width: 25%;
-    text-align: center;
-    align-items: center;
-    padding: 5px;
-    margin-right: 0;
+    padding: 5px; 
   }
 
   .single-member-card__thumbnail--round
   {
       width: 150px;
       height: 150px;
-      overflow: hidden;
-      border-radius: 50%;
-      border: 1px solid #333;
-    }
+      margin: -9vh auto 0;
+  }
 
-  .single-post-card__info
+  .single-member-card__info
   {
-    flex-basis: 75%;
-    padding: 0;
+    width: 90%;
+    margin: 2vh auto;
+    padding: 2vh 0;
   } 
-
+  
 }
 
 
