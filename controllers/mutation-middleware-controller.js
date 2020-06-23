@@ -8,6 +8,7 @@ const User = require('../models/User')
 
 // Controller to verify user for New Posts, Likes, Comments and Delete Button
 module.exports = async (context) => {
+  console.log('user reached mutation-middleware-controller')
   const authHeader = context.req.headers.authorization;  
   if (authHeader) {
     const token = authHeader.split('Bearer ')[1];

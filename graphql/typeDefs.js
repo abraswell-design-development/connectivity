@@ -50,10 +50,11 @@ module.exports = gql`
     token: String
     createdAt: String
   }
+
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(email: String!, password: String!): User!
-    updateProfile(about: String, phone: String, city: String, state: String, picture: String, banner: String, relation: String): User!
+    updateProfile(email: String!, phone: String, city: String, state: String, about: String, relation: String ): User!
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
     likePost(postId: ID!): Post!
@@ -82,14 +83,10 @@ module.exports = gql`
     confirmPassword: String!
     email: String!
   }
-  input UpdateProfileInput {
-    name: String!
-    email: String!
-    about: String
-    relation: String
-    picture: String
-    city: String
-    state: String
-  }
 `
+
+
+
+
+
 

@@ -1,24 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
-
+import {AuthContext} from '../../context/auth'
 import { useForm } from '../../util/hooks'
 import { UPDATE_USER } from '../../graphql.js/mutations'
 import Form from '../../util/Form'
 
-import '../Register/Register.css'
+import './About.css'
 
 
 
 export default function UpdateMemberInfo(props) {
+  const context = useContext(AuthContext)
   const [errors, setErrors] = useState({})
 
   const { onChange, onSubmit, values } = useForm(updateUserCallback, {
     about: '',
-    phone: '',
-    city: '',
-    state: '',
-    picture: '',
-    banner: '',
     relation: ''
   });
 
@@ -29,10 +25,12 @@ export default function UpdateMemberInfo(props) {
         data: { update: userData }
       }
     ) {
+      context.updateUser(userData)
+      console.log('userData: ', userData)
       props.history.push('/')
     },
     onError(err) {
-      // setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      //setErrors(err.graphQLErrors[0].extensions.exception.errors);
       console.log(err)
     },
     variables: values
@@ -45,9 +43,8 @@ export default function UpdateMemberInfo(props) {
   return (
     <section className='about-main'>
       
-
           <div className='about__form-group'>
-            {/* {Object.keys(errors).length > 0 && (
+            {Object.keys(errors).length > 0 && (
               <div className="Error Message">
                 <ul className="Error__list">
                   {Object.values(errors).map((value) => (
@@ -55,7 +52,7 @@ export default function UpdateMemberInfo(props) {
                   ))}
                 </ul>
               </div>
-            )} */}
+            )}
 
             <Form onSubmit={onSubmit} noValidate className={loading ? 'Loading register--loading' : ''}>
               <h3 className='about__form-title'>Update Your Profile</h3>
@@ -65,77 +62,12 @@ export default function UpdateMemberInfo(props) {
                   placeholder="About.."
                   name="about"
                   type="text"
-                  value={values.about}
-                  error={errors.about ? 'true' : 'false'}
-                  onChange={onChange}
+                  value='I like birds'
+                  // error={errors.about ? 'true' : 'false'}
+                  // onChange={onChange}
                 />
               </label>
-              <label>
-              <input
-                  className='phone__form-group'
-                  placeholder="Phone.."
-                  name="phone"
-                  type="text"
-                  value={values.phone}
-                  error={errors.phone ? 'true' : 'false'}
-                  onChange={onChange}
-                />
-              </label>
-              <label htmlFor="City">
-                <input
-                  className='about__form-group'
-                  placeholder="City.."
-                  name="city"
-                  type="text"
-                  value={values.city}
-                  error={errors.city ? 'true' : 'false'}
-                  onChange={onChange}
-                />
-              </label>
-              <label htmlFor="State">
-                <input
-                  className='about__form-group'
-                  placeholder="State.."
-                  name="state"
-                  type="text"
-                  value={values.state}
-                  error={errors.state ? 'true' : 'false'}
-                  onChange={onChange}
-                />
-              </label>
-              <label htmlFor="Picture">
-                <input
-                  className='about__form-group'
-                  placeholder="Picture.."
-                  name="picture"
-                  type="text"
-                  value={values.picture}
-                  error={errors.picture ? 'true' : 'false'}
-                  onChange={onChange}
-                />
-              </label>
-              <label htmlFor="Banner">
-                <input
-                  className='about__form-group'
-                  placeholder="Banner.."
-                  name="banner"
-                  type="text"
-                  value={values.banner}
-                  error={errors.banner ? 'true' : 'false'}
-                  onChange={onChange}
-                />
-              </label>
-              <label htmlFor="Relation">
-                <input
-                  className='about__form-group'
-                  placeholder="Relation.."
-                  name="relation"
-                  type="text"
-                  value={values.relation}
-                  error={errors.relation ? 'true' : 'false'}
-                  onChange={onChange}
-                />
-              </label>
+              
               <div className='Button--submit about__button'>
                 <button type='submit'>
                   Update

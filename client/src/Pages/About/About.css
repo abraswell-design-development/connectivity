@@ -1,4 +1,4 @@
-.about-main{
+/* .about-main{
     width: 80%;
     position: absolute;
     left: 11%;
@@ -11,9 +11,9 @@
 
 .about__statement {
   margin-top: 2vh;
-}
+} */
 
-.about__flex-container {
+/* .about__flex-container {
     width: 90%;
     margin: 5vh auto 10vh;
     display: flex;
@@ -28,9 +28,9 @@
     flex-basis: 100%;
     padding: 2vh 0 0;
     margin-bottom: -1vh;
-  }
+  } */
 
-.register__form-title {
+.about__form-title {
   margin-bottom: 2vh;
 } 
 
@@ -54,6 +54,10 @@
   width: 30%;
   margin: 0 auto;
 }
+
+/* input {
+  display: block
+} */
 
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
