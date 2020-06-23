@@ -16,7 +16,6 @@ module.exports = async (context) => {
       // user logged in through app
       try {
         const user = jwt.verify(token, process.env.SECRET_KEY);
-        console.log('user-middleware-controller-jwt-user: ', user)
         return user
       }  
       // user logged in through Google 
@@ -37,7 +36,6 @@ module.exports = async (context) => {
             name: googleUser.name,
             picture: googleUser.picture
           };
-          console.log('user-middleware-controller-google-user: ', user)
           return user
         }
       } 

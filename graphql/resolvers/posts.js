@@ -31,7 +31,6 @@ module.exports = {
 
       // THIS IS THE PROBLEM!!! GOOGLE USER IS NOT GOING THROUGH MIDDLEWARE JWT-USER-CONTROLLER.JS
       const user =  await checkAuth(context);
-      console.log('posts.js user: ', user)
 
       if (body.trim() === '') {
         throw new Error('Post body must not be empty');
@@ -70,6 +69,7 @@ module.exports = {
     },
     async likePost(_, { postId }, context) {
       const { name } = checkAuth(context);
+      
 
       const post = await Post.findById(postId);
       if (post) {

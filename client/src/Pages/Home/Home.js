@@ -15,6 +15,8 @@ export default function Home() {
     data: { getPosts: posts }
   } = useQuery(FETCH_POSTS_QUERY)
 
+  
+
   return (
     <section className='home-main'>
     <h2 className='home__title'>Public Posts</h2>

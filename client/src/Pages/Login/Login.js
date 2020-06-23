@@ -133,7 +133,7 @@ export default function Login(props) {
             </div>
           )}
           <h3 className='login__form-title'>Login:</h3>
-          <Form onSubmit={onSubmit} className={loading ? 'Loading login--loading' : ''}>
+          <Form onSubmit={onSubmit} className={loading ? 'loading-login' : ''}>
             <label htmlFor="Email"> 
               <input
                 className='login__form-group' 

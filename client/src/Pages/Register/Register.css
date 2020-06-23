@@ -43,15 +43,74 @@
     padding: 10px 16px; 
     font-size: 1.1em;
     letter-spacing: .07em;  
-  }
-
-.register--loading:after {
-  top: 45%;
 }
 
 .register__button {
   width: 30%;
   margin: 0 auto;
+}
+
+.loading-register {
+  position: relative;
+  cursor: default;
+  pointer-events: none;
+}
+
+.loading-register:before {
+  position: absolute;
+  content: '';
+  top: 0%;
+  left: 0%;
+  background: rgba(255, 255, 255, 0.3);
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.loading-register:after {
+  position: absolute;
+  content: '';
+  top: 46%;
+  left: 50%;
+  margin: -1.5em 0em 0em -1.5em;
+  width: 3em;
+  height: 3em;
+  -webkit-animation: form-spin 0.6s linear;
+  animation: form-spin 0.6s linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  border-radius: 500rem;
+  border-color: #767676 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 0.2em;
+  -webkit-box-shadow: 0px 0px 0px 1px transparent;
+  box-shadow: 0px 0px 0px 1px transparent;
+  visibility: visible;
+  z-index: 101;
+}
+
+@-webkit-keyframes form-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes form-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 /***************************For Tablets and Up****************************/

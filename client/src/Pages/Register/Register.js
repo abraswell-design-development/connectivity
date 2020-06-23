@@ -105,7 +105,7 @@ export default function Register(props) {
               </div>
             )}
 
-            <Form onSubmit={onSubmit} noValidate className={loading ? 'Loading register--loading' : ''}>
+            <Form onSubmit={onSubmit} noValidate className={loading ? 'loading-register' : ''}>
               <h3 className='register__form-title'>Register</h3>
               <label htmlFor="Name">
                 <input

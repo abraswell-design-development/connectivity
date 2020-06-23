@@ -30,15 +30,12 @@ const AuthContext = createContext({
 export function ContextReducer(state, { type, payload}) {
   switch (type) {
     case 'LOGIN':
-      console.log('ran LOGIN case')
-      console.log ('payload contains: ', payload)
       return {
         ...state,
         user: payload
       }
       ;
     case 'LOGOUT':
-      console.log('ran LOGOUT case')
       return {
         ...state,
         user: null
@@ -60,7 +57,6 @@ function AuthProvider(props) {
 
   function login(userData) {
     localStorage.setItem('jwtToken', userData.token || userData.tokenId)
-    console.log('login() userData: ', userData)
     dispatch({
       type: 'LOGIN',
       payload: userData

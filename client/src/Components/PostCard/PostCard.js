@@ -13,14 +13,12 @@ import './PostCard.css'
 
 
 export default function PostCard({
-  post: { body, createdAt, id, name, picture, relation, likeCount, commentCount, likes }
+  post: { body, createdAt, id, name, picture, likeCount, commentCount, likes }
 }) {
   const { user } = useContext(AuthContext)
   const eitherUser = user.name || user.profileObj.name
  
   const formattedTime = moment(createdAt).fromNow()
-
-  // console.log(post)
 
   return (
     <section className='post-card__flex-container'>
@@ -60,7 +58,7 @@ export default function PostCard({
               <LikeButton 
                 user={eitherUser} 
                 post={{ id, likes, likeCount }} 
-              />  
+              /> 
               <CommentButton 
                 post={{ id, commentCount }} 
               /> 

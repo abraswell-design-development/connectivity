@@ -128,11 +128,11 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.1);
   }
 
-  .single-post-comments {
+  .comments {
     width: 100%;
   } 
   
-  .single-post-comment-in-list__flex-container
+  .comment-in-list__flex-container
   {
     width: 100%;
     height: auto;
@@ -144,33 +144,22 @@
     align-items: center;
   }
 
-  .single-post-comment__list__thumbnail
+  .comment__thumbnail--round
   {
-    flex-basis:20%;
-    text-align: center;
-    align-items: center;
-  }
-
-  .single-post-comment__list__thumbnail--round
-  {
-    width: 65px;
-    height: 65px;
+    width: 70px;
+    height: 70px;
     overflow: hidden;
     border-radius: 50%;
     border: 1px solid #333;
-    margin: 0 2% 0 -2%;
-    position: relative;
-    top: -2vh;
+    margin: -2vh 1% 0 -1%;
   }
 
   .comment__thumbnail > img
   {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
+    width: 100%;
   }
 
-  .single-post-comment__content__flex-container
+  .comment__content__flex-container
   {
     flex-basis: 85%;
     padding: 1vh 3%;
@@ -182,36 +171,36 @@
     border-radius: 8px;
   } 
 
-  .single-post-comment__info {
+  .comment__info {
     width: 80%;
   }
 
-  .single-post-comment__button-container__flex-container {
+  .comment__button-container__flex-container {
     width: 20%;
   }
 
   /* info components*/
-  .single-post-comment__title
+  .comment__title
   {
     text-transform: capitalize;
     font-size: 1.3em;
     margin: 0 0 1vh;
   }
 
-  .single-post-comment__title a
+  .comment__title a
   {
     color: #111;
     display: block;
     text-decoration: none;
   }
 
-  p.single-post-comment__body
+  p.comment__body
   {
     position: relative;
     top: -.5vh;
   }
 
-  .single-post-comment__dates-created_at {
+  .comment__dates-created_at {
     color:#555;
     font-size: 1.1em;
     position: relative;
@@ -254,23 +243,33 @@
 
     /* COMMENTS */
 
-    .single-post-comment-in-list__flex-container 
+    .comment-in-list__flex-container 
     {
       margin: 1vh auto 5vh;
     }
 
-    .single-post-comment__list__thumbnail--round
+    .comment__list__thumbnail--round
     {
         width: 70px;
         height: 70px;
         margin: 2vh 0 0 3%;
-      }
+    }
 
-    .single-post-comment__info {
+      .comment__thumbnail--round
+  {
+    width: 85px;
+    height: 85px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #333;
+    margin: -2vh 3% 0 1%
+  }
+
+    .comment__info {
       width: 85%;
     }
   
-    .single-post-comment__button-container__flex-container {
+    .comment__button-container__flex-container {
       width: 15%;
     }
 

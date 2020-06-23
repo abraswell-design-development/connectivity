@@ -153,11 +153,11 @@ export default function SinglePost(props) {
             </div>
           </Form>    
 
-          <div className='single-post-comments'>
-            <ul className='single-post-comments__comment-list'>
+          <div className='comments'>
+            <ul className='comments__comment-list'>
               {comments.map((comment) => (
-                <li key={comment.id} className='single-post-comment-in-list__flex-container'>
-                  <div className='single-post-comment__list__thumbnail--round'>
+                <li key={comment.id} className='comment-in-list__flex-container'>
+                  <div className='comment__thumbnail--round'>
                     <Link to={`/members/${id}`}>
                         <div className='comment__thumbnail'>
                           <img 
@@ -169,21 +169,21 @@ export default function SinglePost(props) {
                     </Link>
                   </div>
 
-                  <div className="single-post-comment__content__flex-container">
+                  <div className="comment__content__flex-container">
                     
-                    <div className="single-post-comment__info">
-                      <h3 className='single-post-comment__title'>{comment.name}</h3>
-                      <div className='single-post-comment__dates'>
-                        <div className='single-post-comment__dates-created_at'>
+                    <div className="comment__info">
+                      <h3 className='comment__title'>{comment.name}</h3>
+                      <div className='comment__dates'>
+                        <div className='comment__dates-created_at'>
                           <span className='Date'>
                             {moment(comment.createdAt).fromNow()}
                           </span> 
                         </div>
                       </div> 
-                      <p className='single-post-comment__body'>{comment.body}</p>
+                      <p className='comment__body'>{comment.body}</p>
                     </div>
 
-                    <div className='single-post-comment__button-container__flex-container'>
+                    <div className='comment__button-container__flex-container'>
                       <div className='comment-card-other-buttons__container'>
                         {/* TODO -- ADD LIKES AND LIKECOUNT TO COMMENTS / CHANGE post={{ id, likeCount, likes }}  */}
                         <LikeButton 

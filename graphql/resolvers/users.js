@@ -10,7 +10,6 @@ const {
 const User = require('../../models/User');
 
 function generateToken(user) {
-  console.log('jwt token generated...')
   return jwt.sign(
     {
       id: user.id,
@@ -89,7 +88,6 @@ module.exports = {
         relation: user.relation,
       });
 
-      console.log(updatedMember)
 
       // const post = await updatedMember.save();
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Tooltip from '../Tooltip/Tooltip'
 import { LIKE_POST_MUTATION } from '../../graphql.js/mutations'
@@ -9,6 +8,10 @@ import { LIKE_POST_MUTATION } from '../../graphql.js/mutations'
 
 export default function LikeButton({ user, post: { id, likeCount, likes } }) {
   const [liked, setLiked] = useState(false)
+
+
+
+
 
   useEffect(() => {
     if (user && likes.find((like) => like.name === user.name)) {

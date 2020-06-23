@@ -86,7 +86,6 @@ export const CREATE_POST_MUTATION = gql`
       createdAt
       name
       picture
-      banner
       likes {
         id
         name
