@@ -48,27 +48,27 @@ export default function Register(props) {
       </div>      
       <div className='registration__statement'>
       <p>
-        I wanted to let you know that Aunt Jane fell and broke her hip last Tuesday.
+        I wanted to let you know that Charles fell and broke his hip last Tuesday.
       </p>
 
-      <p> Luckily, she is doing alright and is out of the hospital. However, she will need to 
+      <p> Luckily, he is doing alright and is out of the hospital. However, he will need to 
         do in-patient therapy for the next 8 weeks.
       </p>
 
       <p>
-        During this time, she will be staying at Symphony Care Network's South Shore location. 
-        If you would like to send her a card, please address it to "Symphony Care Network c/o Jane Doe, 2425 E. 71st Street, Chicago, IL 60649".
+        During this time, he will be staying at Symphony Care Network's South Shore location. 
+        If you would like to send him a card, please address it to "Symphony Care Network c/o Charles Smith, 2425 E. 71st Street, Chicago, IL 60649".
       </p>
 
       <p>
         Also, the facility has set up this private, members-only network for us to use so we can communicate
-        with Aunt Jane and with each other. I will try to post a weekly status update on the Login page so you'll 
-        know how she is doing. 
+        with Charles and with each other. I will try to post a weekly status update on the Login page so you'll 
+        know how he is doing. 
       </p>
 
       <p>
         Please take a moment to register for our family group so we can keep you updated. This will also let you 
-        reach out to Aunt Jane directly... I know she would love to hear from you!
+        reach out to Charles directly... I know he would love to hear from you!
       </p>
 
       <p>
@@ -86,7 +86,7 @@ export default function Register(props) {
       <div className='register__flex-container'>
         <div className='register__img-container'>
           <img 
-            src='https://res.cloudinary.com/connectivity/image/upload/v1589224863/Demo/Patient_Photo_lij5r3.jpg'
+            src='https://res.cloudinary.com/connectivity/image/upload/v1592862388/Charles_95th_BDay-15_copy_n5tdhl.jpg'
             alt='patient headshot'
           >
           </img>    

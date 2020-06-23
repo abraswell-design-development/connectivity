@@ -75,26 +75,37 @@ module.exports = {
         token
       };
     },
-
-    async updateProfile(_, {_id, about, phone, city, state, picture, banner, relation }) {
-      const { errors, valid } = validateLoginInput(email, password);
-
-      if (!valid) {
-        throw new UserInputError('Errors', { errors });
-      }
+    async updateProfile(_, { _id }, context) {
 
       const user = await User.findOne({ _id });
 
-      if (!user) {
-        errors.general = 'User not found';
-        throw new UserInputError('User not found', { errors });
-      }
+      const updatedMember = new User ({
+        about: user.about,
+        phone: user.phone,
+        city: user.city,
+        state: user.state,
+        picture: user.picture,
+        banner: user.banner,
+        relation: user.relation,
+      });
 
-      return {
-        ...user._doc,
-        id: user._id,
-      };
+      console.log(updatedMember)
+
+      // const post = await updatedMember.save();
+
+      // context.pubsub.publish('NEW_POST', {
+      //   newPost: post
+      // });
+
+      return updatedMember;
     },
+
+
+
+
+
+
+
 
     async register(
       _,

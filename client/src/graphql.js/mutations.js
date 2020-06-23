@@ -48,11 +48,11 @@ mutation register(
 export const UPDATE_USER = gql`
 mutation updateProfile(
   $about: String
+  $phone: String
   $city: String
   $state: String
   $picture: String
   $banner: String
-  $phone: String
   $relation: String
 ) {
   update(
@@ -68,11 +68,11 @@ mutation updateProfile(
   ) {
     id
     about
+    phone
     city
     state
     picture
     banner
-    phone
     relation
   }
 }

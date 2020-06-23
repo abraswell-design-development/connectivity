@@ -13,12 +13,13 @@ export default function UpdateMemberInfo(props) {
   const [errors, setErrors] = useState({})
 
   const { onChange, onSubmit, values } = useForm(updateUserCallback, {
-    name: '',
     about: '',
+    phone: '',
     city: '',
     state: '',
     picture: '',
-    relationToPatient: ''
+    banner: '',
+    relation: ''
   });
 
   const [updateUser, { loading }] = useMutation(UPDATE_USER, {
@@ -31,7 +32,8 @@ export default function UpdateMemberInfo(props) {
       props.history.push('/')
     },
     onError(err) {
-      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      // setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      console.log(err)
     },
     variables: values
   });
@@ -41,11 +43,11 @@ export default function UpdateMemberInfo(props) {
   }
 
   return (
-    <section className='register-main'>
+    <section className='about-main'>
       
 
-          <div className='register__form-group'>
-            {Object.keys(errors).length > 0 && (
+          <div className='about__form-group'>
+            {/* {Object.keys(errors).length > 0 && (
               <div className="Error Message">
                 <ul className="Error__list">
                   {Object.values(errors).map((value) => (
@@ -53,77 +55,88 @@ export default function UpdateMemberInfo(props) {
                   ))}
                 </ul>
               </div>
-            )}
+            )} */}
 
             <Form onSubmit={onSubmit} noValidate className={loading ? 'Loading register--loading' : ''}>
-              <h3 className='register__form-title'>Update Your Profile</h3>
-              <label htmlFor="Name">
-                <input
-                  className='register__form-group'
-                  placeholder="Name.."
-                  name="name"
-                  type="text"
-                  value={values.name}
-                  error={errors.name ? true : false}
-                  onChange={onChange}
-                />
-              </label>
+              <h3 className='about__form-title'>Update Your Profile</h3>
               <label htmlFor="About">
                 <input
-                  className='register__form-group'
+                  className='about__form-group'
                   placeholder="About.."
                   name="about"
                   type="text"
                   value={values.about}
-                  error={errors.about ? true : false}
+                  error={errors.about ? 'true' : 'false'}
+                  onChange={onChange}
+                />
+              </label>
+              <label>
+              <input
+                  className='phone__form-group'
+                  placeholder="Phone.."
+                  name="phone"
+                  type="text"
+                  value={values.phone}
+                  error={errors.phone ? 'true' : 'false'}
                   onChange={onChange}
                 />
               </label>
               <label htmlFor="City">
                 <input
-                  className='register__form-group'
+                  className='about__form-group'
                   placeholder="City.."
                   name="city"
                   type="text"
                   value={values.city}
-                  error={errors.city ? true : false}
+                  error={errors.city ? 'true' : 'false'}
                   onChange={onChange}
                 />
               </label>
               <label htmlFor="State">
                 <input
-                  className='register__form-group'
+                  className='about__form-group'
                   placeholder="State.."
                   name="state"
                   type="text"
                   value={values.state}
-                  error={errors.state ? true : false}
+                  error={errors.state ? 'true' : 'false'}
                   onChange={onChange}
                 />
               </label>
               <label htmlFor="Picture">
                 <input
-                  className='register__form-group'
+                  className='about__form-group'
                   placeholder="Picture.."
                   name="picture"
                   type="text"
                   value={values.picture}
-                  error={errors.picture ? true : false}
+                  error={errors.picture ? 'true' : 'false'}
+                  onChange={onChange}
+                />
+              </label>
+              <label htmlFor="Banner">
+                <input
+                  className='about__form-group'
+                  placeholder="Banner.."
+                  name="banner"
+                  type="text"
+                  value={values.banner}
+                  error={errors.banner ? 'true' : 'false'}
                   onChange={onChange}
                 />
               </label>
               <label htmlFor="Relation">
                 <input
-                  className='register__form-group'
+                  className='about__form-group'
                   placeholder="Relation.."
-                  name="relationToPatient"
+                  name="relation"
                   type="text"
-                  value={values.relationToPatient}
-                  error={errors.relationToPatient ? true : false}
+                  value={values.relation}
+                  error={errors.relation ? 'true' : 'false'}
                   onChange={onChange}
                 />
               </label>
-              <div className='Button--submit register__button'>
+              <div className='Button--submit about__button'>
                 <button type='submit'>
                   Update
                 </button>

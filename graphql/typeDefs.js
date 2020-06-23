@@ -53,7 +53,7 @@ module.exports = gql`
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(email: String!, password: String!): User!
-    updateProfile(about: String, city: String, state: String, picture: String, relation: String): User!
+    updateProfile(about: String, phone: String, city: String, state: String, picture: String, banner: String, relation: String): User!
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
     likePost(postId: ID!): Post!

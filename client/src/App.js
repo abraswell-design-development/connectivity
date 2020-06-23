@@ -44,7 +44,7 @@ function App() {
             <ProtectedRoute exact path="/posts/:postId" component={SinglePost} />
             <ProtectedRoute exact path="/members" component={Members} />
             <ProtectedRoute exact path="/members/:memberId" component={SingleMember} />
-            <ProtectedRoute exact path="/photos" component={Photos} />
+            <ProtectedRoute exact path="/photos" component={About} />
             <Route exact path="/about" component={About} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />

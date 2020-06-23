@@ -81,21 +81,21 @@ export default function Login(props) {
       </div>
       <div className='login__statement'>
         <p>
-          Jane seems to be doing good this week. She has been a good sport about participating in physical
-          therapy twice a day. She is starting to feel a little more settled at Symphony and is slowly 
+          Charles seems to be doing good this week. He has been a good sport about participating in physical
+          therapy twice a day. He is starting to feel a little more settled at Symphony and is slowly 
           starting to meet other residents.
         </p>
 
         <p> 
-          She did mention that her sweet tooth is getting the best of her and she wished she had some
-          puzzle books. If you are interested in doing something for her, she would love anything you
-          might be able to send her way to brighten her day... she particularly likes Sudoku and candied
+          He did mention that his sweet tooth is getting the best of him and he wished he had some
+          puzzle books. If you are interested in doing something for him, he would love anything you
+          might be able to send his way to brighten his day... he particularly likes Sudoku and candied
           orange slices.
         </p>
 
         <p>
-          She mentioned that she really wished she could see Johnny graduate this week. If anyone is able
-          to attend his celebration, would you please post a few pictures so she can share some of your joy?
+          He mentioned that he really wished hhe could see Johnny graduate this week. If anyone is able
+          to attend his celebration, would you please post a few pictures so he can share some of your joy?
         </p>
 
         <p>
@@ -103,7 +103,7 @@ export default function Login(props) {
         </p>
 
         <p>
-          Thank you for all that you do! Aunt Jane is really grateful and feels very loved!
+          Thank you for all that you do! Charles is really grateful and feels very loved!
         </p>
 
         <p>
@@ -116,7 +116,7 @@ export default function Login(props) {
       <div className='login__flex-container'>
         <div className='login__img-container'>
           <img 
-              src='https://res.cloudinary.com/connectivity/image/upload/v1589224863/Demo/Patient_Photo_lij5r3.jpg'
+              src='https://res.cloudinary.com/connectivity/image/upload/v1592862388/Charles_95th_BDay-15_copy_n5tdhl.jpg'
               alt='patient headshot'
           >
           </img>    
@@ -168,7 +168,7 @@ export default function Login(props) {
               clientId="689809248438-g6ah561eahind4bjqm66u0d8sfl7jhon.apps.googleusercontent.com"
               onSuccess={handleGoogleSuccess}
               onFailure={handleGoogleFailure}
-              buttonText="Google Login"
+              buttonText="Login"
               theme="dark"
               //isSignedIn={true}
             />
