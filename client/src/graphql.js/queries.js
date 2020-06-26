@@ -136,9 +136,9 @@ export const FETCH_PHOTO_QUERY = gql`
   }
 `;
 
-export const ME_QUERY = `
+export const GOOGLE_USER_QUERY = `
 {
-  me {
+  user {
     id
     name
     phone

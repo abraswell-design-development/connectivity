@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { useMutation, useQuery } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/react-hooks'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {AuthContext} from '../../context/auth'
 import { useForm } from '../../util/hooks'
 import { UPDATE_USER } from '../../graphql.js/mutations'
-import { FETCH_USER_QUERY } from '../../graphql.js/queries'
 import Form from '../../util/Form'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
@@ -19,22 +19,8 @@ export default function UpdateProfile(props) {
 
   const currentData = user
 
-  const userId = user.id
-
-  const {
-    data: { getUser }
-  } = useQuery(FETCH_USER_QUERY, {
-      variables: {
-      userId
-      }
-  })
-
-  console.log(getUser)
-
-  // let { name, email, phone, city, state, about, relation, picture, banner } = getUser
-
   let { onChange, onSubmit, values } = useForm(updateUserCallback, {
-    email: '',
+    email: currentData.email,
     about: '',
     relation: '',
     city: '',
@@ -51,7 +37,8 @@ export default function UpdateProfile(props) {
         data: { update: userData }
       }
     ) {
-      props.history.push('/')
+      props.history.push(`/members/${currentData.id}`)
+      console.log('values: ', values)
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -85,9 +72,10 @@ export default function UpdateProfile(props) {
               </p>
 
               <label htmlFor="Relation"/>
+              <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
               <input
                 className='update-answer'
-                placeholder="How do you know the patient? "
+                  placeholder= {currentData.relation}
                 name="relation"
                 type="text"
                 value={values.relation}
@@ -100,9 +88,10 @@ export default function UpdateProfile(props) {
               </p>
               
               <label htmlFor="About" />
+              <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
               <input
                 className='update-answer'
-                placeholder=''
+                placeholder={currentData.about}
                 name="about"
                 type="text"
                 value={values.about}
@@ -118,9 +107,10 @@ export default function UpdateProfile(props) {
                 
                 <div className="update-answer-half">
                   <label htmlFor="City"/>
+                  <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
                   <input
                     className='update-answer'
-                    placeholder="Current City.."
+                    placeholder={currentData.city}
                     name="city"
                     type="text"
                     value={values.city}
@@ -132,9 +122,10 @@ export default function UpdateProfile(props) {
                 
                 <div className="update-answer-half">
                   <label htmlFor="State" />
+                  <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
                   <input
                     className='update-answer'
-                    placeholder="Current State.."
+                    placeholder={currentData.state}
                     name="state"
                     type="text"
                     value={values.state}
@@ -149,27 +140,16 @@ export default function UpdateProfile(props) {
               </p>
 
               <label htmlFor="Phone" />
+              <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
               <input
                 className='update-answer'
-                placeholder="Phone.."
+                placeholder={currentData.phone}
                 name="phone"
                 type="text"
                 value={values.phone}
                 error={errors.phone? 'true' : 'false'}
                 onChange={onChange}
               />
-
-              <label htmlFor="Email" />
-              <input
-                className='update-answer'
-                placeholder="Confirm your email.."
-                name="email"
-                type="text"
-                value={values.email}
-                error={errors.email? 'true' : 'false'}
-                onChange={onChange}
-              />
-
 
               {/* <label htmlFor="Picture" />
                 <input

@@ -73,7 +73,7 @@ module.exports = gql`
     getPost(postId: ID!): Post
     getUsers: [User]
     getUser(userId: ID!): User
-    me: User
+    user: User
   }
   type Subscription {
     newPost: Post!

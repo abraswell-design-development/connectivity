@@ -1,20 +1,20 @@
 
-import React from 'react'
-import {gql} from 'apollo-boost'
-import { useMutation, useQuery } from '@apollo/react-hooks'
-import { CREATE_PHOTO_MUTATION } from '../../graphql.js/mutations'
-import { FETCH_PHOTOS_QUERY, FETCH_FOLDERS_QUERY } from '../../graphql.js/queries'
-import Form from '../../util/Form'
-import { useForm } from '../../util/hooks'
+// import React from 'react'
+// import {gql} from 'apollo-boost'
+// import { useMutation, useQuery } from '@apollo/react-hooks'
+// import { CREATE_PHOTO_MUTATION } from '../../graphql.js/mutations'
+// import { FETCH_PHOTOS_QUERY, FETCH_FOLDERS_QUERY } from '../../graphql.js/queries'
+// import Form from '../../util/Form'
+// import { useForm } from '../../util/hooks'
 
 
 
 
-export default function PhotoForm() {
+// export default function PhotoForm() {
 
-  const {data} = useQuery(FETCH_FOLDERS_QUERY)
+//   const {data} = useQuery(FETCH_FOLDERS_QUERY)
 
-  console.log(data)
+//   console.log(data)
 
   // const { values, onChange, onSubmit } = useForm({
   //   image: ''
@@ -36,48 +36,48 @@ export default function PhotoForm() {
   // } 
 
 
-    return (
-      <section className='add-photo__form'>
-        {/* <Form id='add-photo' onSubmit={submitForm.bind(this)}> */}
-        <Form id='add-photo' >
-          <h3 className='add-photo__title'>Create a photo:</h3>
+//     return (
+//       <section className='add-photo__form'>
+//         {/* <Form id='add-photo' onSubmit={submitForm.bind(this)}> */}
+//         <Form id='add-photo' >
+//           <h3 className='add-photo__title'>Create a photo:</h3>
 
-          <div className='add-photo__flex-container'>
-            <div className='add-photo__form-group'>
-              <label htmlFor="photo-content">        
-                <input
-                  className='new-photo__content'
-                  id='photo-image-input'
-                  placeholder="What's on your mind?"
-                  name="image"
-                  // onChange={(e) => setState({image: e.target.value})}
-                />
-              </label>
-            </div>
+//           <div className='add-photo__flex-container'>
+//             <div className='add-photo__form-group'>
+//               <label htmlFor="photo-content">        
+//                 <input
+//                   className='new-photo__content'
+//                   id='photo-image-input'
+//                   placeholder="What's on your mind?"
+//                   name="image"
+//                   // onChange={(e) => setState({image: e.target.value})}
+//                 />
+//               </label>
+//             </div>
 
-            <div className='add-photo__form-group'>
-              <label htmlFor="photo-folder">        
-                <select
-                  className='new-photo__folder'
-                  id='photo-folder-input'
-                  name="folder"
-                  // onChange={(e) => setState({folder: e.target.value})}
-                >
-                  <option>Select Folder</option>
-                </select>
-              </label>
-            </div>
+//             <div className='add-photo__form-group'>
+//               <label htmlFor="photo-folder">        
+//                 <select
+//                   className='new-photo__folder'
+//                   id='photo-folder-input'
+//                   name="folder"
+//                   // onChange={(e) => setState({folder: e.target.value})}
+//                 >
+//                   <option>Select Folder</option>
+//                 </select>
+//               </label>
+//             </div>
 
-            <div className='Button--submit add-photo__button'>
-              <button type='submit'>
-                Submit
-              </button>
-            </div>
-          </div>
-        </Form>
-      </section>
-    );
-}
+//             <div className='Button--submit add-photo__button'>
+//               <button type='submit'>
+//                 Submit
+//               </button>
+//             </div>
+//           </div>
+//         </Form>
+//       </section>
+//     );
+// }
 
 
 

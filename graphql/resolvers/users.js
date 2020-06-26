@@ -15,7 +15,13 @@ function generateToken(user) {
       id: user.id,
       email: user.email,
       name: user.name,
-      picture: user.picture
+      phone: user.phone,
+      city: user.city,
+      state: user.state,
+      about: user.about,
+      relation: user.relation,
+      banner: user.banner,
+      picture: user.picture,
     },
     process.env.SECRET_KEY,
     { expiresIn: '24h' }
@@ -132,6 +138,10 @@ module.exports = {
             email: 'Email is not in the database'
           }
         });
+      }
+
+      if (email === '' || undefined){
+        user.email = email
       }
 
       if (phone !== '' || undefined){

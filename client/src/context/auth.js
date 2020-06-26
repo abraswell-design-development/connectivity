@@ -63,7 +63,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-    value={{ user: state.user,  pins: state.pins, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
+    value={{ user: state.user, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
     {...props}
     />
   );
