@@ -29,7 +29,6 @@ module.exports = {
   Mutation: {
     async createPost(_, { body }, context) {
 
-      // THIS IS THE PROBLEM!!! GOOGLE USER IS NOT GOING THROUGH MIDDLEWARE JWT-USER-CONTROLLER.JS
       const user =  await checkAuth(context);
 
       if (body.trim() === '') {
@@ -38,7 +37,7 @@ module.exports = {
 
       const newPost = new Post({
         body,
-        user: user.id,
+        userId: user.id,
         name: user.name || user.profileObj.name,
         picture: user.picture,
         createdAt: new Date().toISOString()

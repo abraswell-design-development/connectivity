@@ -16,7 +16,6 @@ if (localStorage.getItem('jwtToken')) {
   } 
 } 
 
-
 const AuthContext = createContext({
   user: null,
   googleUser: null,
@@ -41,21 +40,6 @@ export function ContextReducer(state, { type, payload}) {
         ...state,
         user: null
       };
-    case 'UPDATE_USER':
-      console.log('updateUser case called in switch statement')
-      console.log('payload contains: ', payload)
-      return {
-        ...state,
-        user: payload
-      }
-      ;
-    case "CREATE_PHOTO":
-      const newPhoto = payload;
-      const prevPhotos = state.photos.filter(photo => photo._id !== newPhoto._id);
-      return {
-        ...state,
-        photos: [...prevPhotos, newPhoto]
-      };
     default:
       return state;
   }
@@ -72,23 +56,14 @@ function AuthProvider(props) {
     });
   }
 
-  function updateUser(userData) {
-    console.log('updateUser function called')
-    dispatch({
-      type: 'UPDATE_USER',
-      payload: userData
-    });
-  }
-
   function logout() {
     localStorage.removeItem('jwtToken');
     dispatch({ type: 'LOGOUT' });
   }
 
-
   return (
     <AuthContext.Provider
-    value={{ user: state.user,  pins: state.pins, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout, updateUser }}
+    value={{ user: state.user,  pins: state.pins, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
     {...props}
     />
   );

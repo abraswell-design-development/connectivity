@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useQuery } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
@@ -6,6 +6,7 @@ import {AuthContext} from '../../context/auth'
 import CommentButton from '../CommentButton/CommentButton'
 import DeleteButton from '../DeleteButton/DeleteButton'
 import LikeButton from '../LikeButton/LikeButton'
+import { FETCH_USER_QUERY } from '../../graphql.js/queries'
 
 
 import './PostCard.css'
@@ -13,10 +14,19 @@ import './PostCard.css'
 
 
 export default function PostCard({
-  post: { body, createdAt, id, name, picture, likeCount, commentCount, likes }
+  post: { body, createdAt, id, name, userId, picture, likeCount, commentCount, likes }
 }) {
   const { user } = useContext(AuthContext)
   const eitherUser = user.name || user.profileObj.name
+
+  // const getUser  = useQuery(FETCH_USER_QUERY, {
+  //   variables: {
+  //     userId
+  //   }
+  // });
+
+  // console.log("getUser: ", getUser)
+
  
   const formattedTime = moment(createdAt).fromNow()
 

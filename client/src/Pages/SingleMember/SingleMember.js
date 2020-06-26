@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FETCH_USER_QUERY } from '../../graphql.js/queries'
 import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
@@ -31,22 +32,21 @@ export default function SingleMember(props) {
     } else {
         const {
             name,
+            email,
+            phone,
             city,
             state,
             about,
             relation,
-            email,
-            phone,
+            picture,
             banner,
-            picture
         } = getUser;
-
+                
     const getPostsFromMember = (posts) => {
         const filteredPosts = []
         posts.map((post) => (
             post.name  === name ?  filteredPosts.push(post) : ''
         ))
-        // TODO - FIGURE OUT DYNAMIC WAY TO GET 5 BUT MAYBE POP INSTEAD OF
         const sortedPosts = (filteredPosts).slice(0,5)
         return(sortedPosts)
     }
@@ -87,19 +87,18 @@ export default function SingleMember(props) {
             </>
             )}
 
-            {email && (
-            <>
-                <p className='question'>
-                    Contact Info:
-                </p>
-                {phone &&(<p className='answer'>
-                    {phone}
-                </p>)}
-                {email && (<p className='answer'>
-                    {email}
-                </p>)}
-            </>
-            )}
+            
+            <p className='question'>
+                Contact Info:
+            </p>
+            {phone &&(<p className='answer'>
+                <FontAwesomeIcon icon={['fa', 'phone']} /> 
+                {formatPhoneNumber(phone)}
+            </p>)}
+            {email && (<p className='answer'>
+                <FontAwesomeIcon icon={['fa', 'envelope']} /> 
+                {email}
+            </p>)}
 
         </div>
     );
@@ -120,17 +119,24 @@ export default function SingleMember(props) {
     )
 
     const displayTabs = (
-        <Tabs defaultIndex={0} onSelect={index => console.log(index)}>
+        <Tabs defaultIndex={0} onSelect={index => (index)}>
             <TabList>
                 <Tab>Info</Tab>
                 <Tab>Recent Posts</Tab>
-                <Tab>Photos</Tab>
             </TabList>
             <TabPanel>{infoTab}</TabPanel>
             <TabPanel>{postsTab}</TabPanel>
-            <TabPanel>Photos Will Go Here</TabPanel>
         </Tabs>
     )
+
+    function formatPhoneNumber(phoneNumberString) {
+        var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+        if (match) {
+          return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+        }
+        return null
+      }
 
     function goBack() {
         props.history.replace('/members')

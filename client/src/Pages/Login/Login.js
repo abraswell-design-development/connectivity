@@ -116,7 +116,7 @@ export default function Login(props) {
       <div className='login__flex-container'>
         <div className='login__img-container'>
           <img 
-              src='https://res.cloudinary.com/connectivity/image/upload/v1592862388/Charles_95th_BDay-15_copy_n5tdhl.jpg'
+              src='https://res.cloudinary.com/connectivity/image/upload/c_scale,w_1000/v1592862388/Charles_95th_BDay-15_copy_n5tdhl.jpg'
               alt='patient headshot'
           >
           </img>    

@@ -47,32 +47,35 @@ mutation register(
 
 export const UPDATE_USER = gql`
 mutation updateProfile(
+  $email: String!
   $phone: String
+  $city: String
+  $state: String
   $about: String
   $relation: String
   $picture: String
   $banner: String
-  $city: String
-  $state: String
 ) {
   updateProfile(
     updateInput: {
-      about: $about
+      email: $email
       phone: $phone
+      city: $city
+      state: $state
+      about: $about
       relation: $relation
       picture: $picture
       banner: $banner
-      city: $city
-      state: $state
     }
   ) {
-    about
+    email
     phone
-    relation
-    picture
-    banner
     city
     state
+    about
+    relation
+    picture
+    banner 
   }
 }
 `;
@@ -84,6 +87,7 @@ export const CREATE_POST_MUTATION = gql`
       body
       createdAt
       name
+      userId
       picture
       likes {
         id

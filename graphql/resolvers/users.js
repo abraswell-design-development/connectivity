@@ -6,7 +6,6 @@ const { UserInputError } = require('apollo-server');
 const {
   validateRegisterInput,
   validateLoginInput,
-  validateUpdateInput
 } = require('../../controllers/validators');
 const User = require('../../models/User');
 
@@ -75,7 +74,6 @@ module.exports = {
         token
       };
     },
-
     async register(
       _,
       {
@@ -121,81 +119,45 @@ module.exports = {
       };
     },
 
-    async updateProfile(_, {email, phone, city, state, about, relation}) {
+    async updateProfile(_, 
+      {
+        updateInput: { email, phone, city, state, about, relation, picture, banner }
+      }
+      ){
 
       const user = await User.findOne({ email });
       if (!user) {
         throw new UserInputError('Cannot find user in database', {
           errors: {
-            email: 'Cannot find user with that email'
+            email: 'Email is not in the database'
           }
         });
       }
-      user.phone = phone
-      user.city = city
-      user.state = state
-      user.about = about
-      user.relation = relation
+
+      if (phone !== '' || undefined){
+        user.phone = phone
+      }
+      if (city !== '' || undefined ){
+        user.city = city
+      }
+      if (state !== '' || undefined){
+        user.state = state
+      }
+      if (about !== '' || undefined){
+        user.about = about
+      }
+      if (relation !== '' || undefined){
+        user.relation = relation
+      }
+      if (picture !== '' || undefined){
+        user.picture = picture
+      }
+      if (banner !== '' || undefined){
+        user.banner = banner
+      }
+
+      const res = await user.save();
       return user
     }
-
-    // async updateProfile(
-    //   _,
-    //   {
-    //     updateInput: { 
-    //       email, 
-    //       password, 
-    //       confirmPassword, 
-    //       phone, 
-    //       city, 
-    //       state, 
-    //       picture, 
-    //       banner, 
-    //       about, 
-    //       relation
-    //     }
-    //   }
-
-    // ) {
-
-    //   // Validate user data
-    //   const { valid, errors } = validateUpdateInput(
-    //     password,
-    //     confirmPassword
-    //   );
-    //   if (!valid) {
-    //     throw new UserInputError('Errors', { errors });
-    //   }
-    //   const user = await User.findOne({ email });
-    //   if (!user) {
-    //     throw new UserInputError('Cannot find user in database', {
-    //       errors: {
-    //         email: 'Cannot find user in database'
-    //       }
-    //     });
-    //   }
-    //   // hash password and create an auth token
-    //   password = await bcrypt.hash(password, 12);
-
-    //   const updatedUser = User({
-    //     phone, 
-    //     city,
-    //     state, 
-    //     picture, 
-    //     banner, 
-    //     about,
-    //     relation
-    //   });
-
-    //   const res = await updatedUser.save();
-
-    //   const token = generateToken(res);
-    //   console.log('user profile updated!')
-    //   return {
-    //     ...res._doc,
-    //     id: res._id,
-    //     token
-    //   };
-    // }
   }
 };

@@ -16,12 +16,15 @@
   top: -7.5vh;
 }
 
+.single-member-card__profile-pix {
+  margin: -3.5vh auto 0;
+}
+
 .single-member-card__banner
 {
   width: 100%;
   height: 150px;
   overflow: hidden;
-  margin: -4vh auto 0;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
@@ -57,13 +60,6 @@
   object-fit: contain;
 }
 
-.single-member-card__info
-{
-  width: 85%;
-  margin: 0 auto;
-  padding: 2vh 0;
-} 
-
 .single-member-card__name {
   font-size: 2em;
   text-align: center;
@@ -72,6 +68,13 @@
   margin-bottom: 3vh;
   padding-top: 1vh;
 }
+
+.single-member-card__info
+{
+  width: 85%;
+  margin: 0 auto;
+  padding: 2vh 0;
+} 
 
 /*********************** Tabs ***********************/
 
@@ -145,7 +148,7 @@
   padding-left: 3%;
 }
 
-/************** Comments Section ***************/
+/************** Recent Posts Section ***************/
 
 .member__activity__section__title {
   font-size: 1.5em;

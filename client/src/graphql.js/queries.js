@@ -7,6 +7,7 @@ export const FETCH_POSTS_QUERY = gql`
       body
       createdAt
       name
+      userId
       picture
       likeCount
       likes {
@@ -31,6 +32,7 @@ export const FETCH_POST_QUERY = gql`
       body
       createdAt
       name
+      userId
       picture
       likeCount
       likes {
@@ -53,6 +55,7 @@ export const FETCH_USERS_QUERY = gql`
     getUsers {
     id
     name
+    phone
     about
     city
     state
@@ -71,6 +74,7 @@ export const FETCH_USER_QUERY = gql`
     getUser(userId: $userId) {
     id
     name
+    phone
     about
     city
     state
@@ -137,8 +141,14 @@ export const ME_QUERY = `
   me {
     id
     name
+    phone
+    about
+    city
+    state
+    relation
     email
     picture
+    banner
   }
 }
 `
