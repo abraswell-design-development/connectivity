@@ -28,7 +28,7 @@ module.exports.validateRegisterInput = (
   };
 };
 
-module.exports.validateLoginInput = (email, password) => {
+module.exports.validateLoginInput = (email) => {
   const errors = {};
   if (email.trim() === '') {
     errors.email = 'Email must not be empty';
@@ -38,9 +38,7 @@ module.exports.validateLoginInput = (email, password) => {
       errors.email = 'Email must be a valid email address';
     }
   }
-  if (password.trim() === '') {
-    errors.password = 'Password must not be empty';
-  }
+
 
   return {
     errors,

@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import { GoogleLogin } from 'react-google-login'
 import { GraphQLClient } from 'graphql-request'
+
 
 import {AuthContext} from '../../context/auth'
 import Form from '../../util/Form'
@@ -15,9 +16,9 @@ import './Login.css'
 
 export default function Login(props) {
   const context = useContext(AuthContext)
-  
+  // const [user, setUser] = useState()
 
-// GOOGLE - APP ROUTE
+// // GOOGLE - APP ROUTE
   const handleGoogleSuccess = async googleUser => {
       try {
 // grab the successfully logged-in user's Google idToken
@@ -29,25 +30,52 @@ export default function Login(props) {
           }, 
         })
 // query the server (server verifies token, finds or creates a User, returns user's info)
-        const {returnedUser} = await client.request(GOOGLE_USER_QUERY)
-        let[user, setUser] = useState
-        user = () => {
-          setUser(returnedUser)
-        }
-        console.log('Google User object returned from query: ', user)
+        const returnedUser = await client.request(GOOGLE_USER_QUERY)
+        console.log('returnedUser within Google Success: ', returnedUser)
+        console.log('context within Google Success: ', context)
+        // setUser(returnedUser)
 
-// this gets the googleUser's mail and stores it in validatedEmail variable
-        // DON'T THINK I NEED THIS
-        // const validatedEmail = googleUser.profileObj.email
-        // console.log('email validated by Google: ', validatedEmail)
-        // console.log('Login.js context: ', context)
 // this moves the user into the protected route to reach home page but user in currently undefined
-        context.login(googleUser)
+        // context.login(googleUser)
         props.history.push('/')
     } catch (err) {
       handleGoogleFailure(err)
     }
   }
+
+  
+
+
+
+  // const handleGoogleSuccess = async googleUser => {
+  //   try {
+  // // grab the successfully logged-in user's Google idToken
+  //       const idToken = googleUser.getAuthResponse().id_token
+  // // create a GraphQL Client object, pass it the token as an auth header
+  //       const client = new GraphQLClient('http://localhost:5000/graphql', {
+  //         headers: {
+  //           authorization: idToken,
+  //         }, 
+  //       })
+  // // query the server (server verifies token, finds or creates a User, returns user's info)
+  //       let returnedGoogleUser = await client.request(GOOGLE_USER_QUERY)
+  //       const  email = (returnedGoogleUser.user.email)
+  //       const  id = (returnedGoogleUser.user.id)
+  //       const userData = {email, id}
+  //       // context.login(googleUser)
+
+  //       loginUser(userData)
+
+
+  //       // useEffect((userData) => {
+  //       //  googleUser('')
+  //       // }, []
+  //       // )
+  //       props.history.push('/')
+  //   } catch (err) {
+  //     handleGoogleFailure(err)
+  //   }
+  // }
 
   const handleGoogleFailure = err => console.error('Error logging in', err)
 

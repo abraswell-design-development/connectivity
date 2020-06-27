@@ -40,8 +40,9 @@ exports.findOrCreateUser = async token => {
   // if user exists, return them, otherwise create new User
   return {    
     ...user._doc,
-    id: user._id,
-    token 
+    id: user.id,
+    email: user.email,
+    name: user.name
   }
   || 
   createNewUser(googleUser)

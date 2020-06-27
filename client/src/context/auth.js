@@ -7,14 +7,14 @@ const initialState = {
 
 
 // Keeps user logged in for 24 hours
-if (localStorage.getItem('jwtToken')) {
-  const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem('jwtToken');
-  } else {
-    initialState.user = decodedToken;
-  } 
-} 
+// if (localStorage.getItem('jwtToken')) {
+//   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+//   if (decodedToken.exp * 1000 < Date.now()) {
+//     localStorage.removeItem('jwtToken');
+//   } else {
+//     initialState.user = decodedToken;
+//   } 
+// } 
 
 const AuthContext = createContext({
   user: null,
@@ -27,12 +27,13 @@ const AuthContext = createContext({
   updateUser: (userData) => {}
 });
 
+
 export function ContextReducer(state, { type, payload}) {
   switch (type) {
     case 'LOGIN':
       return {
         ...state,
-        user: payload
+        user: payload 
       }
       ;
     case 'LOGOUT':

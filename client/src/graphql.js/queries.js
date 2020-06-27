@@ -149,6 +149,8 @@ export const GOOGLE_USER_QUERY = `
     email
     picture
     banner
+    password
+    token
   }
 }
 `
