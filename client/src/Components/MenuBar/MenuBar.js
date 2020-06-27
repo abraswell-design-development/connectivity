@@ -8,6 +8,7 @@ import './MenuBar.css'
 
 export default function MenuBar() {
   const { user, logout } = useContext(AuthContext)
+  console.log(user)
 
   const menuBar = user ? (
     <nav>

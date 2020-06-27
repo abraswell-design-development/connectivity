@@ -53,38 +53,27 @@ module.exports = {
     }
   },
   Mutation: {
-    async login(_, {email, password, id }) {
-      const { errors, valid } = validateLoginInput(email);
+    async login(_, {email, password }) {
+      const { errors, valid } = validateLoginInput(email, password);
 
       if (!valid) {
         throw new UserInputError('Errors', { errors });
       }
 
-      if (!id) {
       const user = await User.findOne({ email });
-      }
 
-      if (id) {
-        const user = await User.findOne({ id })
-      }
-      
       if (!user) {
         errors.general = 'User not found';
         throw new UserInputError('User not found', { errors });
       }
 
-      if (password) {
-        const match = await bcrypt.compare(password, user.password);
-        if (!match) {
-          errors.general = 'Wrong credentials';
-          throw new UserInputError('Wrong credentials', { errors });
-        }
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
+        errors.general = 'Wrong credentials';
+        throw new UserInputError('Wrong credentials', { errors });
       }
 
-
-  
       const token = generateToken(user);
-      console.log('logged in user from user.js resolver: ', user )
 
       return {
         ...user._doc,
