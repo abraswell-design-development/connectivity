@@ -16,6 +16,8 @@ import './Login.css'
 
 export default function Login(props) {
   const context = useContext(AuthContext)
+  const {dispatch} = useContext(AuthContext)
+  console.log(dispatch)
   // const [user, setUser] = useState()
 
 // // GOOGLE - APP ROUTE
@@ -31,8 +33,10 @@ export default function Login(props) {
         })
 // query the server (server verifies token, finds or creates a User, returns user's info)
         const returnedUser = await client.request(GOOGLE_USER_QUERY)
+        // context.saveUserData(returnedUser)
         console.log('returnedUser within Google Success: ', returnedUser)
         console.log('context within Google Success: ', context)
+        dispatch({ type: 'SET_USER_DATA', payload: returnedUser })
         // setUser(returnedUser)
 
 // this moves the user into the protected route to reach home page but user in currently undefined

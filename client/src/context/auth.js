@@ -23,6 +23,7 @@ const AuthContext = createContext({
   isAuth: false,
   userEmail: null,
   login: (userData) => {},
+  setUserData: (returnedUser) => {},
   logout: () => {},
   updateUser: (userData) => {}
 });
@@ -36,6 +37,13 @@ export function ContextReducer(state, { type, payload}) {
         user: payload 
       }
       ;
+    case 'SET_USER_DATA':
+      console.log('SET_USER_DATA ran')
+      console.log('payload: ', payload)
+      return {
+        ...state,
+        user: payload
+      }
     case 'LOGOUT':
       return {
         ...state,
@@ -57,6 +65,14 @@ function AuthProvider(props) {
     });
   }
 
+  function setUserData(returnedUser) {
+    // localStorage.setItem('jwtToken', userData.token || userData.tokenId)
+    dispatch({
+      type: 'SET_USER_DATA',
+      payload: returnedUser
+    });
+  }
+
   function logout() {
     localStorage.removeItem('jwtToken');
     dispatch({ type: 'LOGOUT' });
@@ -64,7 +80,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-    value={{ user: state.user, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, logout }}
+    value={{ user: state.user, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, setUserData, logout, dispatch }}
     {...props}
     />
   );
