@@ -14,7 +14,7 @@ export default function MenuBar() {
       <div className='menubar__flex-container'>
         <div className='menubar__flex-item'>
           <Link to={'/'}>
-            {user.name || user.profileObj.name}
+          { user && (user.name || user.profileObj.name)}
           </Link>
         </div>
         <div className='menubar__flex-item'>

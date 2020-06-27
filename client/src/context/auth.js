@@ -66,7 +66,6 @@ function AuthProvider(props) {
   }
 
   function setUserData(returnedUser) {
-    // localStorage.setItem('jwtToken', userData.token || userData.tokenId)
     dispatch({
       type: 'SET_USER_DATA',
       payload: returnedUser

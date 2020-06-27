@@ -25,6 +25,7 @@ export default function Login(props) {
       try {
 // grab the successfully logged-in user's Google idToken
         const idToken = googleUser.getAuthResponse().id_token
+        localStorage.setItem('jwtToken', idToken)
 // create a GraphQL Client object, pass it the token as an auth header
         const client = new GraphQLClient('http://localhost:5000/graphql', {
           headers: {
@@ -35,9 +36,7 @@ export default function Login(props) {
         const returnedUser = await client.request(GOOGLE_USER_QUERY)
         // context.saveUserData(returnedUser)
         console.log('returnedUser within Google Success: ', returnedUser)
-        console.log('context within Google Success: ', context)
         dispatch({ type: 'SET_USER_DATA', payload: returnedUser })
-        // setUser(returnedUser)
 
 // this moves the user into the protected route to reach home page but user in currently undefined
         // context.login(googleUser)
@@ -103,7 +102,8 @@ export default function Login(props) {
       props.history.push('/')
     },
     onError(err) {
-    setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      console.log(err)
+    // setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     variables: values
   })
