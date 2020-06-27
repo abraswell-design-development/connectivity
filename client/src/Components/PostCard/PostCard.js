@@ -16,8 +16,12 @@ export default function PostCard({
   post: { body, createdAt, id, name, picture, likeCount, commentCount, likes }
 }) {
   const { user } = useContext(AuthContext)
-  const eitherUser = user.name || user.profileObj.name
+  let returnedGoogleUser = {user}.user
+  const eitherUser = user.name || returnedGoogleUser.name
 
+
+
+ 
   const formattedTime = moment(createdAt).fromNow()
 
   return (

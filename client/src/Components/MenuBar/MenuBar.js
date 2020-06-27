@@ -9,15 +9,16 @@ import './MenuBar.css'
 export default function MenuBar() {
   const { user, logout } = useContext(AuthContext)
 
-  let returnedUser = {user}.user
-  console.log('returnedUser: ', returnedUser)
+  let returnedGoogleUser = {user}.user
+  const eitherUser = user || returnedGoogleUser
+
 
   const menuBar = user ? (
     <nav>
       <div className='menubar__flex-container'>
         <div className='menubar__flex-item'>
           <Link to={'/'}>
-          { user && (returnedUser.name)}
+          { user && (eitherUser.name)}
           </Link>
         </div>
         <div className='menubar__flex-item'>

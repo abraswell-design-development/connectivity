@@ -1,7 +1,6 @@
 const { AuthenticationError } = require('apollo-server')
 
 
-
 // this checks there is a verified user on context. 
 // If so, returns the resolver function it wrapped, otherwise throws an Error.
 const authenticated = resolverFunc => (root, args, ctx, info) => {
@@ -14,6 +13,6 @@ const authenticated = resolverFunc => (root, args, ctx, info) => {
 
 module.exports = {
   Query: {
-    user: authenticated((root, args, ctx) => ctx.user),
+    user: authenticated((root, args, ctx) => {ctx.user}),
   }
 }

@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import { GoogleLogin } from 'react-google-login'
 import { GraphQLClient } from 'graphql-request'
-
 
 import {AuthContext} from '../../context/auth'
 import Form from '../../util/Form'
@@ -17,8 +16,6 @@ import './Login.css'
 export default function Login(props) {
   const context = useContext(AuthContext)
   const {dispatch} = useContext(AuthContext)
-  console.log(dispatch)
-  // const [user, setUser] = useState()
 
 // // GOOGLE - APP ROUTE
   const handleGoogleSuccess = async googleUser => {
@@ -37,49 +34,12 @@ export default function Login(props) {
         // context.saveUserData(returnedUser)
         console.log('returnedUser within Google Success: ', returnedUser)
         dispatch({ type: 'SET_USER_DATA', payload: returnedUser })
-        
-
 // this moves the user into the protected route to reach home page but user in currently undefined
-        // context.login(googleUser)
         props.history.push('/')
     } catch (err) {
       handleGoogleFailure(err)
     }
   }
-
-  
-
-
-
-  // const handleGoogleSuccess = async googleUser => {
-  //   try {
-  // // grab the successfully logged-in user's Google idToken
-  //       const idToken = googleUser.getAuthResponse().id_token
-  // // create a GraphQL Client object, pass it the token as an auth header
-  //       const client = new GraphQLClient('http://localhost:5000/graphql', {
-  //         headers: {
-  //           authorization: idToken,
-  //         }, 
-  //       })
-  // // query the server (server verifies token, finds or creates a User, returns user's info)
-  //       let returnedGoogleUser = await client.request(GOOGLE_USER_QUERY)
-  //       const  email = (returnedGoogleUser.user.email)
-  //       const  id = (returnedGoogleUser.user.id)
-  //       const userData = {email, id}
-  //       // context.login(googleUser)
-
-  //       loginUser(userData)
-
-
-  //       // useEffect((userData) => {
-  //       //  googleUser('')
-  //       // }, []
-  //       // )
-  //       props.history.push('/')
-  //   } catch (err) {
-  //     handleGoogleFailure(err)
-  //   }
-  // }
 
   const handleGoogleFailure = err => console.error('Error logging in', err)
 
@@ -103,8 +63,7 @@ export default function Login(props) {
       props.history.push('/')
     },
     onError(err) {
-      console.log(err)
-    // setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     variables: values
   })
@@ -209,7 +168,6 @@ export default function Login(props) {
               onFailure={handleGoogleFailure}
               buttonText="Login"
               theme="dark"
-              //isSignedIn={true}
             />
           </div>
         </div>
