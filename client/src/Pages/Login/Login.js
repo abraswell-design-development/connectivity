@@ -37,6 +37,7 @@ export default function Login(props) {
         // context.saveUserData(returnedUser)
         console.log('returnedUser within Google Success: ', returnedUser)
         dispatch({ type: 'SET_USER_DATA', payload: returnedUser })
+        
 
 // this moves the user into the protected route to reach home page but user in currently undefined
         // context.login(googleUser)

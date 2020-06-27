@@ -39,7 +39,7 @@ export function ContextReducer(state, { type, payload}) {
       ;
     case 'SET_USER_DATA':
       console.log('SET_USER_DATA ran')
-      console.log('payload: ', payload)
+      console.log('SET_USER_DATApayload: ', payload)
       return {
         ...state,
         user: payload
