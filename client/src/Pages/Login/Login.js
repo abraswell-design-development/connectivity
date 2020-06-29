@@ -19,26 +19,38 @@ export default function Login(props) {
 
 // // GOOGLE - APP ROUTE
   const handleGoogleSuccess = async googleUser => {
-      try {
+    try {
 // grab the successfully logged-in user's Google idToken
-        const idToken = googleUser.getAuthResponse().id_token
-        localStorage.setItem('jwtToken', idToken)
+      const idToken = googleUser.getAuthResponse().id_token
+      localStorage.setItem('jwtToken', idToken)
 // create a GraphQL Client object, pass it the token as an auth header
-        const client = new GraphQLClient('http://localhost:5000/graphql', {
-          headers: {
-            authorization: idToken,
-          }, 
-        })
+      const client = new GraphQLClient('http://localhost:5000/graphql', {
+        headers: {
+          authorization: idToken,
+        }, 
+      })
 // query the server (server verifies token, finds or creates a User, returns user's info)
-        const returnedUser = await client.request(GOOGLE_USER_QUERY)
-        // context.saveUserData(returnedUser)
-        console.log('returnedUser within Google Success: ', returnedUser)
-        dispatch({ type: 'SET_USER_DATA', payload: returnedUser })
+      let returnedUser = await client.request(GOOGLE_USER_QUERY)
+
+      let user = await returnedUser.user
+
+      let normalizedUser = {
+        id: user.id,
+        name: user.name,
+        phone: user.phone,
+        email: user.email,
+        city: user.city,
+        state: user.state,  
+        picture: user.picture,
+        banner: user.banner
+      };
+      
+      dispatch({ type: 'SET_USER_DATA', payload: normalizedUser })
 // this moves the user into the protected route to reach home page but user in currently undefined
-        props.history.push('/')
-    } catch (err) {
-      handleGoogleFailure(err)
-    }
+      props.history.push('/')
+  } catch (err) {
+    handleGoogleFailure(err)
+  }
   }
 
   const handleGoogleFailure = err => console.error('Error logging in', err)
@@ -92,7 +104,7 @@ export default function Login(props) {
         </p>
 
         <p>
-          He mentioned that he really wished hhe could see Johnny graduate this week. If anyone is able
+          He mentioned that he really wished he could see Johnny graduate this week. If anyone is able
           to attend his celebration, would you please post a few pictures so he can share some of your joy?
         </p>
 

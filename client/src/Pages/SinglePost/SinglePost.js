@@ -42,7 +42,7 @@ export default function SinglePost(props) {
   });
 
   function deletePostCallback() {
-    props.history.push('/');
+    props.history.replace('/');
   }
 
   function goBack() {

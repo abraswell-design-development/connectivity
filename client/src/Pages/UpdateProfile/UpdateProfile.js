@@ -209,13 +209,10 @@ return(
   <section className='update-member-main'>
     <h2 className='update-member__title'>Update Your Profile</h2>
 
-
-
-    {/* <div className='single-member-card__profile-pix'> */}
         <div className='single-member-card__banner'>
             <img 
-                src='https://res.cloudinary.com/connectivity/image/upload/t_Profile_Banner/v1592861257/Screen_Shot_2020-06-22_at_4.26.00_PM_k98299.png'
-                alt='member headshot'
+                src={currentData.banner}
+                alt='member cover'
             >
             </img>    
         </div>
@@ -226,7 +223,6 @@ return(
             >
             </img>    
         </div>
-    {/* </div> */}
 
     <div className='update-member-card__flex-container'>
 
