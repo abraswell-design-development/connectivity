@@ -62,6 +62,19 @@
 
 
 /**************************************** FOR DESKTOPS AND UP ************************************/
+@media (min-width: 1400px){
+
+    .Tooltip-message {
+        top: -8vh
+    }
+  
+    .Tooltip-message:after {
+        top: 4vh; 
+    }
+  
+  }
+
+/**************************************** FOR DESKTOPS AND UP ************************************/
 @media (min-width: 1600px){
 
     .Tooltip-message {
@@ -69,7 +82,16 @@
     }
   
     .Tooltip-message:after {
-        top: 3.3vh; 
+        top: 3.6vh; 
+    }
+  
+  }
+
+/**************************************** FOR DESKTOPS AND UP ************************************/
+@media (min-width: 1900px){
+  
+    .Tooltip-message:after {
+        top: 3.5vh; 
     }
   
   }

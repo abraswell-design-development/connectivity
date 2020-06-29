@@ -105,11 +105,11 @@
 }
 
 /**************************************** FOR DESKTOPS AND UP ************************************/
-@media (min-width: 1600px){
+@media (min-width: 1400px){
   .member-card__thumbnail .Tooltip-message {
     position: relative;
     margin-left: 4.5%;
-    top: -22.75vh;
+    top: -28.75vh;
 
   }
   
@@ -117,8 +117,59 @@
     position: absolute;
     margin-left: 5px;
     left: 46%;
-    top: 3.2vh;
+    top: 4.2vh;
   }
 
+}
+
+/**************************************** FOR DESKTOPS AND UP ************************************/
+@media (min-width: 1400px){
+  .member-card__thumbnail .Tooltip-message {
+    position: relative;
+    margin-left: 4.5%;
+    top: -28.75vh;
+
+  }
+  
+  .member-card__thumbnail .Tooltip-message:after {
+    position: absolute;
+    margin-left: 5px;
+    left: 46%;
+    top: 4.2vh;
+  }
+}
+
+/**************************************** FOR DESKTOPS AND UP ************************************/
+@media (min-width: 1600px){
+  .member-card__thumbnail .Tooltip-message {
+    position: relative;
+    margin-left: 4.5%;
+    top: -24.75vh;
+
+  }
+  
+  .member-card__thumbnail .Tooltip-message:after {
+    position: absolute;
+    margin-left: 5px;
+    left: 46%;
+    top: 3.6vh;
+  }
+}
+
+/**************************************** FOR DESKTOPS AND UP ************************************/
+@media (min-width: 1900px){
+  .member-card__thumbnail .Tooltip-message {
+    position: relative;
+    margin-left: 4.5%;
+    top: -24.75vh;
+
+  }
+  
+  .member-card__thumbnail .Tooltip-message:after {
+    position: absolute;
+    margin-left: 5px;
+    left: 46%;
+    top: 3.4vh;
+  }
 }
   

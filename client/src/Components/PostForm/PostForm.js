@@ -26,7 +26,10 @@ export default function PostForm() {
       proxy.writeQuery({ query: FETCH_POSTS_QUERY, data })
       values.body = ''
     }
-  });
+  }
+  
+  
+  );
 
   function createPostCallback() {
     createPost()

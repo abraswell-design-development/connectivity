@@ -119,14 +119,40 @@
 }
 
 /**************************************** FOR DESKTOPS AND UP ************************************/
-@media (min-width: 1600px){
+@media (min-width: 1400px){
 
   .nav__item .Tooltip-message {
     top: -5.5vh;
   }
 
   .nav__item .Tooltip-message:after {
-      top: 3.3vh;
+      top: 4vh;
+  }
+
+}
+
+/**************************************** FOR DESKTOPS AND UP ************************************/
+@media (min-width: 1600px){
+
+  .nav__item .Tooltip-message {
+    top: -5.25vh;
+  }
+
+  .nav__item .Tooltip-message:after {
+      top: 3.5vh;
+  }
+
+}
+
+/**************************************** FOR DESKTOPS AND UP ************************************/
+@media (min-width: 1900px){
+
+  .nav__item .Tooltip-message {
+    top: -5vh;
+  }
+
+  .nav__item .Tooltip-message:after {
+      top: 3.5vh;
   }
 
 }

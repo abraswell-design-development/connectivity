@@ -25,9 +25,7 @@ export default function UpdateProfile(props) {
     relation: '',
     city: '',
     state: '',
-    phone: '',
-    picture: '',
-    banner: ''
+    phone: ''
   });
 
   const [updateUser, { loading }] = useMutation(UPDATE_USER, {
@@ -55,7 +53,7 @@ export default function UpdateProfile(props) {
   }
 
   const infoTab = (
-    <div className='about__form-group'>
+    <div className='single-member-card__info'>
             {Object.keys(errors).length > 0 && (
               <div className="Error Message error">
                 <ul className="Error__list">
@@ -67,12 +65,12 @@ export default function UpdateProfile(props) {
             )}
 
             <Form onSubmit={onSubmit} noValidate className={loading ? 'Loading register--loading' : ''}>
-              <p className='question'>
+              <p className='update-question'>
                     How do you know the patient? 
               </p>
 
               <label htmlFor="Relation"/>
-              <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
+              <span className='update-pencil'><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
               <input
                 className='update-answer'
                   placeholder= {currentData.relation}
@@ -83,12 +81,12 @@ export default function UpdateProfile(props) {
                 onChange={onChange}
               />
 
-              <p className='question'>
+              <p className='update-question'>
                   What are your hobbies, interests, etc?
               </p>
               
               <label htmlFor="About" />
-              <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
+              <span className='update-pencil'><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
               <input
                 className='update-answer'
                 placeholder={currentData.about}
@@ -99,7 +97,7 @@ export default function UpdateProfile(props) {
                 onChange={onChange}
               />
 
-              <p className='question'>
+              <p className='update-question'>
                   Where do you currently live?
               </p>
                   
@@ -107,7 +105,7 @@ export default function UpdateProfile(props) {
                 
                 <div className="update-answer-half">
                   <label htmlFor="City"/>
-                  <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
+                  <span className='update-pencil'><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
                   <input
                     className='update-answer'
                     placeholder={currentData.city}
@@ -122,7 +120,7 @@ export default function UpdateProfile(props) {
                 
                 <div className="update-answer-half">
                   <label htmlFor="State" />
-                  <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
+                  <span className='update-pencil'><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
                   <input
                     className='update-answer'
                     placeholder={currentData.state}
@@ -135,12 +133,12 @@ export default function UpdateProfile(props) {
                 </div>
               </div>
 
-              <p className='question'>
+              <p className='update-question'>
                   Contact Info:
               </p>
 
               <label htmlFor="Phone" />
-              <span><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
+              <span className='update-pencil'><FontAwesomeIcon icon={['fa', 'pencil-alt']} /></span>
               <input
                 className='update-answer'
                 placeholder={currentData.phone}
@@ -151,28 +149,6 @@ export default function UpdateProfile(props) {
                 onChange={onChange}
               />
 
-              {/* <label htmlFor="Picture" />
-                <input
-                  className='about__form-group'
-                  placeholder="Picture..."
-                  name="picture"
-                  type="text"
-                  value={values.picture}
-                  error={errors.picture ? 'true' : 'false'}
-                  onChange={onChange}
-                />
-              */}
-              {/* <label htmlFor="Banner" />
-                <input
-                  className='about__form-group'
-                  placeholder="Banner..."
-                  name="banner"
-                  type="text"
-                  value={values.banner}
-                  error={errors.banner ? 'true' : 'false'}
-                  onChange={onChange}
-                />
-                */}
               <div className='Button--submit update__buttons'>
                 <button 
                   className='update--button'
@@ -208,21 +184,23 @@ export default function UpdateProfile(props) {
 return(
   <section className='update-member-main'>
     <h2 className='update-member__title'>Update Your Profile</h2>
-
-        <div className='single-member-card__banner'>
+      
+      <div className='update-member-card__profile-pix'>
+        <div className='update-member-card__banner'>
             <img 
                 src={currentData.banner}
                 alt='member cover'
             >
             </img>    
         </div>
-        <div className='single-member-card__thumbnail--round'>
+        <div className='update-member-card__thumbnail--round'>
             <img 
                 src={currentData.picture}
                 alt='member headshot'
             >
             </img>    
         </div>
+      </div>
 
     <div className='update-member-card__flex-container'>
 

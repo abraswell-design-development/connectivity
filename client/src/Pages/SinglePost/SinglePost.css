@@ -279,15 +279,33 @@
       margin: .5vh 0;
       font-size: .9em;
     }
-
-    
-
-
-
-
-
-
-
   }
+
+/******************************** LAPTOPS AND UP *******************************/
+@media (min-width: 1400px){
+
+  .single-post-main .Button--back {
+    top: -5.25vh;
+  }
+
+}
+
+/******************************** DESKTOP AND UP *******************************/
+@media (min-width: 1600px){
+
+  .single-post-main .Button--back {
+    top: -5.25vh;
+  }
+
+}
+
+/******************************** DESKTOP AND UP *******************************/
+@media (min-width: 1900px){
+
+  .single-post-main .Button--back {
+    top: -4.75vh;
+  }
+
+}
 
   
