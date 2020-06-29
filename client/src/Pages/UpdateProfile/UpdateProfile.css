@@ -184,6 +184,11 @@ input.update-answer
     margin: 0 auto 0;
   }
 
+  .update-member-card__banner >img
+  {
+    margin-top: -4vh;
+  }
+
   .update-member-card__thumbnail
   {
     width: 25%;
@@ -221,6 +226,12 @@ input.update-answer
   .update-member-card__thumbnail--round
   {
     margin: -8.5vh auto 0;
+  }
+
+  .update-member-card__name {
+    position: relative;
+    top: 3vh;
+    margin-bottom: 5vh;
   }
 
 }

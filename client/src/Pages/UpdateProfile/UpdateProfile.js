@@ -173,7 +173,10 @@ export default function UpdateProfile(props) {
   );
 
   const displayTabs = (
-    <Tabs defaultIndex={0} onSelect={index => console.log(index)}>
+    <Tabs
+      defaultIndex={0} 
+      onSelect={index => console.log(index)}
+    >
         <TabList>
             <Tab>Info</Tab>
         </TabList>
