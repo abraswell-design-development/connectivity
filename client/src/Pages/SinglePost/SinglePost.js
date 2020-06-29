@@ -17,8 +17,7 @@ import './SinglePost.css'
 
 export default function SinglePost(props) {
   const postId = props.match.params.postId;
-  const { user } = useContext(AuthContext);
-  const deleteName = user.name || user.profileObj.name
+  const { user } = useContext(AuthContext); 
   const commentInputRef = useRef(null);
   const [comment, setComment] = useState('');
 
@@ -113,7 +112,7 @@ export default function SinglePost(props) {
               </div>
 
               <div className='single-post-card-delete-button__container'>
-                {user && deleteName === name && (
+                {user && user.name === name && (
                   <DeleteButton postId={id} callback={deletePostCallback} />
                 )}
               </div>
@@ -194,7 +193,7 @@ export default function SinglePost(props) {
                       </div>
 
                       <div className='comment-card-delete-button__container'>
-                        {user && deleteName === comment.name && (
+                        {user && user.name === comment.name && (
                           <DeleteButton postId={id} commentId={comment.id} />
                         )}
                       </div>

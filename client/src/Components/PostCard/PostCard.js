@@ -16,11 +16,6 @@ export default function PostCard({
   post: { body, createdAt, id, name, picture, likeCount, commentCount, likes }
 }) {
   const { user } = useContext(AuthContext)
-  let returnedGoogleUser = {user}.user
-  const eitherUser = user.name || returnedGoogleUser.name
-
-
-
  
   const formattedTime = moment(createdAt).fromNow()
 
@@ -60,7 +55,7 @@ export default function PostCard({
           <div className='post-card__button-container__flex-container'>
             <div className='other-buttons__container'>
               <LikeButton 
-                user={eitherUser} 
+                user={name} 
                 post={{ id, likes, likeCount }} 
               /> 
               <CommentButton 
@@ -69,7 +64,7 @@ export default function PostCard({
             </div>
 
             <div className='delete-button__container'>
-              {user && eitherUser === name && <DeleteButton postId={id} />}
+              {user && user.name === name && <DeleteButton postId={id} />}
             </div>
           </div>
 

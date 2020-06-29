@@ -13,6 +13,6 @@ const authenticated = resolverFunc => (root, args, ctx, info) => {
 
 module.exports = {
   Query: {
-    user: authenticated((root, args, ctx) => {ctx.user}),
+    user: authenticated((root, args, ctx) => ctx.user),
   }
 }

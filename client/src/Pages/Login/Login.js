@@ -31,6 +31,7 @@ export default function Login(props) {
       })
 // query the server (server verifies token, finds or creates a User, returns user's info)
       let returnedUser = await client.request(GOOGLE_USER_QUERY)
+      console.log(returnedUser)
 
       let user = await returnedUser.user
 
@@ -40,12 +41,17 @@ export default function Login(props) {
         phone: user.phone,
         email: user.email,
         city: user.city,
-        state: user.state,  
+        state: user.state, 
+        about: user.about,
+        relation: user.relation, 
         picture: user.picture,
         banner: user.banner
       };
-      
+
+      console.log(normalizedUser)
+
       dispatch({ type: 'SET_USER_DATA', payload: normalizedUser })
+
 // this moves the user into the protected route to reach home page but user in currently undefined
       props.history.push('/')
   } catch (err) {
