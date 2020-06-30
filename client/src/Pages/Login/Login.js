@@ -12,7 +12,6 @@ import { useForm } from '../../util/hooks'
 import './Login.css'
 
 
-
 export default function Login(props) {
   const context = useContext(AuthContext)
   const {dispatch} = useContext(AuthContext)
@@ -47,8 +46,6 @@ export default function Login(props) {
         picture: user.picture,
         banner: user.banner
       };
-
-      console.log(normalizedUser)
 
       dispatch({ type: 'SET_USER_DATA', payload: normalizedUser })
 

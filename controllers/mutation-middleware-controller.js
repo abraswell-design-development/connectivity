@@ -9,38 +9,50 @@ const User = require('../models/User')
 // Controller to verify user for New Posts, Likes, Comments and Delete Button
 module.exports = async (context) => {
   const authHeader = context.req.headers.authorization;  
+  const checkIfUserExists = async email => {
+    return User.findOne({ email }).exec()
+  }
   if (authHeader) {
     const token = authHeader.split('Bearer ')[1];
     const client = new OAuth2Client(process.env.OAUTH_CLIENT_ID)
     if (token) {
       // user logged in through app
       try {
-        const user = jwt.verify(token, process.env.SECRET_KEY);
+        let user = jwt.decode(token, process.env.SECRET_KEY);
+        user = await checkIfUserExists(user.email)
         return user
       }  
       // user logged in through Google 
       catch {
-        try {
-          const ticket =  await client.verifyIdToken({
-              idToken: token,
-              audience: process.env.OAUTH_CLIENT_ID,
-            })
-            const googleUser = new User({
-              _id: ticket.payload._id,
-              email: ticket.payload.email, 
-              name: ticket.payload.name,
-              picture: ticket.payload.picture
-            });
-            const user = {
-              id: (googleUser._id).toString(),
-              email: googleUser.email, 
-              name: googleUser.name,
-              picture: googleUser.picture
-            };
-            return user
-          } catch (err) {
-          throw new AuthenticationError('Invalid/Expired token');
-          }   
+
+          let user = await checkIfUserExists(email)
+          return user
+
+
+
+        // try {
+        //   const ticket =  await client.verifyIdToken({
+        //       idToken: token,
+        //       audience: process.env.OAUTH_CLIENT_ID,
+        //     })
+        //     const googleUser = new User({
+        //       _id: ticket.payload._id,
+        //       email: ticket.payload.email, 
+        //       name: ticket.payload.name,
+        //       picture: ticket.payload.picture
+        //     });
+        //     const user = {
+        //       id: (googleUser._id).toString(),
+        //       email: googleUser.email, 
+        //       name: googleUser.name,
+        //       picture: googleUser.picture
+        //     };
+        //     let converteduser = await User.findOne({ email })
+
+        //     return user
+          // } catch (err) {
+          // throw new AuthenticationError('Invalid/Expired token');
+          // }   
         }
       } 
     throw new Error("Authentication token must be 'Bearer [token]");
