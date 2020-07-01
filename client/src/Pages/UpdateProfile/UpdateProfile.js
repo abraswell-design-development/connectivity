@@ -25,7 +25,9 @@ export default function UpdateProfile(props) {
     relation: '',
     city: '',
     state: '',
-    phone: ''
+    phone: '',
+    picture: currentData.picture,
+    banner: currentData.banner
   });
 
   const [updateUser, { loading }] = useMutation(UPDATE_USER, {
@@ -115,6 +117,7 @@ export default function UpdateProfile(props) {
                     error={errors.city? 'true': 'false'}
                     onChange={onChange}
                   />
+                  {/* is  */}
 
                 </div>
                 

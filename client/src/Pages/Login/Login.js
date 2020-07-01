@@ -30,7 +30,6 @@ export default function Login(props) {
       })
 // query the server (server verifies token, finds or creates a User, returns user's info)
       let returnedUser = await client.request(GOOGLE_USER_QUERY)
-      console.log(returnedUser)
 
       let user = await returnedUser.user
 
@@ -104,11 +103,6 @@ export default function Login(props) {
           puzzle books. If you are interested in doing something for him, he would love anything you
           might be able to send his way to brighten his day... he particularly likes Sudoku and candied
           orange slices.
-        </p>
-
-        <p>
-          He mentioned that he really wished he could see Johnny graduate this week. If anyone is able
-          to attend his celebration, would you please post a few pictures so he can share some of your joy?
         </p>
 
         <p>
