@@ -158,6 +158,26 @@ export const DELETE_COMMENT_MUTATION = gql`
   }
 `
 
+export const CREATE_PHOTO_MUTATION = `
+mutation($banner: String!) {
+  createBanner(
+    banner: $banner,
+  ) {
+    banner
+  }
+}
+`
+
+export const CREATE_BANNER_MUTATION = `
+mutation($banner: String!) {
+  createBanner(
+    banner: $banner,
+  ) {
+    banner
+  }
+}
+`
+
 
 
 

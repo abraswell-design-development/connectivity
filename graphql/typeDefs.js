@@ -1,17 +1,17 @@
 const { gql } = require('apollo-server');
 
 module.exports = gql`
+  type Banner {
+    id: ID!
+    banner: String!
+    createdAt: String!
+  }
   type Comment {
     id: ID!
     createdAt: String!
     name: String
     picture: String
     body: String!
-  }
-  type Folder {
-    id: ID!
-    name: String!
-    createdAt: String!
   }
   type Like {
     id: ID!
@@ -20,9 +20,8 @@ module.exports = gql`
   }
   type Photo {
     id: ID!
-    image: String!
+    picture: String!
     createdAt: String!
-    folder: [Folder]!
   }
   type Post {
     id: ID!
@@ -56,19 +55,18 @@ module.exports = gql`
     register(registerInput: RegisterInput): User!
     login(email: String!, password: String!): User!
     updateProfile(updateInput: updateProfileInput): User!
+    createBanner(banner: String!): Banner
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
     likePost(postId: ID!): Post!
     createComment(postId: ID!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
-    createPhoto(photoId: ID!, image: String!): Photo
+    createPhoto(picture: String!): Photo
     deletePhoto(photoId: ID!): Photo!
   }
   type Query {
     getPhotos: [Photo]
     getPhoto(photoId: ID!): Photo
-    getFolders: [Folder]
-    getFolder(folderId: ID!): Folder
     getPosts: [Post]
     getPost(postId: ID!): Post
     getUsers: [User]

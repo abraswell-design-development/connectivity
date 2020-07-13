@@ -1,7 +1,7 @@
 const { AuthenticationError, UserInputError } = require('apollo-server');
 
+const Banner = require('../../models/Banner')
 const Photo = require('../../models/Photo');
-const Folder = require('../../models/Folder')
 const checkAuth = require('../../controllers/mutation-middleware-controller');
 
 module.exports = {
@@ -25,64 +25,40 @@ module.exports = {
       } catch (err) {
         throw new Error(err);
       }
-    },
-    async getFolders() {
-      try {
-        const folders = await Folder.find().sort({ createdAt: -1 });
-        return folders;
-      } catch (err) {
-        throw new Error(err);
-      }
-    },
-    async getFolder(_, { folderId }) {
-      try {
-        const folder = await Folder.findById(folderId);
-        if (folder) {
-          return folder;
-        } else {
-          throw new Error('Photo not found');
-        }
-      } catch (err) {
-        throw new Error(err);
-      }
     }
   },
   Mutation: {
-    async createPhoto(_, { image }, context) {
+    async createPhoto(_, { picture }, context) {
 
-      if (image.trim() === '') {
-        throw new Error('Photo body must not be empty');
+      if (picture.trim() === '') {
+        throw new Error('Photo must not be empty');
       }
 
-      const newPhoto = new Photo({
-        image,
+      const newPhoto = await new Photo({
+        picture,
         createdAt: new Date().toISOString()
-      });
+      })
 
-      const photo = await newPhoto.save();
+      const uploadedPhoto = await newPhoto.save();
 
-      context.pubsub.publish('NEW_PHOTO', {
-        newPhoto: photo
-      });
-
-      return photo;
+      return uploadedPhoto;
     },
-    // async deletePhoto(_, { photoId }, context) {
-    //   const user = checkAuth(context);
 
-    //   try {
-    //     const photo = await Photo.findById(photoId);
-    //     if (user.name === photo.name) {
-    //       await photo.delete();
-    //       return 'Photo deleted successfully';
-    //     } else {
-    //       throw new AuthenticationError('Action not allowed');
-    //     }
-    //   } catch (err) {
-    //     throw new Error(err);
-    //   }
-    // },
-    
+    async createBanner(_, { banner }, context) {
+
+      if (banner.trim() === '') {
+        throw new Error('Banner must not be empty');
+      }
+
+      const newBanner = await new Banner({
+        banner,
+        createdAt: new Date().toISOString()
+      })
+
+      const uploadedBanner = await newBanner.save();
+
+      return uploadedBanner;
+    } 
   },
   Subscription: {
     newPost: {

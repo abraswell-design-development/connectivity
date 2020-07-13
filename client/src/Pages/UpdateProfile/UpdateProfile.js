@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useClient, useContext, useState } from 'react'
+import axios from 'axios'
 import { useMutation } from '@apollo/react-hooks'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {AuthContext} from '../../context/auth'
 import { useForm } from '../../util/hooks'
+import { CREATE_PHOTO_MUTATION } from '../../graphql.js/mutations'
 import { UPDATE_USER } from '../../graphql.js/mutations'
 import Form from '../../util/Form'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
@@ -13,11 +15,15 @@ import './UpdateProfile.css'
 
 
 export default function UpdateProfile(props) {
+  // const client = useClient()
   const [errors, setErrors] = useState({})
 
-  const { user } = useContext(AuthContext)
+  const { dispatch, user } = useContext(AuthContext)
 
   const currentData = user
+
+  const [picture, setPicture] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   let { onChange, onSubmit, values } = useForm(updateUserCallback, {
     email: currentData.email,
@@ -46,6 +52,45 @@ export default function UpdateProfile(props) {
     variables: values
   });
 
+  const handleImageUpload = async () => {
+    const data = new FormData()
+    data.append('file', picture)
+    data.append('upload_preset', 'geopins')
+    data.append('cloud_name', 'amy-braswell')
+
+    const res = await axios.post(
+      'https://api.cloudinary.com/v1_1/amy-braswell/image/upload',
+      data
+    )
+    return res.data.url
+  }
+
+  const handleImageSubmit = async e => {
+    try {
+      e.preventDefault()
+      // update isSubmitting in state (used to disable Submit button)
+      setIsSubmitting(true)
+      // upload image to Cloudinary and retrieve its URL
+      const imageUrl = await handleImageUpload()
+      // create GraphQL variables object
+      const variables = {
+        picture: imageUrl,
+      }
+      console.log(variables)
+      // send mutation to create new Pin, grab response
+      // const picture = await client.request(CREATE_PHOTO_MUTATION, variables)
+      // console.log('client request: ', client.request)
+      // add new Pin to 'pins' in state, AND set as 'newPin' in state
+      dispatch({ type: 'CREATE_PHOTO', payload: picture })
+      // clear draft pin data from state/context
+      console.log('Photo created',  picture )
+    } catch (err) {
+      // re-enable Submit button
+      setIsSubmitting(false)
+      console.error('Error creating Pin', err)
+    }
+  }
+
   function updateUserCallback() {
     updateUser()
   }
@@ -67,6 +112,27 @@ export default function UpdateProfile(props) {
             )}
 
             <Form onSubmit={onSubmit} noValidate className={loading ? 'Loading register--loading' : ''}>
+              <input
+                accept="image/*"
+                id="image"
+                type="file"
+                onChange={onChange}
+              />
+              <button 
+                className='update--button'
+                type='button'
+                // onClick={handleImageSubmit}
+              ></button>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
               <p className='update-question'>
                     How do you know the patient? 
               </p>
