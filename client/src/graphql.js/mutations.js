@@ -159,11 +159,11 @@ export const DELETE_COMMENT_MUTATION = gql`
 `
 
 export const CREATE_PHOTO_MUTATION = `
-mutation($banner: String!) {
-  createBanner(
-    banner: $banner,
+mutation($picture: String!) {
+  createPhoto(
+    picture: $picture,
   ) {
-    banner
+    picture
   }
 }
 `

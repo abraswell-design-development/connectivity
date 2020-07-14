@@ -1,7 +1,8 @@
-import React, { useClient, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { useMutation } from '@apollo/react-hooks'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { GraphQLClient } from 'graphql-request'
 
 import {AuthContext} from '../../context/auth'
 import { useForm } from '../../util/hooks'
@@ -15,15 +16,14 @@ import './UpdateProfile.css'
 
 
 export default function UpdateProfile(props) {
-  // const client = useClient()
   const [errors, setErrors] = useState({})
+  const [picture, setPicture] = useState('')
 
   const { dispatch, user } = useContext(AuthContext)
 
   const currentData = user
+  const newPicture = currentData.newPicture
 
-  const [picture, setPicture] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
 
   let { onChange, onSubmit, values } = useForm(updateUserCallback, {
     email: currentData.email,
@@ -32,7 +32,7 @@ export default function UpdateProfile(props) {
     city: '',
     state: '',
     phone: '',
-    picture: currentData.picture,
+    picture: newPicture || currentData.picture,
     banner: currentData.banner
   });
 
@@ -68,26 +68,29 @@ export default function UpdateProfile(props) {
   const handleImageSubmit = async e => {
     try {
       e.preventDefault()
-      // update isSubmitting in state (used to disable Submit button)
-      setIsSubmitting(true)
       // upload image to Cloudinary and retrieve its URL
+      // grab the successfully logged-in user's Google idToken
+      const idToken = localStorage.getItem('jwtToken')
+      // create a GraphQL Client object, pass it the token as an auth header
+      const client = new GraphQLClient('http://localhost:5000/graphql', {
+        headers: {
+          authorization: idToken,
+        }, 
+      })
       const imageUrl = await handleImageUpload()
       // create GraphQL variables object
       const variables = {
         picture: imageUrl,
       }
-      console.log(variables)
-      // send mutation to create new Pin, grab response
-      // const picture = await client.request(CREATE_PHOTO_MUTATION, variables)
-      // console.log('client request: ', client.request)
-      // add new Pin to 'pins' in state, AND set as 'newPin' in state
-      dispatch({ type: 'CREATE_PHOTO', payload: picture })
-      // clear draft pin data from state/context
-      console.log('Photo created',  picture )
+      // send mutation to create new Photo, grab response
+      let picture = await client.request(CREATE_PHOTO_MUTATION, variables)
+      // add new Photo to 'photo' in state
+      user.picture = await picture
+      let newPicture = user.picture.createPhoto.picture
+      dispatch({ type: 'CREATE_PHOTO', payload: newPicture })
+      console.log('newPicture = user.picture.createPhoto.picture: ', newPicture)
     } catch (err) {
-      // re-enable Submit button
-      setIsSubmitting(false)
-      console.error('Error creating Pin', err)
+      console.error('Error creating Photo', err)
     }
   }
 
@@ -111,28 +114,31 @@ export default function UpdateProfile(props) {
               </div>
             )}
 
-            <Form onSubmit={onSubmit} noValidate className={loading ? 'Loading register--loading' : ''}>
+            <Form onSubmit={handleImageSubmit} className={loading ? 'Loading register--loading' : ''}>
+          
               <input
+                name="picture"
                 accept="image/*"
                 id="image"
                 type="file"
-                onChange={onChange}
+                onChange={e => setPicture(e.target.files[0])}
               />
               <button 
                 className='update--button'
                 type='button'
-                // onClick={handleImageSubmit}
               ></button>
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
+
+              <div className='Button--submit update__buttons'>
+                <button 
+                  className='update--button'
+                  type='submit'>
+                  Upload
+                </button>
+              </div>
+            </Form>
+
+            <Form onSubmit={onSubmit} noValidate className={loading ? 'Loading register--loading' : ''}>
+          
               <p className='update-question'>
                     How do you know the patient? 
               </p>
@@ -267,7 +273,7 @@ return(
         </div>
         <div className='update-member-card__thumbnail--round'>
             <img 
-                src={currentData.picture}
+                src={currentData.newPicture || currentData.picture}
                 alt='member headshot'
             >
             </img>    
@@ -287,203 +293,3 @@ return(
       </section>
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState, useContext } from 'react'
-// import axios from 'axios'
-// import { useClient } from '../../graphql/client'
-// import { CREATE_PIN_MUTATION } from '../../graphql/mutations'
-
-
-// import Context from '../../context'
-
-
-
-
-
-// const CreateProfile = ({ classes }) => {
-//   const client = useClient()
-
-//   const { dispatch } = useContext(Context)
-
-//   const [image, setImage] = useState('')
-//   const [about, setAbout] = useState('')
-//   const [city, setCity] = useState('')
-//   const [state, setState] = useState('')
-//   const [relationToPatient, setRelationToPatient] = useState('')
-//   const [isSubmitting, setIsSubmitting] = useState(false)
-
-
-//   const handleImageUpload = async () => {
-//     const data = new FormData()
-//     data.append('file', image)
-//     data.append('upload_preset', 'geopins')
-//     data.append('cloud_name', 'amy-braswell')
-
-//     const res = await axios.post(
-//       'https://api.cloudinary.com/v1_1/amy-braswell/image/upload',
-//       data
-//     )
-//     return res.data.url
-//   }
-
-//   const handleSubmit = () => {
-//     console.log('submitted about form')
-//   }
-
-//   // const handleSubmit = async e => {
-//     // try {
-//     //   e.preventDefault()
-//     //   // update isSubmitting in state (used to disable Submit button)
-//     //   setIsSubmitting(true)
-//     //   // upload image to Cloudinary and retrieve its URL
-//     //   const imageUrl = await handleImageUpload()
-//     //   // create GraphQL variables object
-//     //   const variables = {
-//     //     picture: imageUrl,
-//     //   }
-//     //   // send mutation to update User, grab response
-//     //   const { updateUser } = await client.request(UPDATE_USER_MUTATION, variables)
-//     //   // add new Pin to 'pins' in state, AND set as 'newPin' in state
-//     //   dispatch({ type: 'UPDATE_USER', payload: updateUser })
-//     //   console.log('About Member updated', { updateUser })
-//     // } catch (err) {
-//     //   // re-enable Submit button
-//     //   setIsSubmitting(false)
-//     //   console.error('Error creating Pin', err)
-//     // }
-//   // }
-
-//   return (
-//     <form>
-//       {/* FORM HEADER */}
-//       <h1>
-//         Update Profile Information
-//       </h1>
-
-//       <div>
-//         {/* MEMBER CITY */}
-//         <input
-//           autoFocus
-//           name="city"
-//           label="City"
-//           placeholder="Current City"
-//           fullWidth
-//           onChange={e => setCity(e.target.value)}
-//         />
-//         {/* MEMBER STATE */}
-//         <input
-//           autoFocus
-//           name="state"
-//           label="State"
-//           placeholder="Current State"
-//           fullWidth
-//           onChange={e => setState(e.target.value)}
-//         />
-//         {/* MEMBER ABOUT */}
-//         <input
-//           autoFocus
-//           name="about"
-//           label="About"
-//           placeholder="Tell us about yourself"
-//           fullWidth
-//           onChange={e => setAbout(e.target.value)}
-//         />
-//         {/* MEMBER RELATION */}
-//         <input
-//           autoFocus
-//           name="relation"
-//           label="Relation"
-//           placeholder="How do you know the patient"
-//           fullWidth
-//           onChange={e => setRelationToPatient(e.target.value)}
-//         />
-
-
-
-
-
-//         {/* PROFILE PIX INPUT -- HIDDEN */}
-//         <input
-//           accept="image/*"
-//           id="image"
-//           type="file"
-//           className={classes.input}
-//           onChange={e => setImage(e.target.files[0])}
-//         />
-//         {/* PIN PHOTO INPUT -- ICON BUTTON */}
-//         <label htmlFor="image">
-//           <button
-//             style={{ color: image && 'green' }}
-//             component="span"
-//             size="small"
-//             className={classes.button}
-//           >
-//             Add Profile Photo
-//           </button>
-//         </label>
-//       </div>
-
-
-
-//       {/* BUTTONS */}
-//       <div>
-//         {/* SUBMIT */}
-//         <button
-//           type="submit"
-//           className={classes.button}
-//           variant="contained"
-//           color="secondary"
-//           onClick={handleSubmit}
-//         >
-//           Submit
-//         </button>
-//       </div>
-//     </form>
-//   )
-// }
-
-
-
-
-// export default CreateProfile

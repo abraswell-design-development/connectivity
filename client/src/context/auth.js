@@ -1,10 +1,11 @@
 import React, { useReducer, createContext } from 'react';
 import jwtDecode from 'jwt-decode';
+import { GraphQLClient } from 'graphql-request'
+import { GOOGLE_USER_QUERY } from '../graphql.js/queries'
 
 const initialState = {
   user: null
 };
-
 
 // Keeps user logged in for 24 hours
 if (localStorage.getItem('jwtToken')) {
@@ -16,6 +17,49 @@ if (localStorage.getItem('jwtToken')) {
   } 
 } 
 
+// async function checkToken() {
+//   if (localStorage.getItem('jwtToken')) {
+//     const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+//     if (decodedToken.exp * 1000 < Date.now()) {
+//       localStorage.removeItem('jwtToken');
+//     } else {
+//       try{
+//         const idToken = localStorage.getItem('jwtToken')
+//         checkToken(idToken)
+//         const client = new GraphQLClient('http://localhost:5000/graphql', {
+//         headers: {
+//           authorization: idToken,
+//         }, 
+//       })
+//       // query the server (server verifies token, finds or creates a User, returns user's info)
+//         let returnedUser = await client.request(GOOGLE_USER_QUERY)
+//         console.log(returnedUser)
+//         let user = await returnedUser.user
+
+//         let normalizedUser = {
+//           id: user.id,
+//           name: user.name,
+//           phone: user.phone,
+//           email: user.email,
+//           city: user.city,
+//           state: user.state, 
+//           about: user.about,
+//           relation: user.relation, 
+//           picture: user.picture,
+//           banner: user.banner
+//         };
+//         console.log('normalizedUser: ', normalizedUser)
+//         initialState.user= normalizedUser 
+//         console.log('initialState.user: ', initialState.user )
+//       }
+//       catch {
+//         console.log('user is decoded token...')
+//         initialState.user = decodedToken;
+//         }
+//       } 
+//     } 
+//     checkToken()
+ 
 const AuthContext = createContext({
   user: null,
   googleUser: null,
@@ -28,9 +72,15 @@ const AuthContext = createContext({
   updateUser: (userData) => {}
 });
 
-
 export function ContextReducer(state, { type, payload}) {
   switch (type) {
+    case "CREATE_PHOTO":
+      console.log('CREATE_PHOTO_CASE has run... payload is: ', payload)
+      console.log('updated state is: ', state)
+      return {
+        ...state,
+        newPicture: payload
+      };
     case 'LOGIN':
       return {
         ...state,
@@ -51,6 +101,8 @@ export function ContextReducer(state, { type, payload}) {
       return state;
   }
 }
+
+
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(ContextReducer, initialState);
@@ -74,6 +126,8 @@ function AuthProvider(props) {
     localStorage.removeItem('jwtToken');
     dispatch({ type: 'LOGOUT' });
   }
+
+  
 
   return (
     <AuthContext.Provider
