@@ -59,6 +59,9 @@ async function checkToken() {
       console.log('decoded token user initialState: ', initialState)
       }
     } 
+    const returningUser = initialState.user
+    console.log('user from initial state is: ', returningUser)
+    return returningUser
   } 
 
 
@@ -121,7 +124,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-    value={{ user: state.user, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, login, setUserData, logout, dispatch }}
+    value={{ user: state.user, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, checkToken, login, setUserData, logout, dispatch }}
     {...props}
     />
   );
