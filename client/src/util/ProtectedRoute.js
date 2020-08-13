@@ -9,19 +9,17 @@ const initialState = {
 };
 
 function ProtectedRoute({ component: Component, ...rest }) {
+  console.log('rest: ', rest)
   const { user } = useContext(AuthContext);
-  // const { returningUser } = useContext(AuthContext);
+  const { returningUser } = useContext(AuthContext);
 
-  // console.log( 'returningUser: ', returningUser)
+  console.log( 'returningUser: ', returningUser)
 
-  const [state, dispatch] = useReducer(ContextReducer, initialState);
+  const [state] = useReducer(ContextReducer, initialState);
   console.log(state)
-
  
 
  
-
-
   return (
     <Route
       {...rest}

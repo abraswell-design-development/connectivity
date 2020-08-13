@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useReducer, createContext, useContext } from 'react';
 import jwtDecode from 'jwt-decode';
 import { GraphQLClient } from 'graphql-request'
 import { GOOGLE_USER_QUERY } from '../graphql.js/queries'
@@ -9,6 +9,7 @@ const initialState = {
 
 const AuthContext = createContext({
   user: null,
+  returningUser: null,
   googleUser: null,
   photos: [],
   isAuth: false,
@@ -52,6 +53,7 @@ async function checkToken() {
         banner: user.banner
       };
       initialState.user= normalizedUser
+
       console.log('normalized user initialState: ', initialState)
     }
     else {
@@ -124,7 +126,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-    value={{ user: state.user, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, checkToken, login, setUserData, logout, dispatch }}
+    value={{ user: state.user, returningUser: state.user, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, checkToken, login, setUserData, logout, dispatch }}
     {...props}
     />
   );

@@ -16,7 +16,16 @@ export default function Login(props) {
   const context = useContext(AuthContext)
   const {dispatch} = useContext(AuthContext)
 
-// // GOOGLE - APP ROUTE
+// // GOOGLE ROUTE
+// This route gets the .id_token from the returned Google object and verifies the token in
+// the verifyAuthToken method (google-login-controller.js Lines 8 - 29) to create
+// the variable googleUser. This googleUser object is passed to this function once available 
+// (from the server) to make a query call to get the user's data from the database which is 
+// then normalized to match the object shape of the user who signed in through the app. 
+// Finally, the normalized user object is made available throughout the app using the 
+// ContextReducer case 'SET_USER_DATA' (auth.js Lines 85 - 88) and calling the setUserData() method
+// (auth.js Lines 113 - 118) through dispatch.
+
   const handleGoogleSuccess = async googleUser => {
     try {
 // grab the successfully logged-in user's Google idToken
@@ -32,7 +41,7 @@ export default function Login(props) {
       let returnedUser = await client.request(GOOGLE_USER_QUERY)
 
       let user = await returnedUser.user
-
+// normalize returnedUser to object shape of users who signed in through the app using JWT.
       let normalizedUser = {
         id: user.id,
         name: user.name,
