@@ -1,30 +1,18 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-
 import { AuthContext } from '../context/auth';
-import  { ContextReducer } from '../context/auth';
 
-const initialState = {
-  user: null
-};
+
 
 function ProtectedRoute({ component: Component, ...rest }) {
-  console.log('rest: ', rest)
   const { user } = useContext(AuthContext);
   const { returningUser } = useContext(AuthContext);
-
-  console.log( 'returningUser: ', returningUser)
-
-  const [state] = useReducer(ContextReducer, initialState);
-  console.log(state)
- 
-
- 
+  
   return (
     <Route
       {...rest}
-      render={(props) =>
-        !user ? <Redirect to="/login" /> : <Component {...props} />
+        render={(props) => 
+          !{user} || !{returningUser} ? <Redirect to="/login" /> : <Component {...props} />
       }
     />
   );

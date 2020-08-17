@@ -42,7 +42,7 @@ function App() {
 
   return ( 
     <div>
-    <AuthProvider>
+      <AuthProvider>
       <Router>
         <div className='App'>
           <div className='App__sidebar'>
@@ -63,7 +63,7 @@ function App() {
           </main>
         </div>
       </Router>
-    </AuthProvider>
+      </AuthProvider>
     </div>
   )
 }

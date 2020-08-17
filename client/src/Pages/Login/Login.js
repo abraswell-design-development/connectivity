@@ -28,20 +28,20 @@ export default function Login(props) {
 
   const handleGoogleSuccess = async googleUser => {
     try {
-// grab the successfully logged-in user's Google idToken
+    // grab the successfully logged-in user's Google idToken
       const idToken = googleUser.getAuthResponse().id_token
       localStorage.setItem('jwtToken', idToken)
-// create a GraphQL Client object, pass it the token as an auth header
+      // create a GraphQL Client object, pass it the token as an auth header
       const client = new GraphQLClient('http://localhost:5000/graphql', {
         headers: {
           authorization: idToken,
         }, 
       })
-// query the server (server verifies token, finds or creates a User, returns user's info)
+      // query the server (server verifies token, finds or creates a User, returns user's info)
       let returnedUser = await client.request(GOOGLE_USER_QUERY)
 
       let user = await returnedUser.user
-// normalize returnedUser to object shape of users who signed in through the app using JWT.
+      // normalize returnedUser to object shape of users who signed in through the app using JWT.
       let normalizedUser = {
         id: user.id,
         name: user.name,
@@ -57,11 +57,10 @@ export default function Login(props) {
 
       dispatch({ type: 'SET_USER_DATA', payload: normalizedUser })
 
-// this moves the user into the protected route to reach home page but user in currently undefined
       props.history.push('/')
   } catch (err) {
     handleGoogleFailure(err)
-  }
+    }
   }
 
   const handleGoogleFailure = err => console.error('Error logging in', err)

@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useContext } from 'react';
+import React, { useReducer, createContext } from 'react';
 import jwtDecode from 'jwt-decode';
 import { GraphQLClient } from 'graphql-request'
 import { GOOGLE_USER_QUERY } from '../graphql.js/queries'
@@ -19,53 +19,6 @@ const AuthContext = createContext({
   logout: () => {},
   updateUser: (userData) => {}
 });
-
-checkToken()
-
-async function checkToken() {
-
-  if (localStorage.getItem('jwtToken')) {
-    const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-    if (decodedToken.exp * 1000 < Date.now()) {
-      localStorage.removeItem('jwtToken');
-    } 
-    if (decodedToken.iss) {
-      const idToken = localStorage.getItem('jwtToken')
-      const client = new GraphQLClient('http://localhost:5000/graphql', {
-      headers: {
-        authorization: idToken,
-      }, 
-    })
-    // query the server (server verifies token, finds or creates a User, returns user's info)
-      let returnedUser = await client.request(GOOGLE_USER_QUERY)
-      let user = await returnedUser.user
-
-      let normalizedUser = {
-        id: user.id,
-        name: user.name,
-        phone: user.phone,
-        email: user.email,
-        city: user.city,
-        state: user.state, 
-        about: user.about,
-        relation: user.relation, 
-        picture: user.picture,
-        banner: user.banner
-      };
-      initialState.user= normalizedUser
-
-      console.log('normalized user initialState: ', initialState)
-    }
-    else {
-      initialState.user = decodedToken;
-      console.log('decoded token user initialState: ', initialState)
-      }
-    } 
-    const returningUser = initialState.user
-    console.log('user from initial state is: ', returningUser)
-    return returningUser
-  } 
-
 
 function ContextReducer(state, { type, payload}) {
   switch (type) {
@@ -97,10 +50,57 @@ function ContextReducer(state, { type, payload}) {
   }
 }
 
-
-
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(ContextReducer, initialState);
+  
+  async function checkToken(props) {
+    
+    if (localStorage.getItem('jwtToken')) {
+      // get jwtToken object from local storage if one exists
+      const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+      // remove token if expired
+      if (decodedToken.exp * 1000 < Date.now()) {
+        localStorage.removeItem('jwtToken');
+      } 
+      // if idToken is a Google User
+      if (decodedToken.iss) {
+        const idToken = localStorage.getItem('jwtToken')
+        const client = new GraphQLClient('http://localhost:5000/graphql', {
+        headers: {
+          authorization: idToken,
+        }, 
+      })
+      // query the server (server verifies token, finds or creates a User with Google data, returns user's info)
+        let returnedUser = await client.request(GOOGLE_USER_QUERY)
+        let user = await returnedUser.user
+        // convert Google User to the same shape as JWT user
+        let normalizedUser = {
+          id: user.id,
+          name: user.name,
+          phone: user.phone,
+          email: user.email,
+          city: user.city,
+          state: user.state, 
+          about: user.about,
+          relation: user.relation, 
+          picture: user.picture,
+          banner: user.banner
+        };
+        initialState.user = normalizedUser
+  
+        dispatch({ type: 'SET_USER_DATA', payload: normalizedUser })
+      }
+      // If user is a JWT / App user
+      else {
+        initialState.user = decodedToken;
+        }
+      } 
+      const returningUser = initialState.user
+     
+      return returningUser
+    } 
+
+  checkToken()
 
   function login(userData) {
     localStorage.setItem('jwtToken', userData.token || userData.tokenId)
@@ -122,11 +122,9 @@ function AuthProvider(props) {
     dispatch({ type: 'LOGOUT' });
   }
 
-  
-
   return (
     <AuthContext.Provider
-    value={{ user: state.user, returningUser: state.user, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth, checkToken, login, setUserData, logout, dispatch }}
+    value={{ user: state.user, returningUser: state.user, photos: state.photos, googleUser: state.googleUser, isAuth: state.isAuth,  checkToken, login, setUserData, logout, dispatch }}
     {...props}
     />
   );
