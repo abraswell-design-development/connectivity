@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Tooltip from '../Tooltip/Tooltip'
-import { LIKE_POST_MUTATION } from '../../graphql.js/mutations'
+import { LIKE_POST_MUTATION } from '../../graphql/mutations'
 
 
 

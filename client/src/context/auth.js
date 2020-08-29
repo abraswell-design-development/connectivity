@@ -1,7 +1,7 @@
 import React, { useReducer, createContext } from 'react';
 import jwtDecode from 'jwt-decode';
 import { GraphQLClient } from 'graphql-request'
-import { GOOGLE_USER_QUERY } from '../graphql.js/queries'
+import { GOOGLE_USER_QUERY } from '../graphql/queries'
 
 const initialState = {
   user: null
@@ -19,6 +19,7 @@ const AuthContext = createContext({
   logout: () => {},
   updateUser: (userData) => {}
 });
+
 
 function ContextReducer(state, { type, payload}) {
   switch (type) {
@@ -40,6 +41,11 @@ function ContextReducer(state, { type, payload}) {
         ...state,
         user: payload
       }
+    case 'REMOVE_USER_DATA':
+      return {
+        ...state,
+        user: null
+      }
     case 'LOGOUT':
       return {
         ...state,
@@ -48,7 +54,10 @@ function ContextReducer(state, { type, payload}) {
     default:
       return state;
   }
+  
 }
+
+
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(ContextReducer, initialState);
@@ -87,7 +96,6 @@ function AuthProvider(props) {
           banner: user.banner
         };
         initialState.user = normalizedUser
-  
         dispatch({ type: 'SET_USER_DATA', payload: normalizedUser })
       }
       // If user is a JWT / App user
@@ -95,6 +103,7 @@ function AuthProvider(props) {
         initialState.user = decodedToken;
         }
       } 
+
       const returningUser = initialState.user
      
       return returningUser
@@ -117,10 +126,20 @@ function AuthProvider(props) {
     });
   }
 
+  function removeUserData() {
+    dispatch({ 
+      type: 'REMOVE_USER_DATA'
+    });
+  }
+
   function logout() {
     localStorage.removeItem('jwtToken');
+    removeUserData()
+    // checkToken() - didn't work
     dispatch({ type: 'LOGOUT' });
   }
+
+
 
   return (
     <AuthContext.Provider

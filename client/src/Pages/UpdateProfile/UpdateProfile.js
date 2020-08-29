@@ -6,8 +6,8 @@ import { GraphQLClient } from 'graphql-request'
 
 import {AuthContext} from '../../context/auth'
 import { useForm } from '../../util/hooks'
-import { CREATE_PHOTO_MUTATION } from '../../graphql.js/mutations'
-import { UPDATE_USER } from '../../graphql.js/mutations'
+import { CREATE_PHOTO_MUTATION } from '../../graphql/mutations'
+import { UPDATE_USER } from '../../graphql/mutations'
 import Form from '../../util/Form'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 

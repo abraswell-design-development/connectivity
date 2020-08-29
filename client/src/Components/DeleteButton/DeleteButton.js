@@ -3,8 +3,8 @@ import {confirmAlert} from 'react-confirm-alert'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMutation } from '@apollo/react-hooks'
 
-import { DELETE_COMMENT_MUTATION, DELETE_POST_MUTATION } from '../../graphql.js/mutations'
-import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
+import { DELETE_COMMENT_MUTATION, DELETE_POST_MUTATION } from '../../graphql/mutations'
+import { FETCH_POSTS_QUERY } from '../../graphql/queries'
 import Tooltip from '../Tooltip/Tooltip'
 import './DeleteButton.css'
 

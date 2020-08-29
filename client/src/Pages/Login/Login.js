@@ -5,8 +5,8 @@ import { GraphQLClient } from 'graphql-request'
 
 import {AuthContext} from '../../context/auth'
 import Form from '../../util/Form'
-import { LOGIN_USER } from '../../graphql.js/mutations'
-import { GOOGLE_USER_QUERY } from '../../graphql.js/queries'
+import { LOGIN_USER } from '../../graphql/mutations'
+import { GOOGLE_USER_QUERY } from '../../graphql/queries'
 import { useForm } from '../../util/hooks'
 
 import './Login.css'
@@ -40,6 +40,9 @@ export default function Login(props) {
       // query the server (server verifies token, finds or creates a User, returns user's info)
       let returnedUser = await client.request(GOOGLE_USER_QUERY)
 
+      // request is intercepted by server.js here to pass authToken to server through context
+      // when user has gone through the controller, returnedUser is passed back to login 
+      // process through context
       let user = await returnedUser.user
       // normalize returnedUser to object shape of users who signed in through the app using JWT.
       let normalizedUser = {
@@ -93,6 +96,7 @@ export default function Login(props) {
   function loginUserCallback() {
     loginUser()
   }
+  
 
   return  (
     <section className='login-main'>

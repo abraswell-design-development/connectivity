@@ -8,8 +8,8 @@ import CommentButton from '../../Components/CommentButton/CommentButton'
 import DeleteButton from '../../Components/DeleteButton/DeleteButton'
 import LikeButton from '../../Components/LikeButton/LikeButton'
 import Form from '../../util/Form'
-import { FETCH_POST_QUERY } from '../../graphql.js/queries'
-import { SUBMIT_COMMENT_MUTATION } from '../../graphql.js/mutations'
+import { FETCH_POST_QUERY } from '../../graphql/queries'
+import { SUBMIT_COMMENT_MUTATION } from '../../graphql/mutations'
 
 import './SinglePost.css'
 

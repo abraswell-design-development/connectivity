@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import { FETCH_USER_QUERY } from '../../graphql.js/queries'
+import { FETCH_USER_QUERY } from '../../graphql/queries'
 
 
 export default function Info(props){

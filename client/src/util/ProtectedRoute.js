@@ -8,6 +8,7 @@ function ProtectedRoute({ component: Component, ...rest }) {
   const { user } = useContext(AuthContext);
   const { returningUser } = useContext(AuthContext);
   
+  
   return (
     <Route
       {...rest}

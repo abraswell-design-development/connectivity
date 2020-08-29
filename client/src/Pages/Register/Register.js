@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks'
 
 import {AuthContext} from '../../context/auth'
 import { useForm } from '../../util/hooks'
-import { REGISTER_USER } from '../../graphql.js/mutations'
+import { REGISTER_USER } from '../../graphql/mutations'
 import Form from '../../util/Form'
 
 import './Register.css'

@@ -2,8 +2,8 @@
 import React from 'react'
 import {gql} from 'apollo-boost'
 import { useMutation, useQuery } from '@apollo/react-hooks'
-import { CREATE_PHOTO_MUTATION } from '../../graphql.js/mutations'
-import { FETCH_PHOTOS_QUERY, FETCH_FOLDERS_QUERY } from '../../graphql.js/queries'
+import { CREATE_PHOTO_MUTATION } from '../../graphql/mutations'
+import { FETCH_PHOTOS_QUERY, FETCH_FOLDERS_QUERY } from '../../graphql/queries'
 import Form from '../../util/Form'
 import { useForm } from '../../util/hooks'
 
@@ -94,9 +94,9 @@ START OF GEOPIN APPROACH
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 
-import { CREATE_PHOTO_MUTATION } from '../../graphql.js/mutations'
+import { CREATE_PHOTO_MUTATION } from '../../graphql/mutations'
 // import { GraphQLClient } from 'graphql-request'
-import { useClient } from '../../graphql.js/client'
+import { useClient } from '../../graphql/client'
 import { withStyles } from '@material-ui/core/styles'
 import {AuthContext} from '../../context/auth'
 
@@ -372,8 +372,8 @@ import { useMutation } from '@apollo/react-hooks'
 
 import axios from 'axios'
 
-import { CREATE_PHOTO_MUTATION } from '../../graphql.js/mutations'
-import { FETCH_PHOTOS_QUERY } from '../../graphql.js/queries'
+import { CREATE_PHOTO_MUTATION } from '../../graphql/mutations'
+import { FETCH_PHOTOS_QUERY } from '../../graphql/queries'
 import Form from '../../util/Form'
 // import { useForm } from '../../util/hooks'
 

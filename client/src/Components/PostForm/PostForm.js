@@ -1,8 +1,8 @@
 
 import React from 'react'
 import { useMutation } from '@apollo/react-hooks'
-import { CREATE_POST_MUTATION } from '../../graphql.js/mutations'
-import { FETCH_POSTS_QUERY } from '../../graphql.js/queries'
+import { CREATE_POST_MUTATION } from '../../graphql/mutations'
+import { FETCH_POSTS_QUERY } from '../../graphql/queries'
 import Form from '../../util/Form'
 import { useForm } from '../../util/hooks'
 

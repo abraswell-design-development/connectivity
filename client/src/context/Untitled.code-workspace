@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../redux-essentials-example-app"
+		}
+	],
+	"settings": {}
+}
